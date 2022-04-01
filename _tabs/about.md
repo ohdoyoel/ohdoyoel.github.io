@@ -4,5 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+![profile-photo](/assets/img/favicons/android-chrome-512x512.png){: w="300" h="400}
+_가수 미노이의 고양이 밍밍 / mingming, singer MEENOI's kitty_
+
