@@ -592,4 +592,151 @@ void* dequeue() // 반환 값은 포인터 형식이므로 void*
 
 우리는 위에서 배열로 큐를 구현하는 것의 문제점과 한계를 직면했고, 그에 대한 해결책으로 원형 큐를 배웠다. 하지만, 해결책은 원형 큐만이 있는 것은 아니다. 우리가 배울 기법은 이 문제의 해결책이 되는데, 그것은 바로 연결 리스트이다.
 
-## 연결리스트로 큐 작성하기
+연결 리스트의 노드는 `key` 변수와 다음 노드를 가리키는 포인터 `struct _node *next`로 이루어져 있다. (포인터의 형은 구현 방식에 따라 차이가 있지만, 책에서는 `struct` 타입으로 구현하였다.) `head`는 첫번째 노드를 가리키고, `tail`은 마지막 노드를 가리킨다. 그리고 노드 `tail`의 포인터 값은 아무것도 가리키지 않기에, `NULL`을 가진다. (아래 그림을 보면 이해가 쉬울 것이다)
+
+장점
+: 연결리스트는 배열과 다르게 중간에 노드를 삽입하거나 제거할 때 원소를 밀어내거나 이동시킬 필요가 없다. 그냥 연결을 끊고 새로운 노드와 붙이거나, 한 노드의 양 연결을 끊고 이 노드를 배재시킨 후 연결시키면 끝나기 때문이다.
+
+단점
+: 그러나 임의의 위치에 있는 (i번째) 원소를 찾는 과정이 오래 걸린다. 완전 탐색을 수행하기 때문.
+
+연결리스트의 종류로는 이중 연결 리스트 (Doubly Linked List), 원형 연결 리스트 (Circular Linked List) 등이 있는데, 요 책에서는 단일 연결 리스트(Singular Linked List)만 다룬다. 
+
+![linked list](/assets/img/2022-04-01-algorithm-with-ps-00/0_0XVK02Guco9xJMJL.png){: w="400" }
+_연결 리스트_
+
+## 연결 리스트로 큐 작성하기
+
+```c++
+struct _node
+{
+    int key;
+    struct _node *next;
+};
+
+typedef struct _node node_t;
+
+node_t *head = NULL, *tail = NULL; // head와 tail은 첫 노드와 마지막 노드를 가리키는 포인터, 초기는 NULL
+
+void insert_node(int n) // 숫자 n을 리스트에 추가할 것
+{
+    node_t *new_node = (node_t*)malloc(sizeof(node_t));
+    new_node->key = n;
+    new_node->next = NULL; // 추가된 노드가 가리켜야할 노드는? 아무것도 가리키지 않으므로 NULL!
+    if (head == NULL) // head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면
+    {
+        head = new_node;
+        tail = new_node;
+    }
+    else
+    {
+        tail->next = new_node;
+        tail = new_node;
+    }
+}
+
+int delete_node()
+{
+    node_t *node; // 출력 노드의 포인터
+    int r;
+    if (head == NULL) // 지금 리스트가 비어있다면
+        return -1;
+    node = head; // 출력 노드 = head
+    head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
+    if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+        tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+    r = node->key;
+    free(node);
+    return r;
+}
+
+int main()
+{
+    int input;
+    while (true)
+    {
+        cin >> input;
+        if (input == -1)
+        {
+            break;
+        }
+        else if (input == 0)
+        {
+            cout << delete_node() << endl;
+        }
+        else if (input > 0)
+        {
+            insert_node(input);
+        }
+    }
+    return 0;
+}
+```
+
+연결 리스트 구현에 있어 몇 가지 유의해야하는 점들이 있다.
+
+> **구조체(struct)에 대하여** 구조체란 여러 변수들의 묶음으로 이해하면 편하다. 그리고 여러 변수들을 묶었기에, 이 구조체를 새로운 타입으로써 바라볼 수 있다.
+> - 구조체 선언: 구조체 `_node`는 정수형 변수 `key`와 구조체 `_node`의 포인터 변수 `next`의 묶음이다.
+> ```c++
+> struct _node
+> {
+>     int key;
+>     struct _node *next;
+> };
+> ```
+> - 구조체를 간지나게 쓰기: `struct _node *node`보다는 `node_t *node`가 더 간결하고 간지난다. 따라서 `typedef`를 통해서 구조체의 이름을 새로운 타입으로 정의하자.
+> ```c++
+> typedef struct _node node_t; // struct _node는 node_t
+> ```
+> - 구조체의 값 접근: 구조체 자체가 주어졌는지, 구조체의 포인터가 주어졌는지에 따라 다르다. 차이를 잘 기억해놓자.
+> ```c++
+> // 구조체가 주어짐
+> struct A a;
+> a.x = 1;
+> a.y = 2; // 요런 . 연산자로 접근
+> 
+> // 구조체의 포인터가 주어짐
+> struct A *a;
+> a->x = 1;
+> a->y = 2; // 요런 -> 연산자로 접근
+> ```
+{: .prompt-info }
+
+> `head`와 `tail`은 위 배열에서 보았던 인덱스가 아니고 포인터이다. 따라서 리스트가 빈 상황에서 꼭 아래와 같이 `NULL`로 초기화를 시켜주어야 한다. 그리고 리스트가 빈 상황은 `delete_node()` 안에서 head의 값을 업데이트할 때 head의 다음 노드를 가리키는 포인터가 `NULL` 인 것으로 알 수 있다.
+> ```c++
+> head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
+>     if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+>         tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+> ```
+{: .prompt-tip }
+
+## 이 연결리스트는 대기번호를 몇 개까지 받을 수 있을까?
+
+코드를 작성하여 확인해보자.
+
+```c++
+int main()
+{
+    double cnt = 0;
+    while (true)
+    {
+        cout << cnt << endl;
+        try
+        {
+            insert_node(1);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            break;
+        }
+        cnt++;
+    }
+    return 0;
+}
+```
+
+> 지금 코드를 짜서 실행시키고 있긴 한데... 아직도 안 끝났다 ㅋㅋ 결과 해석은 나중에 써야할 듯.
+{: .prompt-warning }
+
+> 오늘은 여기까지! (2022/4/3 16시)
