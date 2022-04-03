@@ -197,7 +197,7 @@ void right_rotate(int *arr, int s, int t)
 ## 1차원 배열 회전 (왼쪽으로 한 칸)
 
 ![rotating-1d-array](/assets/img/2022-04-01-algorithm-with-ps-00/unnamed.png){: w="400" }
-_1차원 배열 (왼쪽)_
+_1차원 배열 회전 (왼쪽)_
 
 ```c++
 void left_rotate(int *arr, int s, int t)
@@ -246,10 +246,350 @@ void right_rotate_k(int *arr, int s, int t, int k)
 
 우선 k칸만큼 회전할 때 임시적으로 저장해야 하는 놈들은 k개가 된다. 이것을 배열로 저장하자. 사이즈가 달라지므로 동적할당을 사용했다. 동적할당에 대해 모르겠다면 지금은 메모리를 미리 찜해놓는다 정도의 개념으로 알아두자. 중요한 것은 위의 for문과 배열의 index가 왜 저렇게 쓰였는지 정확하게 이해하는 것이다.
 
-# 은행 대기번호 관리 (큐)
+# 은행 대기 번호 관리 (큐/스택)
 
 큐(Queue)는 먼저 들어간 데이터가 먼저 나오는 자료구조를 말한다. (선입선출)
 
+![queue](/assets/img/2022-04-01-algorithm-with-ps-00/Queue-2-1.png){: w="400" }
+_큐_
+
+큐에 데이터를 넣을 때에는 **enqueue**라는 용어를 쓰고, 데이터를 뽑아낼 때에는 **dequeue**라는 용어를 쓴다.
+
 ## 배열로 큐 작성하기
 
-이거 왜 안되냐... 여기까지 쓸랭.. ㅠ
+큐를 가장 HARD한 방법으로 코딩하는 방법은, `head`, `tail`를 정의하여 배열에서 큐의 컨테이너의 범위를 지정하는 것이다. 쉽게 말해 먼저 들어온 놈을 먼저 내보낼 것인데, 이를 위해 먼저 들어온 놈을 가리키는 index를 변수로 두고 (`head`), 나중에 들어온 놈을 가리키는 index를 변수로 두는 것이다. (`tail`)
+
+```c++
+int queue[100]; // 왜 배열의 크기를 100개나 잡았을까? 정답은 밑의 빨간 영역에...
+int head = 0, tail = 0;
+
+void enqueue(int n) // 값이 큐에 들어옴
+{
+    if (tail - head == 8) // 큐의 사이즈가 8 이상이면 안 댐!
+    {
+        cout << "queue is full!" << endl;
+        return ;
+    }
+    queue[tail] = n; // 큐에서 tail의 위치에 입력 데이터 저장
+    tail++; // tail 앞으로 한 칸 이동
+    return ;
+}
+
+int dequeue()
+{
+    if (tail - head == 0)
+    {
+        cout << "queue is empty!" << endl;
+        return 0;
+    }
+    int r = queue[head]; // 현재 큐에서 head의 위치에 있는 데이터 반환, 왜 여기서 return을 하지 않았을까? 정답은 설명에...
+    head++; // head 앞으로 한 칸 이동
+    return r;
+}
+
+int main()
+{
+    int input;
+    while (true)
+    {
+        cin >> input;
+        if (input == -1)
+        {
+            break;
+        }
+        else if (input == 0)
+        {
+            cout << dequeue() << endl;
+        }
+        else if (input > 0)
+        {
+            enqueue(input);
+        }
+    }
+    return 0;
+}
+```
+
+> **책의 코드는 틀렸다?** 그렇다. 책의 코드(28p~29p)는 장의 서문에서 제시한 예시 출력을 반환하지 못한다. 필자가 왜 그런지 열심히 고민해봤는데, 고민의 결과는 다음과 같다.
+> - 배열 `queue`의 크기가 8로 제한되어 있다.
+> - 변수 `tail`의 경우 입력한 횟수만큼 증가한다. (즉, 매우 큰 수가 대입될 수 있다.)
+> - 그.런.데! 명령어 `queue[tail]`이 존재한다. 따라서 이는 배열의 범위보다 큰 인덱스를 처리해야하는 문제로 귀결된다.
+> 필자는 이 문제를 배열 `queue`의 크기를 나름 큰 크기로 세팅하여 해결하였으나(`queue[100]`), 입력을 100번 이상 받으면 다시 문제가 발생할 것이다. (즉 `queue[k]`로 선언했다면 입력을 k번 이상 받을 경우 문제가 발생한다.) 따라서 이 문제를 해결할 멋진 방법을 필요로 하게 된다.
+{: .prompt-danger }
+
+> 필자는 코드의 일관된 작성을 위하여 인덱스 값을 사용하고 인덱스 값을 업데이트 하는 방식으로 코드를 통일했다. 예컨데 `enqueue(int n)`와 `dequeue()`에서
+> ```c++
+>    queue[tail] = n; // 인덱스 값 사용
+>    tail++; // 인덱스 값 업데이트
+>    return ;
+> ```
+> ```c++
+>    int r = queue[head]; // 인덱스 값 사용
+>    head++; // 인덱스 값 업데이트
+>    return r;
+> ```
+> 이렇게 작성한 이유는, 책의 코드 같은 경우 `head`와 `tail`을 생성할 때 각각 `head = 0`, `tail = -1`과 같이 썼는데, 이렇게 쓸 경우 tail이 -1로 초기화된 것에 대하여 의문점을 가질 수 있고, 무엇보다 직관적이지 못하다.
+{: .prompt-tip }
+
+> 또 별건 아니지만, 책에서는 `queue_size` 변수를 따로 만들어서 큐의 크기를 직접 조종하였지만, 위와 같이 일관된 코드를 작성하고 나면 `queue_size` 변수가 굳이 필요 없다는 것을 알게 된다. 그저 큐의 크기가 필요할 때마다 `head - tail`로 계산하면 되기 때문이다. 코드의 일관된 작성은 interpretable한 코드를 낼 수 있고, 이는 더 나은 코드를 찾을 수 있다는 점에서 contribution이 있다.
+{: .prompt-tip }
+
+> 책에 있는 코드에 오타가 있어서 시간을 많이 빼았겨 분하고 화가 나는가? 책의 저자에게 너무 열을 내지 않도록 주의하자. 개발과 관련된 수많은 책의 리뷰를 보다보면, 이따금씩 코드의 오탈자로 저자를 나무라는 분노의 리뷰를 많이 보았다. 하지만 이게 당신의 실력 향상에 도움이 되는가? **전혀 도움 안된다.** 물론, 오탈자의 정도가 심하다면 분명 수정이 필요하다. 하지만 코드를 직접 실행해보고, 디버깅해보며, 어떤 코드가 오류를 반환하고, 이를 어떻게 해결할 수 있는지 고민해보는 것도 좋은 공부가 될 것이다. (필자는 위의 빨간 영역을 적으며 많은 것을 배웠다.) 또한 책의 저자는 책의 서문에서 이미 오탈자에 대한 양해를 구하고 있으며, 코드 외적인 부분에서 내용을 훌륭하게 전달하고 있다고 생각한다. 그러니 포기하지 말고, 좀 더 공부해보자. :) (사실 이건 나 자신에게 하는 말과 같다.)
+{: .prompt-warning }
+
+
+## 원형 큐 작성하기
+
+배열로 큐 작성하기에서 빨간 영역으로 작성한 배열로 작성한 큐의 한계를 기억하는가? 그것은 바로, **배열 `queue[k]`로 선언했을 때 입력을 k번 이상 받을 경우 문제가 발생한다는 것이다.** 왜냐하면 큐의 끝 인덱스를 나타내는 변수 `tail`은 입력 횟수에 비례하고, 입력 횟수는 제한이 없기에 배열의 크기보다 큰 인덱스가 들어갈 수 있기 때문이다.
+
+사실 배열로 작성한 큐의 문제는 그뿐만이 아니다. 메모리 효율성의 관점에서 엉망이다. 배열 `queue`에서 데이터 컨데이너로써 필요한 부분은 인덱스 `head ~ tail`이 전부이다. 그렇다면 `0 ~ head`, `tail ~ 100`은? (`queue`의 크기가 100이라고 전제하겠다.) 그냥 쓸데없는 부분이다. **이 사용되지도 않을 변수들을 위해서 메모리 상에 미리 자리를 맡아놓아야 한다니, 아깝지 않은가?**
+
+이러한 관점에서 고민한 끝에, 새롭게 고안된 데이터 타입이 바로 원형 큐이다.
+
+![circular queue](/assets/img/2022-04-01-algorithm-with-ps-00/capture%202.png){: w="400" }
+_원형 큐_
+
+즉 위에서 구현한 배열로 만든 큐의 시작과 끝이 이어져있다고 생각하면 된다.
+
+```c++
+#define QUEUE_CAPACITY 8 // 많이 쓰이므로 미리 정의해놓자
+
+int queue[100];
+int head = 0, tail = 0;
+int queue_size = 0;
+
+void enqueue(int n)
+{
+    if (queue_size == 8)
+    {
+        cout << "queue is full!" << endl;
+        return ;
+    }
+    queue[tail] = n;
+    tail = (tail + 1) % QUEUE_CAPACITY; // tail 앞으로 한 칸 이동, 범위를 넘어가면 0으로 회귀
+    queue_size++;
+    return;
+}
+
+int dequeue()
+{
+    if (queue_size == 0)
+    {
+        cout << "queue is empty!" << endl;
+        return 0;
+    }
+    int r = queue[head];
+    head = (head + 1) % QUEUE_CAPACITY; // head 앞으로 한 칸 이동, 범위를 넘어가면 0으로 회귀
+    queue_size--;
+    return r;
+}
+
+int main()
+{
+    int input;
+    while (true)
+    {
+        cin >> input;
+        if (input == -1)
+        {
+            break;
+        }
+        else if (input == 0)
+        {
+            cout << dequeue() << endl;
+        }
+        else if (input > 0)
+        {
+            enqueue(input);
+        }
+    }
+    return 0;
+}
+```
+
+> 결국 원형 큐에서 가장 중요한 것은, **인덱스를 증가시키되, 범위를 초과하면 0으로 회귀시키는 것이다.** 그리고 이러한 아이디어는 정확히 나머지 연산자(`%`)와 부합한다. 이 아이디어는 다양하게 활용되므로, 잘 기억해두자.
+> ```c++
+> tail = (tail + 1) % QUEUE_CAPACITY;
+> ```
+> ```c++
+> head = (head + 1) % QUEUE_CAPACITY;
+> ```
+{: .prompt-tip }
+
+> 원형 큐에서 `head`와 `tail`을 인자로 받고, `queue_size`를 반환할 수 있는 함수를 짤 수는 없을까? 즉, 우리가 배열을 이용해서 큐를 구현할 때 사용했던 `tail - head`처럼 말이다. 결론부터 말하자면 조금 어려운 일인 것 같다. 필자는 밑의 코드까지 작성하고 포기했다.
+> ```c++
+> int queue_size()
+> {
+>     if (tail >= head)
+>    {
+>        return tail - head;
+>    }
+>    else
+>    {
+>        return QUEUE_CAPACITY - (head - tail)
+>    }
+> }
+> ```
+> 왜 여기에서 포기하게 되었냐면, 디버깅을 해보니 **"데이터가 큐에 꽉 찬 상황"과 "큐가 비어있는 상황"을 구분할 수 없었기 때문이다.** 두 가지 상황 모두 `head == tail` 조건을 만족시킨다. (만약 책의 코드를 따랐다면, `head = tail + 1` 조건을 만족시킬 것이다.) 따라서 생각이 여기까지 도달했을 때, 다시 위로 올라가 `int queue_size`를 정의하고 `enqueue(int n)`과 `dequeue()`에 각각 `queue_size++`과 `queue_size--`를 추가했다... ㅠㅠ
+{: .prompt-tip }
+
+우리는 이렇게 원형 큐를 구현할 수 있었고, 이는 기존의 큐가 가진 문제점을 해결할 수 있다.
+
+## 배열로 스택 작성하기
+
+큐(Queue)는 먼저 들어간 데이터가 나중에 나오는, 즉 마지막에 들어간 데이터가 맨 처음에 나오는 자료구조를 말한다. (선입후출) (그러한 관점에서, 꽤 불공평하다.)
+
+![stack](/assets/img/2022-04-01-algorithm-with-ps-00/1_r4Bfo3rrFprzFM2zbgzZXA.jpeg){: w="400" }
+_스택_
+
+스택에 데이터를 넣을 때에는 **push**라는 용어를 쓰고, 데이터를 뽑아낼 때에는 **pop**라는 용어를 쓴다.
+
+배열로 큐를 구현했을 때와 마찬가지로, **인덱스를 변수로** 놓는 것이 구현의 첫 걸음이다. 넣는 인덱스와 뽑는 인덱스가 동일하므로, 이들을 변수 `top`으로 놓자.
+
+```c++
+int stack[100];
+int top = 0; // top은 데이터가 들어왔을 때 놓을 인덱스로 놓자
+
+void push(int n)
+{
+    if (top == 8)
+    {
+        cout << "queue is full!" << endl;
+        return ;
+    }
+    stack[top] = n;
+    top++;
+    return;
+}
+
+int pop()
+{
+    if (top == 0)
+    {
+        cout << "queue is empty!" << endl;
+        return 0;
+    }
+    int r = stack[top - 1];
+    top--;
+    return r;
+}
+
+int main()
+{
+    int input;
+    while (true)
+    {
+        cin >> input;
+        if (input == -1)
+        {
+            break;
+        }
+        else if (input == 0)
+        {
+            cout << pop() << endl;
+        }
+        else if (input > 0)
+        {
+            push(input);
+        }
+    }
+    return 0;
+}
+```
+
+요런 식으로 구현할 수 있다. (큐보다 훨씬 쉽다.)
+
+> 위 경우 스택의 크기는 `top`이라는 General한 방법으로 구할 수 있다.
+{: .prompt-tip }
+
+> 쉽기야 하지만, 한 가지 고려해야할 것은 인덱스 변수 `top`이 "`push(n)`할 때 입력된 데이터가 들어갈 자리의 인덱스"인지 "`pop()`할 때 뽑힐 데이터의 인덱스"인지 구분하는 것이다. 위 코드의 경우 전자를 따랐다.
+{: .prompt-warning }
+
+## 일반적인 데이터 타입을 다룰 수 있는 (원형) 큐 작성하기
+
+캬... 어려운 거 나왔다.
+
+> **C언어에서 일반적인 데이터 타입을 다룰 수 있는 방법은 무엇일까?** C언어에서 모든 데이터 타입의 변수를 다룰 수 있는 방법은 없지만, 모든 데이터 타입의 포인터를 저장할 수는 있다. 그것은 바로 `void *`이다. `void *`는 데이터의 주소값(포인터)을 대입할 수 있는데, 대입하거나 대입될 때 자동으로 형 변환이 일어난다.
+> ```c++
+> int* x = ptr; // ptr <- void* 타입
+> ```
+{: .prompt-info }
+
+따라서 타입 코드만 조금 수정하면 될 것 같다.
+
+> ㅋㅋㅋ 방금 해보고 왔는데 안된다. **C++에서는 기본적으로 `void*`를 임의의 다른 포인터형으로 자동 변환해주지 않는다.** 수동으로 형변환을 해줘야 한다. (자동 변환해주는 거는 C에서의 이야기이다. 이러한 차이는 C++과 C의 미세한 차이에 속한다.)
+> ```c++
+> int* x = (int *)ptr; // ptr <- void* 타입
+> ```
+{: .prompt-danger }
+
+
+```c++
+#define QUEUE_CAPACITY 8
+
+void* queue[100]; // 큐의 원소는 각 값의 포인터
+int head = 0, tail = 0;
+int queue_size = 0;
+
+void enqueue(void* n) // enqueue시 인자는 값의 포인터
+{
+    if (queue_size == 8)
+    {
+        cout << "queue is full!" << endl;
+        return ;
+    }
+    queue[tail] = n;
+    tail = (tail + 1) % QUEUE_CAPACITY;
+    queue_size++;
+    return;
+}
+
+void* dequeue() // 반환 값은 포인터 형식이므로 void*
+{
+    if (queue_size == 0)
+    {
+        cout << "queue is empty!" << endl;
+        return nullptr;
+    }
+    void* r = queue[head]; // 반환 값은 포인터 형식이므로 void*
+    head = (head + 1) % QUEUE_CAPACITY;
+    queue_size--;
+    return r;
+}
+```
+
+> 사실 여기까지 적었지만, 필자는 `main()`을 어떻게 적어야 할지 잘 모르겠다.
+> ```c++
+> int main()
+> {
+>     int input;
+>     while (true)
+>     {
+>         cin >> input;
+>         if (input == -1)
+>         {
+>             break;
+>         }
+>         else if (input == 0)
+>         {
+>             int *r = (int*)(dequeue());
+>             cout << *r << endl;
+>         }
+>         else if (input > 0)
+>         {
+>             int x = input; // 여기서 문제가 생긴듯
+>             enqueue(&x);
+>         }
+>     }
+>     return 0;
+> }
+> ```
+> 여기까지 적었는데, 문제가 있다. 실행해보면 `dequeue`를 호출할 때마다 동일한 값만 나온다. 그리고 이것은 아마도 11번째 행 ```else if (input > 0)```영역이 문제인 것 같은데, 내가 기대했던 것은 매번 저 영역을 지날 때마다 **`int x`를 실행하여 이름은 `x`로 똑같지만 포인터 값이 항상 다른 변수를 만드는 것**이었지만, 실행해보니 항상 똑같은 값이 들어가는 모양이다. (실제로 배열의 내부를 확인해보니 그렇더라) 이를 해결할 수 있는 다른 멋진 방법이 필요해보인다.
+> > 다음에 이 글을 보면 해결할 수 있기를!
+{: .prompt-warning }
+
+# 연결 리스트
+
+우리는 위에서 배열로 큐를 구현하는 것의 문제점과 한계를 직면했고, 그에 대한 해결책으로 원형 큐를 배웠다. 하지만, 해결책은 원형 큐만이 있는 것은 아니다. 우리가 배울 기법은 이 문제의 해결책이 되는데, 그것은 바로 연결 리스트이다.
+
+## 연결리스트로 큐 작성하기
