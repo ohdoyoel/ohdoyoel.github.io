@@ -694,7 +694,6 @@ int main()
 > struct A a;
 > a.x = 1;
 > a.y = 2; // 요런 . 연산자로 접근
-> 
 > // 구조체의 포인터가 주어짐
 > struct A *a;
 > a->x = 1;
