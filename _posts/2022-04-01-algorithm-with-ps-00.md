@@ -704,8 +704,8 @@ int main()
 > `head`와 `tail`은 위 배열에서 보았던 인덱스가 아니고 포인터이다. 따라서 리스트가 빈 상황에서 꼭 아래와 같이 `NULL`로 초기화를 시켜주어야 한다. 그리고 리스트가 빈 상황은 `delete_node()` 안에서 head의 값을 업데이트할 때 head의 다음 노드를 가리키는 포인터가 `NULL` 인 것으로 알 수 있다.
 > ```c++
 > head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
->     if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
->         tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+> if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+>     tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
 > ```
 {: .prompt-tip }
 
