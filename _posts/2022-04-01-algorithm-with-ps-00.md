@@ -705,7 +705,9 @@ int main()
 > ```c++
 > head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
 > if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+> {
 >     tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+> }
 > ```
 {: .prompt-tip }
 
