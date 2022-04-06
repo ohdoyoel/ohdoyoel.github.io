@@ -37,6 +37,7 @@ _가수 미노이의 고양이 밍밍 / mingming, singer MEENOI's kitty_
 
 - 파이썬 / Python
 - C/C++
+- Unity
 
 # 취미 / HOBBY
 

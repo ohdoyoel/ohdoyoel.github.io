@@ -701,7 +701,7 @@ int main()
 > ```
 {: .prompt-info }
 
-> `head`와 `tail`은 위 배열에서 보았던 인덱스가 아니고 포인터이다. 따라서 리스트가 빈 상황에서 꼭 아래와 같이 `NULL`로 초기화를 시켜주어야 한다. 그리고 리스트가 빈 상황은 `delete_node()` 안에서 head의 값을 업데이트할 때 head의 다음 노드를 가리키는 포인터가 `NULL` 인 것으로 알 수 있다.
+> `head`와 `tail`은 위 배열에서 보았던 방법과 같이 인덱스로 사용된 것이 아니고 포인터로 사용된다. 따라서 리스트가 빈 상황에서 꼭 아래와 같이 `NULL`로 초기화를 시켜주어야 한다. 그리고 리스트가 빈 상황은 `delete_node()` 안에서 head의 값을 업데이트할 때 head의 다음 노드를 가리키는 포인터가 `NULL` 인 것으로 알 수 있다.
 > ```c++
 > head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
 > if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
@@ -711,7 +711,7 @@ int main()
 > ```
 {: .prompt-tip }
 
-## 이 연결리스트는 대기번호를 몇 개까지 받을 수 있을까?
+## 이 연결 리스트는 대기번호를 몇 개까지 받을 수 있을까?
 
 코드를 작성하여 확인해보자.
 
@@ -739,5 +739,107 @@ int main()
 
 > 지금 코드를 짜서 실행시키고 있긴 한데... 아직도 안 끝났다 ㅋㅋ 결과 해석은 나중에 써야할 듯.
 {: .prompt-warning }
+
+## 연결 리스트를 이용하여 양쪽 끝에서 삽입과 삭제가 일어나는 Double Ended Queue 작성하기 (작성 중)
+
+끝에 추가했던 코드를 맨 앞에 추가하는 코드로 수정하면 될 것 같다.
+
+```c++
+struct _node
+{
+    int key;
+    struct _node *next;
+};
+
+typedef struct _node node_t;
+
+node_t *head = NULL, *tail = NULL; // head와 tail은 첫 노드와 마지막 노드를 가리키는 포인터, 초기는 NULL
+
+void insert_front_node(int n) // 숫자 n을 리스트에 추가할 것
+{
+    node_t *new_node = (node_t*)malloc(sizeof(node_t));
+    new_node->key = n;
+    new_node->next = head; // 추가된 노드가 가리켜야할 노드는? 맨 앞이 되므로 head!
+    if (head == NULL) // head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면
+    {
+        head = new_node;
+        tail = new_node;
+    }
+    else
+    {
+        head = new_node;
+    }
+}
+
+// 밑에 놈을 어떻게 적지? 정확히는, tail을 뽑고 tail을 어떻게 업데이트하지?
+int delete_front_node()
+{
+    node_t *node; // 출력 노드의 포인터
+    int r;
+    if (head == NULL) // 지금 리스트가 비어있다면
+        return -1;
+    node = head; // 출력 노드 = head
+    head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
+    if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+        tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+    r = node->key;
+    free(node);
+    return r;
+}
+
+void insert_node(int n) // 숫자 n을 리스트에 추가할 것
+{
+    node_t *new_node = (node_t*)malloc(sizeof(node_t));
+    new_node->key = n;
+    new_node->next = NULL; // 추가된 노드가 가리켜야할 노드는? 아무것도 가리키지 않으므로 NULL!
+    if (head == NULL) // head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면
+    {
+        head = new_node;
+        tail = new_node;
+    }
+    else
+    {
+        tail->next = new_node;
+        tail = new_node;
+    }
+}
+
+int delete_node()
+{
+    node_t *node; // 출력 노드의 포인터
+    int r;
+    if (head == NULL) // 지금 리스트가 비어있다면
+        return -1;
+    node = head; // 출력 노드 = head
+    head = head->next; // head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨
+    if (head == NULL) // 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면
+        tail = NULL; // 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기
+    r = node->key;
+    free(node);
+    return r;
+}
+
+int main()
+{
+    int input;
+    while (true)
+    {
+        cin >> input;
+        if (input == -1)
+        {
+            break;
+        }
+        else if (input == 0)
+        {
+            cout << delete_node() << endl;
+        }
+        else if (input > 0)
+        {
+            insert_node(input);
+        }
+    }
+    return 0;
+}
+```
 
 > 오늘은 여기까지! (2022/4/3 16시)
