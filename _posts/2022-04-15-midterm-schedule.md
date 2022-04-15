@@ -18,7 +18,7 @@ tags: []
 > On 0421, There is **2** Exams on a day. I have to consider it.
 {: .prompt-tip }
 
-# STRATEGY of MIDTERM
+# Strategy of MIDTERM
 
 ## Calculus II
 
