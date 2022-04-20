@@ -291,4 +291,263 @@ int main()
 그러면 `pay(m, n)`는 다음과 같이 정의된다.
 
 > Base Case (n = 1)
-> 
+> $$ \begin{cases} 1 & \text{ if } \text{m \% bills[0] == 0} \\ 0 & \text{ if } \text{m \% bills[0] != 0} \end{cases} $$
+> Recursive Case (n >= 2)
+> $$ \sum_{\text{i=0}}^{\text{m/bills[n-1]}} \text{pay(m-bills[n-1]} \times \text{i, n-1)} $$
+
+Recursive Case를 반복할수록 n의 값이 점점 줄어들기에, Base Case에 수렴함을 확인할 수 있다.
+
+이를 코드로 작성하면 다음과 같다.
+
+```c++
+int pay(int money, int* bills, int n)
+{
+    int count = 0;
+    if (n == 1)
+        if (m % bills[0] == 0)
+            return 1;
+        else
+            return 0;
+    for (int i = 0; i <= (money / bills[n - 1]); i++)
+        count += pay(money - bills[n - 1] * i, bills, n - 1);
+    return count;
+}
+```
+
+이는 **값을 반환하기 위한 재귀**에 해당한다.
+
+# 수분할
+
+n 수분할은 자연수 n을 순서에 상관 없이 하나 이상의 자연수의 합으로 나타내는 방법이다.
+
+예를 들어
+
+| 3수분할 | 4수분할 | 5수분할
+|:-------|:--------|:----------
+| 1+1+1  | 1+1+1+1 | 1+1+1+1+1
+| 2+1    | 2+1+1   | 2+1+1+1
+| 3      | 2+2     | 2+2+1
+|        | 3+1     | 3+1+1
+|        | 4       | 3+2
+|        |         | 4+1
+|        |         | 5
+
+와 같은 형태로 나타낼 수 있다.
+
+## 일반적인 수분할
+
+n/m 수분할은 n을 순서에 상관 없이 하나 이상의 m 이하 자연수로만 나타내는 방법이다.
+
+예를 들어
+
+| 4/1     | 3/2     | 5/2       | 5/3       |
+|:--------|:--------|:----------|:----------|
+| 1+1+1+1 | 1+1+1   | 1+1+1+1+1 | 1+1+1+1+1 |
+|         | 2+1     | 2+1+1+1   | 2+1+1+1   |
+|         |         | 2+2+1     | 2+2+1     |
+|         |         |           | 3+1+1     |
+|         |         |           | 3+2       |
+
+와 같은 형태로 나타낼 수 있다.
+
+앞서 설명했던 n 수분할은 n/n 수분할이라고 할 수 있다.
+
+n < m 이면 n/m 수분할은 n/n 수분할과 같다.
+
+## 재귀함수로 수분할의 개수 구하기
+
+재귀함수를 이용하여 수분할의 개수를 구하기 위해서는, 재귀적으로 수분할의 개수를 정의해야 한다.
+
+우선 n/m 수분할의 개수를 반환하는 함수를 `partition(n, m)`으로 정의하자.
+
+그러면 `partition(n, m)`는 다음과 같이 정의된다.
+
+> Base Case (n = 0)
+> $$ \text{partition(0,m)} = 1 $$
+> Recursive Case (n >= 1)
+> $$ \text{partition(n,m)} = \sum_{\text{i=1}}^{\text{m}} \text{partition(n-i,i)} $$
+
+Recursive Case를 반복하여 호출할수록 n의 값이 점점 줄어들기에, Base Case에 수렴함을 확인할 수 있다.
+
+```c++
+int partition(int n, int m)
+{
+    int count = 0;
+    if (n < m)
+        m = n;
+    if (n == 0)
+        return 1;
+    for (int i = 1; i <= m; i++)
+        count += partition(n - i, i);
+    return count;
+}
+```
+
+이는 **값을 반환하기 위한 재귀**에 해당한다.
+
+## 메모이제이션을 이용한 재귀함수로 수분할의 개수 구하기
+
+## 재귀함수로 순서를 고려하는 수분할의 개수 구하기
+
+순서를 고려한 수분할은 내림차순으로 정렬했던 이제까지와 다르게, 서로 다른 순서도 고려함을 의미한다.
+
+예를 들어
+
+| 3수분할  | 4수분할    
+|:--------|:--------
+| 1+1+1   | 1+1+1+1 
+| 1+2     | 1+1+2   
+| 2+1     | 1+2+1   
+| 3       | 1+3     
+|         | 2+1+1   
+|         | 2+2     
+|         | 3+1     
+|         | 4       
+
+와 같은 형태로 나타낼 수 있다.
+
+재귀함수를 이용하여 순서를 수분할의 개수를 구하기 위해서는, 재귀적으로 순서를 고려한 수분할의 개수를 정의해야 한다.
+
+우선 n/m 수분할의 개수를 반환하는 함수를 `partition2(n, m)`으로 정의하자.
+
+그러면 `partition2(n)`는 다음과 같이 정의된다.
+
+> Base Case (n = 1)
+> $$ \text{partition2(1)} = 1 $$
+> Recursive Case (n >= 2)
+> $$ \text{partition2(n)} = \sum_{\text{i=1}}^{\text{n-1}} \text{partition2(n-i)} + 1 $$
+
+Recursive Case를 반복하여 호출할수록 n의 값이 점점 줄어들기에, Base Case에 수렴함을 확인할 수 있다.
+
+```c++
+int partition2(int n)
+{
+    int count = 0;
+    if (n == 1)
+        return 1;
+    for (int i = 1; i <= n - 1; i++)
+        count += partition2(n - i);
+    return count + 1;
+}
+```
+
+---
+
+# 다양한 재귀함수 예시
+
+필자의 대학 코스 Advanced Programming에서 사용된 예시를 발췌, 정리했습니다.
+
+## Power Function
+
+> Base Case (y = 0)
+> $$ x^{0} = 1 $$
+> Recursive Case (y >= 1)
+> $$ x^{y} = x \times x^{y-1} $$
+
+```c++
+unsigned long power(unsigned int x, unsigned int y)
+{
+    if (y == 0)
+        return 1;
+    else
+        return x * power(x, y - 1);
+}
+```
+
+하지만 이 코드는 `y`만큼의 스택을 생성하기에 Stack Overflow가 발생할 가능성이 다분하다. 따라서 다음과 같이 코드를 작성하여 해결할 수도 있다.
+
+> Base Case (y = 0)
+> $$ x^{0} = 1 $$
+> Recursive Case (y >= 1)
+> $$ x^{y} = \begin{cases} x \times x^{y-1} & \text{ if y = odd } \\ x^{y/2} \times x^{y/2} & \text{ if y = even } \end{cases} $$
+
+```c++
+unsigned long power(unsigned int x, unsigned int y)
+{
+    if (y == 0)
+        return 1;
+    else
+        if (y % 2 == 0)
+            unsigned long x_y2 = power(x, y / 2);
+            return x_y2 * x_y2;
+        else
+            return x * power(x, y - 1);
+}
+```
+
+> **가능하면 Reduce by RATIO, not by CONSTANT.**
+{: .prompt-tip }
+
+## Fibonacci Number
+
+> Base Case (n = 0 or 1)
+> $$ \text{fib(0)} = 0 $$
+> $$ \text{fib(1)} = 1 $$
+> Recursive Case (n >= 2)
+> $$ \text{fib(n)} = \text{fib(n - 1)} + \text{fib(n - 2)} $$
+
+```c++
+unsigned long fib(int n)
+{
+    if (n <= 1)
+        return n;
+    return fib(n - 1) + fib(n - 2);
+}
+```
+
+## Factorial
+
+> Base Case (n = 0)
+> $$ \text{fac(0)} = 1 $$
+> Recursive Case (n >= 1)
+> $$ \text{fac(n)} = \text{n} \times \text{fac(n - 1)} $$
+
+```c++
+unsigned long fac(int n)
+{
+    if (n == 0)
+        return 1;
+    return n * fac(n - 1);
+}
+```
+
+## Finding a Square Root using a Binary Search
+
+> **What is Binary Search or Bisection Method?**
+> - Choose an initial lower boundary and an upper boundary for the ANSWER.
+> - Progressively narrow boundaries, until they are narrow enough for our purpose.
+{: .prompt-info }
+
+예를 들어, 7의 제곱근을 찾는다고 해보자. 
+
+1. 7의 제곱근은 0에서 7 사이에 있을거야.
+2. Midpoint(= 3.5)를 시도해보자.
+$$ 3.5^{2} = 12.25 $$
+3. 12.25는 7보다 크므로 7의 제곱근은 0에서 3.5 사이에 있을거야.
+4. Midpoint(= 1.75)를 시도해보자.
+$$ 1.75^{2} = 3.0625 $$
+5. 3.0625는 7보다 작으므로 7의 제곱근은 1.75에서 3.5 사이에 있을거야.
+6. Midpoint(= 2.625)를 시도해보자.
+$$ 2.625^{2} = 6.890625 $$
+7. 6.890625는 7보다 작으므로 7의 제곱근은 2.625에서 3.5 사이에 있을거야.
+8. Midpoint(= 3.0625)를 시도해보자.
+$$ 3.0625^{2} = 9.37890625 $$
+9. 9.37890625는 7보다 크므로 7의 제곱근은 2.625에서 3.0625 사이에 있을거야.
+10. Midpoint를 시도해보자.
+11. ...
+
+이러한 과정이 바로 Binary Search 이다!
+
+> Base Case (close enough to answer)
+> $$ \text{return midpoint;} \text{ if } \text{midpoint}^{2} = n $$
+> Recursive Case (not close enough to answer)
+> $$ \begin{cases} \text{return binary\_search(answer, lower, midpoint)} & \text{ if } \text{midpoint}^{2} > \text{answer} \\ \text{return binary\_search(answer, midpoint, upper)} & \text{ if } \text{midpoint}^{2} < \text{answer} \end{cases} $$
+
+```c++
+double real(int n)
+{
+    if (n == 0)
+        return 1;
+    return n * fac(n - 1);
+}
+```
