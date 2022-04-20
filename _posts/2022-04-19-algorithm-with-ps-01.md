@@ -3,6 +3,7 @@ title: "문제로 풀어보는 알고리즘 01장: 재귀적 프로그래밍"
 date: 2022-04-19 22:40:43 +0900
 categories: [Problem Solving, 문제로 풀어보는 알고리즘]
 tags: [ps, book]
+math: true
 ---
 
 # n! 계산하기
@@ -614,3 +615,7 @@ Rules
 2. 쌓여있는 Disk들 중 가장 위의 Disk만 이동 가능
 3. Disk는 자신보다 크기가 큰 Disk 위에만 놓일 수 있음
 
+> Base Case (1 Disk)
+> $$ \text{print(from → to), exit } \text{ if } \text{1 Disk} $$
+> Recursive Case (not close enough to answer)
+> $$  $$
