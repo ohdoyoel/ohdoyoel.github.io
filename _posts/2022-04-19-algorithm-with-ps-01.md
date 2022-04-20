@@ -437,7 +437,7 @@ int partition2(int n)
 
 필자의 대학 코스 Advanced Programming에서 사용된 예시를 발췌, 정리했습니다.
 
-## Power Function
+## Calculate Power
 
 > Base Case (y = 0)
 > $$ x^{0} = 1 $$
@@ -478,7 +478,7 @@ unsigned long power(unsigned int x, unsigned int y)
 > **가능하면 Reduce by RATIO, not by CONSTANT.**
 {: .prompt-tip }
 
-## Fibonacci Number
+## Calculate Nth Fibonacci Number
 
 > Base Case (n = 0 or 1)
 > $$ \text{fib(0)} = 0 $$
@@ -495,7 +495,7 @@ unsigned long fib(int n)
 }
 ```
 
-## Factorial
+## Calculate N Factorial
 
 > Base Case (n = 0)
 > $$ \text{fac(0)} = 1 $$
@@ -511,7 +511,7 @@ unsigned long fac(int n)
 }
 ```
 
-## Finding a Square Root using a Binary Search
+## Find a Square Root using a Binary Search
 
 > **What is Binary Search or Bisection Method?**
 > - Choose an initial lower boundary and an upper boundary for the ANSWER.
@@ -539,15 +539,78 @@ $$ 3.0625^{2} = 9.37890625 $$
 이러한 과정이 바로 Binary Search 이다!
 
 > Base Case (close enough to answer)
-> $$ \text{return midpoint;} \text{ if } \text{midpoint}^{2} = n $$
+> $$ \text{return midpoint;} \text{ if } \text{midpoint}^{2} = \text{n} $$
 > Recursive Case (not close enough to answer)
-> $$ \begin{cases} \text{return binary\_search(answer, lower, midpoint)} & \text{ if } \text{midpoint}^{2} > \text{answer} \\ \text{return binary\_search(answer, midpoint, upper)} & \text{ if } \text{midpoint}^{2} < \text{answer} \end{cases} $$
+> $$ \begin{cases} \text{return binary\_search(n, lower, midpoint)} & \text{ if } \text{midpoint}^{2} > \text{n} \\ \text{return binary\_search(n, midpoint, upper)} & \text{ if } \text{midpoint}^{2} < \text{n} \end{cases} $$
 
 ```c++
-double real(int n)
+double binary_search(double n, double lower, double upper)
 {
-    if (n == 0)
-        return 1;
-    return n * fac(n - 1);
+    double mid = (lower + upper) / 2;
+    double mid2 = mid * mid;
+    if (fabs(mid2 - n) <= 0.001) // #include<cmath>
+        return mid;
+    else
+    {
+        if (mid2 > n)
+            return binary_search(n, lower, mid);
+        else
+            return binary_search(n, mid, upper);
+    }
+}
+
+double square_root(double val)
+{
+    return binary_search(val, 0, val);
 }
 ```
+
+> 위와 같은 방식으로 인자를 3개 받는 함수를 실행하기 위해서 그 함수를 실행시키는 것이 아니라, 인자를 하나 받는 함수를 구현한 후 인자를 3개 받는 함수를 호출할 수도 있다.
+{: .prompt-tip }
+
+## Is Palindrome?
+
+Palindrome이란 앞으로, 뒤로 읽어도 동일한 문자열을 말한다. 예를 들어 'radar', 'noon' 등이 이에 속한다.
+
+> **`c_str()` method**
+>  : C 스타일의 `string`을 C++에서 사용할 수 있도록 해준다. 이들은 문자열의 첫번째 글자를 가리키는 포인터 `ptr`과 문자열의 길이 `len`으로 구성된다.
+{: .prompt-info }
+
+> Base Case (len <= 1)
+> $$ \text{ return True } \text{ if } \text{ len } <= 1 $$
+> Recursive Case (len >= 2) (양끝이 동일 and 내부 문자열이 palindrome)
+> $$ \text{return (ptr[0] == ptr[len -1]) and is\_palindrome(ptr + 1, len - 2)} $$
+
+```c++
+bool is_palindrome(char const* ptr, size_t len)
+{
+    if (len <= 1)
+        return true;
+    return (ptr[0] == ptr[len - 1] && is_palindrome(ptr + 1, len - 2));
+}
+
+int main()
+{
+    string x;
+    getline(cin, x);
+    cout << is_palindrome(x.c_str(), x.length()) << endl;
+    return 0;
+}
+```
+
+> `getline()`, `c_str()`, `length()` 메소드의 사용법을 잘 숙지해놓자.
+{: .prompt-tip }
+
+> `gdb [executable]`을 console에 입력함으로써 재귀함수의 스택을 추적할 수 있다.
+{: .prompt-tip }
+
+
+## Print Tower of Hanoi Solution
+
+Tower of Hanoi은 한 봉에 있는 서로 다른 크기의 Disk들을 다른 봉으로 옮기는 문제이다.
+
+Rules
+1. 한 번에 하나의 Disk를 이동 가능
+2. 쌓여있는 Disk들 중 가장 위의 Disk만 이동 가능
+3. Disk는 자신보다 크기가 큰 Disk 위에만 놓일 수 있음
+
