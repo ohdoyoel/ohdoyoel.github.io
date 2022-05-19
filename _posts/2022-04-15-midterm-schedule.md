@@ -2,7 +2,7 @@
 title: "DANIEL's MIDTERM SCHEDULE & STRATEGY"
 date: 2022-04-15 14:49:30 +0900
 categories: []
-tags: []
+tags: [decs]
 ---
 
 # Schedule of MIDTERM
