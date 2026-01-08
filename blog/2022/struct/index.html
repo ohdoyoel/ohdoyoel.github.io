@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <p>필자의 대학 코스 Advanced Programming에서 사용된 예시를 발췌, 정리했습니다. FINAL 시험에서 좋은 성과를 바라며…</p> <h1 id="point">POINT</h1> <p>Point라는 구조체는 x좌표와 y좌표로 정의될 수 있습니다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="c1"> // for sqrt</span><span class="cp">
+</span>
+<span class="k">struct</span> <span class="nc">point</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">double</span> <span class="nf">d</span><span class="p">(</span><span class="n">point</span> <span class="k">const</span> <span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="n">point</span> <span class="k">const</span> <span class="o">*</span> <span class="n">p2</span><span class="p">)</span> <span class="c1">// 1</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">x_diff</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="kt">double</span> <span class="n">y_diff</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x_diff</span><span class="o">*</span><span class="n">x_diff</span> <span class="o">+</span> <span class="n">y_diff</span><span class="o">*</span><span class="n">y_diff</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">point</span> <span class="n">p</span><span class="p">;</span> <span class="c1">// 2</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x: "</span> <span class="o">&lt;&lt;</span> <span class="n">flush</span><span class="p">;</span> <span class="c1">// 3</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">// 2</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y: "</span> <span class="o">&lt;&lt;</span> <span class="n">flush</span><span class="p">;</span> <span class="c1">// 3</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">;</span> <span class="c1">// 2</span>
+    <span class="n">point</span> <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Distance: "</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">origin</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>몇 가지 의미있는 내용이 있습니다.</p> <ol> <li>함수 인자로 구조체의 주솟값을 받았다면, 구조체의 변수에 접근하기 위해서는 <code class="language-plaintext highlighter-rouge">p1-&gt;x</code> 형식으로, 즉 <code class="language-plaintext highlighter-rouge">[구조체 포인터]-&gt;[구조체의 변수]</code> 형식으로 접근해야 합니다.</li> <li>그저 구조체를 받았다면, 구조체의 변수에 접근하기 위해 <code class="language-plaintext highlighter-rouge">p.x</code> 형식으로, 즉 <code class="language-plaintext highlighter-rouge">[구조체].[구조체의 변수]</code> 형식으로 접근해야 합니다.</li> <li>제시문을 출력하고 사용자의 입력을 기다릴 때에는 <code class="language-plaintext highlighter-rouge">&lt;&lt; flush</code>를 해주는 것이 관습입니다.</li> </ol> <p>하지만 위 코드는 밑에처럼 쓸 수도 있습니다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="c1"> // for sqrt</span><span class="cp">
+</span>
+<span class="k">struct</span> <span class="nc">point</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">double</span> <span class="nf">d</span><span class="p">(</span><span class="n">point</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">point</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p2</span><span class="p">)</span> <span class="c1">// 1</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">x_diff</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="kt">double</span> <span class="n">y_diff</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x_diff</span><span class="o">*</span><span class="n">x_diff</span> <span class="o">+</span> <span class="n">y_diff</span><span class="o">*</span><span class="n">y_diff</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">point</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"x: "</span> <span class="o">&lt;&lt;</span> <span class="n">flush</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"y: "</span> <span class="o">&lt;&lt;</span> <span class="n">flush</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">point</span> <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Distance: "</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>이번에는 함수의 인자를 구조체 자체로 주고 있습니다. 이 상황만 보면 누군가가 이렇게 비판하겠죠. “구조체를 인자로 전달하는 것은 구조체 전체를 복사하여 다시 연산하기 때문에 비효율적이야!” 하지만 위로 올라가서 함수의 인자 포맷을 보게 된다면, <code class="language-plaintext highlighter-rouge">&amp;</code>가 붙어 있는 것을 알 수 있습니다. 이는 *reference**를 활용한 값의 참조이며, 이 함수는 레퍼런스로 받은 인자들에 붙은 <code class="language-plaintext highlighter-rouge">.</code>은 모두 <code class="language-plaintext highlighter-rouge">-&gt;</code>로 바꾸어서 처리하게 됩니다. 즉 1에서 바로 인자들에게 접근할 수 있는 것이지요. 잘 알아두시길 바랍니다.</p> <p>후자의 방법이 메모리의 관점에서는 더 효율적입니다.</p> <h1 id="pointer-vs-reference">Pointer vs Reference</h1> <p>레퍼런스는 포인터와 중요한 차이점을 가집니다.</p> <ol> <li>꼭 초기화를 시켜주지 않아도 되는 포인터와 달리, 레퍼런스는 반드시 처음에 누구의 별명이 될 것인지 지정해야 합니다.</li> <li>가리키는 값이 바뀔 수 있는 포인터와 달리, 레퍼런스가 한 번 별명이 되면 절대로 다른 이의 별명이 될 수 없다.</li> <li>항상 메모리상 공간을 차지하는 포인터와 달리, 레퍼런스는 메모리 상에 존재하지 않을 수도 있다.</li> </ol> <p>조금 사소한 것들로는…</p> <ol> <li>배열과 사용할 수 없다.</li> <li>포인터 연산을 할 수 없다.</li> <li>null-reference는 불가능, null-pointer는 가능</li> <li>reference는 항상 무언가를 함의하도록 초기화되고, 그 값이 바뀌지 않는다.</li> </ol> <p>여기 예시가 있습니다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>출력 결과</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">5
+5
+</span></code></pre></div></div> <p>왜 이런 결과가 나왔을까요? <code class="language-plaintext highlighter-rouge">int &amp;a = x[1];</code> 이 줄에서, <code class="language-plaintext highlighter-rouge">a</code>는 <code class="language-plaintext highlighter-rouge">x[1]</code>의 별명이 되었습니다. 즉 밑에 있는 <code class="language-plaintext highlighter-rouge">a++</code>은 <code class="language-plaintext highlighter-rouge">x[1]++</code>과 동치인 것이죠. 따라서 5가 출력됩니다.</p> <p>또한, <code class="language-plaintext highlighter-rouge">int &amp;b = a;</code>에서 <code class="language-plaintext highlighter-rouge">b</code>는 <code class="language-plaintext highlighter-rouge">a</code>의 별명이 되었으므로 <code class="language-plaintext highlighter-rouge">b</code> 역시 <code class="language-plaintext highlighter-rouge">x[1]</code>의 별명이 됩니다. 따라서 5가 출력됩니다.</p> <h1 id="enum">ENUM</h1> <p>ENUM은 기존 정수형 변수를 조건을 벗어난 값으로 지정되지 않게 하고, 가독성을 높히기 위해 사용됩니다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">enum</span> <span class="n">day_of_week</span> <span class="p">{</span> <span class="n">SUN</span><span class="p">,</span> <span class="n">MON</span><span class="p">,</span> <span class="n">TUE</span><span class="p">,</span> <span class="n">WED</span><span class="p">,</span> <span class="n">THU</span><span class="p">,</span> <span class="n">FRI</span><span class="p">,</span> <span class="n">SAT</span> <span class="p">};</span>
+
+<span class="n">string</span> <span class="nf">day_of_week_name</span><span class="p">(</span><span class="n">day_of_week</span> <span class="n">d</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">case</span> <span class="n">SUN</span><span class="p">:</span> <span class="k">return</span> <span class="s">"SUN"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">MON</span><span class="p">:</span> <span class="k">return</span> <span class="s">"MON"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">TUE</span><span class="p">:</span> <span class="k">return</span> <span class="s">"TUE"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">WED</span><span class="p">:</span> <span class="k">return</span> <span class="s">"WED"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">THU</span><span class="p">:</span> <span class="k">return</span> <span class="s">"THU"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">FRI</span><span class="p">:</span> <span class="k">return</span> <span class="s">"FRI"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">SAT</span><span class="p">:</span> <span class="k">return</span> <span class="s">"SAT"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>즉, <code class="language-plaintext highlighter-rouge">enum</code>은 <code class="language-plaintext highlighter-rouge">switch</code>문과 각별한 사이이다.</p> <p><code class="language-plaintext highlighter-rouge">enum</code>은 내재적으로 <code class="language-plaintext highlighter-rouge">int</code>형 변수로 타입이 전환되곤 한다. 또한 global range에서 정의되기 때문에, 우리는 다른 <code class="language-plaintext highlighter-rouge">SUN</code>이란 변수를 만들 수 없다. 이를 막기 위해서, 혼동을 줄이기 위해서 <code class="language-plaintext highlighter-rouge">enum class</code>로 정의할 수 있다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">day_of_week</span> <span class="p">{</span> <span class="n">SUN</span><span class="p">,</span> <span class="n">MON</span><span class="p">,</span> <span class="n">TUE</span><span class="p">,</span> <span class="n">WED</span><span class="p">,</span> <span class="n">THU</span><span class="p">,</span> <span class="n">FRI</span><span class="p">,</span> <span class="n">SAT</span> <span class="p">};</span>
+
+<span class="n">string</span> <span class="nf">day_of_week_name</span><span class="p">(</span><span class="n">day_of_week</span> <span class="n">d</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">SUN</span><span class="p">:</span> <span class="k">return</span> <span class="s">"SUN"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">MON</span><span class="p">:</span> <span class="k">return</span> <span class="s">"MON"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">TUE</span><span class="p">:</span> <span class="k">return</span> <span class="s">"TUE"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">WED</span><span class="p">:</span> <span class="k">return</span> <span class="s">"WED"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">THU</span><span class="p">:</span> <span class="k">return</span> <span class="s">"THU"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">FRI</span><span class="p">:</span> <span class="k">return</span> <span class="s">"FRI"</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">day_of_week</span><span class="o">::</span><span class="n">SAT</span><span class="p">:</span> <span class="k">return</span> <span class="s">"SAT"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>이제 헷갈리지 않는다!</p> <h1 id="enum으로-날짜-계산해주는-프로그램-만들기">ENUM으로 날짜 계산해주는 프로그램 만들기</h1> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">month</span> <span class="p">{</span><span class="n">jan</span><span class="p">,</span> <span class="n">feb</span><span class="p">,</span> <span class="n">mar</span><span class="p">,</span> <span class="n">apr</span><span class="p">,</span> <span class="n">may</span><span class="p">,</span> <span class="n">jun</span><span class="p">,</span> <span class="n">jul</span><span class="p">,</span> <span class="n">aug</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">oct</span><span class="p">,</span> <span class="n">nov</span><span class="p">,</span> <span class="n">dec</span><span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">days_of_month</span><span class="p">(</span><span class="n">month</span> <span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">jan</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">mar</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">may</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">jul</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">aug</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">oct</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">dec</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">31</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">apr</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">jun</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">sep</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">nov</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">30</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">month</span><span class="o">::</span><span class="n">feb</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">28</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="nc">day_of_month</span>
+<span class="p">{</span>
+    <span class="n">month</span> <span class="n">m</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">days_between</span> <span class="p">(</span><span class="n">day_of_month</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">d1</span><span class="p">,</span> <span class="n">day_of_month</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">d2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">total_days</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">month</span> <span class="n">i</span> <span class="o">=</span> <span class="n">d1</span><span class="p">.</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">d2</span><span class="p">.</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">month</span><span class="p">)((</span><span class="kt">int</span><span class="p">)</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">total_days</span> <span class="o">+=</span> <span class="n">days_of_month</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">total_days</span> <span class="o">+</span> <span class="n">d2</span><span class="p">.</span><span class="n">day</span> <span class="o">-</span> <span class="n">d1</span><span class="p">.</span><span class="n">day</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">day_of_month</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">month</span><span class="o">::</span><span class="n">april</span><span class="p">,</span> <span class="mi">30</span><span class="p">},</span> <span class="p">{</span><span class="n">month</span><span class="o">::</span><span class="n">may</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">days_between</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> </body></html>

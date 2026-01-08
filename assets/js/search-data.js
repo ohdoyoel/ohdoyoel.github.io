@@ -325,6 +325,39 @@ ninja.data = [{
             window.location.href = "/al-folio/blog/2022/giscus-comments/";
           
         },
+      },{id: "post-c-examples-class",
+        
+          title: "C EXAMPLES: CLASS",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/class/";
+          
+        },
+      },{id: "post-c-examples-struct",
+        
+          title: "C EXAMPLES: STRUCT",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/struct/";
+          
+        },
+      },{id: "post-daniel-39-s-histroty-of-orthodontic-correction",
+        
+          title: "DANIEL&#39;s Histroty of Orthodontic Correction",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/tooth-transformation/";
+          
+        },
       },{id: "post-displaying-external-posts-on-your-al-folio-blog",
         
           title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
@@ -334,6 +367,83 @@ ninja.data = [{
         handler: () => {
           
             window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-문제로-풀어보는-알고리즘-01장-재귀적-프로그래밍",
+        
+          title: "문제로 풀어보는 알고리즘 01장: 재귀적 프로그래밍",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/algorithm-with-ps-01/";
+          
+        },
+      },{id: "post-c-examples-recursion",
+        
+          title: "C EXAMPLES: RECURSION",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/recursion/";
+          
+        },
+      },{id: "post-daniel-39-s-midterm-schedule-amp-strategy",
+        
+          title: "DANIEL&#39;s MIDTERM SCHEDULE &amp; STRATEGY",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/midterm-schedule/";
+          
+        },
+      },{id: "post-c-language-quiz-00-pointer",
+        
+          title: "C LANGUAGE QUIZ 00: Pointer",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/c-quiz/";
+          
+        },
+      },{id: "post-데이터-마이닝-00-introduction-to-data-mining",
+        
+          title: "데이터 마이닝 00: Introduction to Data Mining",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/data-mining-00/";
+          
+        },
+      },{id: "post-문제로-풀어보는-알고리즘-00장",
+        
+          title: "문제로 풀어보는 알고리즘 00장",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/algorithm-with-ps-00/";
+          
+        },
+      },{id: "post-hello-world",
+        
+          title: "Hello World!",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/al-folio/blog/2022/hello-world/";
           
         },
       },{id: "post-a-post-with-redirect",

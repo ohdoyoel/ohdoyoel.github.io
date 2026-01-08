@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <p>필자의 대학 코스 Advanced Programming에서 사용된 예시를 발췌, 정리했습니다.</p> <h1 id="calculate-power">Calculate Power</h1> <blockquote> <dl> <dt>Base Case (y = 0)</dt> <dd> \[x^{0} = 1\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (y &gt;= 1)</dt> <dd> \[x^{y} = x \times x^{y-1}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">power</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>하지만 이 코드는 <code class="language-plaintext highlighter-rouge">y</code>만큼의 스택을 생성하기에 Stack Overflow가 발생할 가능성이 다분하다. 따라서 다음과 같이 코드를 작성하여 해결할 수도 있다.</p> <blockquote> <dl> <dt>Base Case (y = 0)</dt> <dd> \[x^{0} = 1\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (y &gt;= 1)</dt> <dd> \[x^{y} = \begin{cases} x \times x^{y-1} &amp; \text{ if y = odd } \\ x^{y/2} \times x^{y/2} &amp; \text{ if y = even } \end{cases}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">power</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">x_y2</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">x_y2</span> <span class="o">*</span> <span class="n">x_y2</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-tip"> <p><strong>가능하면 Reduce by RATIO, not by CONSTANT.</strong></p> </blockquote> <h1 id="calculate-nth-fibonacci-number">Calculate Nth Fibonacci Number</h1> <blockquote> <dl> <dt>Base Case (n = 0 or 1)</dt> <dd> \[\text{fib(0)} = 0\] </dd> <dd> \[\text{fib(1)} = 1\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (n &gt;= 2)</dt> <dd> \[\text{fib(n)} = \text{fib(n - 1)} + \text{fib(n - 2)}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div> <h1 id="calculate-n-factorial">Calculate N Factorial</h1> <blockquote> <dl> <dt>Base Case (n = 0)</dt> <dd> \[\text{fac(0)} = 1\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (n &gt;= 1)</dt> <dd> \[\text{fac(n)} = \text{n} \times \text{fac(n - 1)}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">fac</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div> <h1 id="find-a-square-root-using-a-binary-search">Find a Square Root using a Binary Search</h1> <blockquote class="prompt-info"> <p><strong>What is Binary Search or Bisection Method?</strong></p> <ul> <li>Choose an initial lower boundary and an upper boundary for the ANSWER.</li> <li>Progressively narrow boundaries, until they are narrow enough for our purpose.</li> </ul> </blockquote> <p>예를 들어, 7의 제곱근을 찾는다고 해보자.</p> <ol> <li>7의 제곱근은 0에서 7 사이에 있을거야.</li> <li>Midpoint(= 3.5)를 시도해보자. <br> \(3.5^{2} = 12.25\)</li> <li>12.25는 7보다 크므로 7의 제곱근은 0에서 3.5 사이에 있을거야.</li> <li>Midpoint(= 1.75)를 시도해보자. <br> \(1.75^{2} = 3.0625\)</li> <li>3.0625는 7보다 작으므로 7의 제곱근은 1.75에서 3.5 사이에 있을거야.</li> <li>Midpoint(= 2.625)를 시도해보자. <br> \(2.625^{2} = 6.890625\)</li> <li>6.890625는 7보다 작으므로 7의 제곱근은 2.625에서 3.5 사이에 있을거야.</li> <li>Midpoint(= 3.0625)를 시도해보자. <br> \(3.0625^{2} = 9.37890625\)</li> <li>9.37890625는 7보다 크므로 7의 제곱근은 2.625에서 3.0625 사이에 있을거야.</li> <li>Midpoint를 시도해보자.</li> <li>…</li> </ol> <p>이러한 과정이 바로 Binary Search 이다!</p> <blockquote> <dl> <dt>Base Case (close enough to answer)</dt> <dd> \[\text{return midpoint;} \text{ if } \text{midpoint}^{2} = \text{n}\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (not close enough to answer)</dt> <dd> \[\begin{cases} \text{return binary_search(n, lower, midpoint)} &amp; \text{ if } \text{midpoint}^{2} &gt; \text{n} \\ \text{return binary_search(n, midpoint, upper)} &amp; \text{ if } \text{midpoint}^{2} &lt; \text{n} \end{cases}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="nf">binary_search</span><span class="p">(</span><span class="kt">double</span> <span class="n">n</span><span class="p">,</span> <span class="kt">double</span> <span class="n">lower</span><span class="p">,</span> <span class="kt">double</span> <span class="n">upper</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lower</span> <span class="o">+</span> <span class="n">upper</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">mid2</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">*</span> <span class="n">mid</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">mid2</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.001</span><span class="p">)</span> <span class="c1">// #include&lt;cmath&gt;</span>
+        <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mid2</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">upper</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">square_root</span><span class="p">(</span><span class="kt">double</span> <span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-tip"> <p>위와 같은 방식으로 인자를 3개 받는 함수를 실행하기 위해서 그 함수를 실행시키는 것이 아니라, 인자를 하나 받는 함수를 구현한 후 인자를 3개 받는 함수를 호출할 수도 있다.</p> </blockquote> <h1 id="is-palindrome">Is Palindrome?</h1> <p>Palindrome이란 앞으로, 뒤로 읽어도 동일한 문자열을 말한다. 예를 들어 ‘radar’, ‘noon’ 등이 이에 속한다.</p> <blockquote class="prompt-info"> <dl> <dt><strong><code class="language-plaintext highlighter-rouge">c_str()</code> method</strong></dt> <dd>C 스타일의 <code class="language-plaintext highlighter-rouge">string</code>을 C++에서 사용할 수 있도록 해준다. 이들은 문자열의 첫번째 글자를 가리키는 포인터 <code class="language-plaintext highlighter-rouge">ptr</code>과 문자열의 길이 <code class="language-plaintext highlighter-rouge">len</code>으로 구성된다.</dd> </dl> </blockquote> <blockquote> <dl> <dt>Base Case (len &lt;= 1)</dt> <dd> \[\text{ return True } \text{ if } \text{ len } &lt;= 1\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case (len &gt;= 2) (양끝이 동일 and 내부 문자열이 palindrome)</dt> <dd> \[\text{return (ptr[0] == ptr[len -1]) and is_palindrome(ptr + 1, len - 2)}\] </dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ptr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ptr</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="n">ptr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">x</span><span class="p">.</span><span class="n">length</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-tip"> <p><code class="language-plaintext highlighter-rouge">getline()</code>, <code class="language-plaintext highlighter-rouge">c_str()</code>, <code class="language-plaintext highlighter-rouge">length()</code> 메소드의 사용법을 잘 숙지해놓자.</p> </blockquote> <blockquote class="prompt-tip"> <p><code class="language-plaintext highlighter-rouge">gdb [executable]</code>을 console에 입력함으로써 재귀함수의 스택을 추적할 수 있다.</p> </blockquote> <h1 id="print-tower-of-hanoi-solution">Print Tower of Hanoi Solution</h1> <p>Tower of Hanoi은 한 봉에 있는 서로 다른 크기의 Disk들을 다른 봉으로 옮기는 문제이다.</p> <p>Rules</p> <ol> <li>한 번에 하나의 Disk를 이동 가능</li> <li>쌓여있는 Disk들 중 가장 위의 Disk만 이동 가능</li> <li>Disk는 자신보다 크기가 큰 Disk 위에만 놓일 수 있음</li> </ol> <blockquote> <dl> <dt>Base Case (1 Disk)</dt> <dd> \[\text{print(from → to) } \text{ if } \text{1 Disk}\] </dd> </dl> </blockquote> <blockquote> <dl> <dt>Recursive Case</dt> <dd>\(\text{1. move(n - 1 disks from → other)}\) \</dd> <dd>\(\text{2. move(1 disk from → to)}\) \</dd> <dd>\(\text{3. move(n - 1 disks other → to)}\) \</dd> </dl> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">move_discs</span><span class="p">(</span><span class="kt">int</span> <span class="n">num_discs</span><span class="p">,</span> <span class="kt">int</span> <span class="n">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num_discs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"from "</span> <span class="o">&lt;&lt;</span> <span class="n">from</span> <span class="o">&lt;&lt;</span> <span class="s">" to "</span> <span class="o">&lt;&lt;</span> <span class="n">to</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// 0. other rod 찾기</span>
+        <span class="kt">int</span> <span class="n">other</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">other</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">other</span> <span class="o">==</span> <span class="n">from</span> <span class="o">||</span> <span class="n">other</span> <span class="o">==</span> <span class="n">to</span><span class="p">;</span> <span class="n">other</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">;</span>
+        <span class="c1">// 1. move (n - 1 disks from → other)</span>
+        <span class="n">move_discs</span><span class="p">(</span><span class="n">num_discs</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">other</span><span class="p">);</span>
+        <span class="c1">// 2. move (1 disk from → to)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"from "</span> <span class="o">&lt;&lt;</span> <span class="n">from</span> <span class="o">&lt;&lt;</span> <span class="s">" to "</span> <span class="o">&lt;&lt;</span> <span class="n">to</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="c1">// 3. move (n - 1 disks other → to)</span>
+        <span class="n">move_discs</span><span class="p">(</span><span class="n">num_discs</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">to</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>ㄷㄷ 너무 소름돋는다…! 잘 보이지 않더라도 무지성으로 적으면 해결이 되다니!</p> <h1 id="solving-simple-sudoku">Solving Simple Sudoku</h1> <blockquote class="prompt-info"> <p><strong>Backtracking에 대하여…</strong> Backtracking (choose-explore-unchoose) : 어떤 경우가 나올지 모르는 경우를 선택 - 직접 해보며 되는지 안되는지 관찰 - 안되면 Undo하는 과정을 말한다.</p> </blockquote> <p>3X3 스도쿠가 있을 때,</p> <ol> <li>빈 칸에 특정 숫자(1~3)을 넣어보고</li> <li>오류가 있으면 (illegal state) 빡구 (backtrack)</li> <li>오류가 없으면 Winnning State, 종료</li> </ol> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// BLANK는 -1로 채움</span>
+<span class="cp">#define BLANK -1
+</span>
+<span class="c1">// 각 행들에 중복되는 원소가 없는지 체크</span>
+<span class="kt">bool</span> <span class="nf">has_invalid_row</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 등장한 원소는 true로 바꿀 거임</span>
+        <span class="kt">bool</span> <span class="n">seen</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span> <span class="p">};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">BLANK</span><span class="p">)</span> <span class="c1">// 채워져있는 칸에 대하여</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]])</span> <span class="c1">// 만약 본 게 또 채워져 있으면</span>
+                    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// invalid</span>
+                <span class="k">else</span>
+                    <span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 못 본 놈이면 봤다고 체크하기</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 모든 원소에 대하여 문제 없으면 valid</span>
+<span class="p">}</span>
+
+<span class="c1">// 각 열들에 중복되는 원소가 없는지 체크</span>
+<span class="kt">bool</span> <span class="nf">has_invalid_column</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 등장한 원소는 true로 바꿀 거임</span>
+        <span class="kt">bool</span> <span class="n">seen</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span> <span class="p">};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">BLANK</span><span class="p">)</span> <span class="c1">// 채워져있는 칸에 대하여</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]])</span> <span class="c1">// 만약 본 게 또 채워져 있으면</span>
+                    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// invalid</span>
+                <span class="k">else</span>
+                    <span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 못 본 놈이면 봤다고 체크하기</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 모든 원소에 대하여 문제 없으면 valid</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">is_invalid</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">has_invalid_row</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">||</span> <span class="n">has_invalid_column</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">rows_win</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">seen</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span> <span class="p">};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">BLANK</span><span class="p">)</span>
+                <span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 모든 원소에 대하여 본 놈들은 true로 바꾸기</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">seen</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">// 만약 못 본 원소가 있다면 invalid</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 못 본 원소없이 모두 봤으면 win!</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">columns_win</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">seen</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="nb">false</span> <span class="p">};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">!=</span> <span class="n">BLANK</span><span class="p">)</span>
+                <span class="n">seen</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 모든 원소에 대하여 본 놈들은 true로 바꾸기</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">seen</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">// 만약 못 본 원소가 있다면 invalid</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 못 본 원소없이 모두 봤으면 win!</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">wins</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">rows_win</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">columns_win</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">solve_puzzle</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">board</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">is_invalid</span><span class="p">((</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span><span class="p">)</span><span class="n">board</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">wins</span><span class="p">((</span><span class="kt">int</span> <span class="k">const</span><span class="o">**</span><span class="p">)</span><span class="n">board</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="n">BLANK</span><span class="p">)</span> <span class="c1">// 모든 빈칸들에 대하여</span>
+            <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">guess</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">guess</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">guess</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">solve_puzzle</span><span class="p">(</span><span class="n">board</span><span class="p">))</span>
+                        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// valid면 유지</span>
+                <span class="p">}</span>
+                <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">BLANK</span><span class="p">;</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// invalid면 backtrack, false 반환</span>
+            <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">row1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">row2</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">BLANK</span><span class="p">,</span> <span class="n">BLANK</span><span class="p">,</span> <span class="n">BLANK</span> <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">row3</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">BLANK</span><span class="p">,</span> <span class="n">BLANK</span><span class="p">,</span> <span class="n">BLANK</span> <span class="p">};</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">rows</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">,</span> <span class="n">row3</span> <span class="p">};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">solve_puzzle</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">r</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">c</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">rows</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> </body></html>

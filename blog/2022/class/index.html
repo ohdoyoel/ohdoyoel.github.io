@@ -1,0 +1,634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <p>필자의 대학 코스 Advanced Programming에서 사용된 예시를 발췌, 정리했습니다. FINAL 시험에서 좋은 성과를 바라며…</p> <h1 id="rectangle-class">Rectangle Class</h1> <p>rectangle.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef RECTANGLE_H
+#define RECTANGLE_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">rectangle</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span> <span class="c1">// 멤버 변수</span>
+<span class="nl">public:</span>
+	<span class="n">rectangle</span><span class="p">(</span><span class="kt">double</span> <span class="n">w</span><span class="p">,</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span> <span class="o">:</span> <span class="n">width</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">height</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// 생성자</span>
+	<span class="kt">double</span> <span class="n">get_width</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 멤버 함수</span>
+	<span class="kt">double</span> <span class="n">get_height</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 멤버 함수</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">rectangle</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>rectangle.cpp</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"rectangle.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">rectangle</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"rectangle (width:"</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">",height:"</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">")"</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <p>main.cpp</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"rectangle.h"</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+	<span class="n">rectangle</span> <span class="n">r</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>출력</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">rectangle (width:10, height:5)
+</span></code></pre></div></div> <h1 id="bank-account-class">Bank Account Class</h1> <p>bank-account.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef BANK_ACCOUNT_H
+#define BANK_ACCOUNT_H
+</span>
+<span class="k">class</span> <span class="nc">bank_account</span>
+<span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">balance</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">bank_account</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">balance</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">bank_account</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">get_balance</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="nf">transfer_to</span><span class="p">(</span><span class="n">bank_account</span> <span class="o">&amp;</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">bank_account</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>bank-account.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"bank-account.h"</span><span class="cp">
+</span>
+<span class="n">bank_account</span><span class="o">&amp;</span> <span class="n">bank_account</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">amt</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amt</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">bank_account</span><span class="o">::</span><span class="n">transfer_to</span><span class="p">(</span><span class="n">bank_account</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">amt</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amt</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amt</span><span class="p">;</span> <span class="c1">// 여기는 되는 이유: 멤버 함수니까!</span>
+        <span class="n">other</span><span class="p">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amt</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">bank_account</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">accct</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"Balance: "</span> <span class="o">&lt;&lt;</span> <span class="n">acct</span><span class="p">.</span><span class="n">get_balance</span><span class="p">();</span> <span class="c1">// 여기를 balance로 하면 안되는 이유: balances는 private 멤버 변수</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"bank-account.h"</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">bank_account</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">bank_account</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="n">a</span> <span class="o">+=</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="n">b</span> <span class="o">+=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="p">.</span><span class="n">transfer_to</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"could not transfer money"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div></div> <p>출력</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Balance: 99
+Balance: 1051
+</span></code></pre></div></div> <h1 id="fraction-class">Fraction Class</h1> <p>fraction.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef FRACTION_H
+#define FRACTION_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">fraction</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">denom</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">denom</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="n">num</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">denom</span><span class="p">(</span><span class="n">denom</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// initializer list</span>
+    <span class="n">fraction</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span> <span class="o">:</span> <span class="n">num</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">num</span><span class="p">),</span> <span class="n">denom</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">denom</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">fraction</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+    <span class="n">fraction</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span> <span class="c1">// 관습적으로 쪼개서 구현한다! / 뒤에 붙는 const는, 값을 읽어서 반환만 하므로 (수정하지 않으므로) const가 붙는다</span>
+    <span class="n">fraction</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+    <span class="n">fraction</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span> 
+    <span class="n">fraction</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="n">fraction</span> <span class="n">cons</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span> <span class="o">+=</span> <span class="o">-</span><span class="n">other</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">fraction</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="o">*</span><span class="k">this</span> <span class="o">+</span> <span class="o">-</span><span class="n">other</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">fraction</span> <span class="k">operator</span><span class="o">-</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">fraction</span><span class="p">(</span><span class="o">-</span><span class="n">num</span><span class="p">,</span> <span class="n">denom</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span> <span class="c1">// 요친구는 fraction의 친구, 즉 fraction의 멤버 변수에 접근 가능</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>fraction.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"fraction.h"</span><span class="cp">
+</span>
+<span class="n">fraction</span><span class="o">&amp;</span> <span class="n">fraction</span><span class="o">::</span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">*=</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span><span class="p">;</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">denom</span> <span class="o">*=</span> <span class="n">other</span><span class="p">.</span><span class="n">denom</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">fraction</span> <span class="n">fraction</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">fraction</span> <span class="n">f</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="c1">// 복사 생성자 필요!</span>
+    <span class="k">return</span> <span class="n">f</span> <span class="o">*=</span> <span class="n">other</span><span class="p">;</span> <span class="c1">// 최대한 위에 쓴 걸 활용하자</span>
+<span class="p">}</span>
+
+<span class="n">fraction</span><span class="o">&amp;</span> <span class="n">fraction</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="n">new_denom</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">denom</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">denom</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">denom</span> <span class="o">+</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">denom</span> <span class="o">*</span> <span class="n">other</span><span class="p">.</span><span class="n">num</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">denom</span> <span class="o">=</span> <span class="n">new_denom</span><span class="p">;</span>
+	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">fraction</span> <span class="n">fraction</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="n">fraction</span> <span class="n">f</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">f</span> <span class="o">+=</span> <span class="n">other</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">fraction</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">f</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">"/"</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">denom</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"fraction.h"</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">fraction</span> <span class="n">f</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">fraction</span> <span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">*</span> <span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span> <span class="o">*</span> <span class="n">g</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div></div> <p>출력</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">-2/1
+5/7
+-10/7
+-17/10
+</span></code></pre></div></div> <h1 id="set-class">Set Class</h1> <p>set.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef SET_H
+#define SET_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="c1"> // for size_t</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">integer_set</span>
+<span class="p">{</span>
+	<span class="kt">int</span><span class="o">*</span> <span class="n">elements</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">num_elements</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">integer_set</span><span class="p">();</span>
+	<span class="o">~</span><span class="n">integer_set</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="p">[]</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">integer_set</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>	<span class="c1">// insert an int into the set</span>
+	<span class="n">integer_set</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>	<span class="c1">// remove an int from the set</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span> <span class="c1">// 있는지 없는지 체크</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>set.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"set.h"</span><span class="cp">
+</span>
+<span class="n">integer_set</span><span class="o">::</span><span class="n">integer_set</span><span class="p">()</span> <span class="o">:</span> <span class="n">elements</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">num_elements</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="n">integer_set</span><span class="o">::</span><span class="n">integer_set</span><span class="p">(</span><span class="n">integer_set</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+		<span class="o">:</span> <span class="n">elements</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">]),</span> <span class="n">num_elements</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="n">integer_set</span><span class="o">&amp;</span> <span class="n">integer_set</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">integer_set</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">&lt;</span> <span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">delete</span> <span class="p">[]</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">;</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">integer_set</span><span class="o">&amp;</span> <span class="n">integer_set</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="k">this</span><span class="p">)[</span><span class="n">val</span><span class="p">])</span>	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="kt">int</span><span class="o">*</span> <span class="n">bigger</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">bigger</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">bigger</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+	<span class="k">delete</span> <span class="p">[]</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span> <span class="o">=</span> <span class="n">bigger</span><span class="p">;</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="o">++</span><span class="p">;</span>
+	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">integer_set</span><span class="o">&amp;</span> <span class="n">integer_set</span><span class="o">::</span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)[</span><span class="n">val</span><span class="p">])</span>	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="kt">int</span><span class="o">*</span> <span class="n">val_location</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span>
+			<span class="n">val_location</span> <span class="o">=</span> <span class="o">&amp;</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="o">*</span><span class="n">val_location</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="o">--</span><span class="p">;</span>
+	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">integer_set</span><span class="o">::</span><span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span>
+			<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"set.h"</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+	<span class="n">integer_set</span> <span class="n">s</span><span class="p">;</span>
+	<span class="n">s</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"0 is in the set? "</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"1 is in the set? "</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="n">integer_set</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+	<span class="n">t</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"3 is in the set? "</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="n">s</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+	<span class="n">s</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"2 is in the set? "</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>출력</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">...
+</span></code></pre></div></div> <h1 id="가변-길이-template을-이용한-sum-function">가변 길이 TEMPLATE을 이용한 SUM FUNCTION</h1> <p>가변 길이 템플릿의 구 버전</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define SUM_FUNCTION(tp)    tp sum_ ## tp(tp const* arr, size_t n) { \
+                                tp total = 0; \
+                                for (size_t i = 0; i &lt; n; i++) \
+                                    total += arr[i];
+</span>                                <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+                            <span class="p">}</span>
+<span class="n">SUM_FUNCTION</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+</code></pre></div></div> <p>sum.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef SUM_H
+#define SUM_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="cp">
+</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="n">T</span>  <span class="nf">sum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span> <span class="o">*</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">);</span>
+
+<span class="cp">#include 
+</span></code></pre></div></div> <p>sum.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"sum.h"</span><span class="cp">
+</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="n">T</span> <span class="nf">sum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span> <span class="o">*</span><span class="n">xs</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="kt">int</span> <span class="n">sum</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">);</span>
+</code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">y</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">9.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">10.5</span> <span class="p">};</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="n">value</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">get_value</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>출력</p> <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">...
+</span></code></pre></div></div> <h1 id="template을-이용한-list-클래스">TEMPLATE을 이용한 LIST 클래스</h1> <p>list.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef LIST_H
+#define LIST_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="c1">		// for size_t</span><span class="cp">
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">list</span> <span class="p">{</span>
+	<span class="n">T</span><span class="o">*</span> <span class="n">elements</span><span class="p">;</span>
+	<span class="kt">size_t</span> <span class="n">num_elements</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">list</span><span class="p">()</span> <span class="o">:</span> <span class="n">elements</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">num_elements</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+
+	<span class="c1">// rule of 3</span>
+	<span class="o">~</span><span class="n">list</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="p">[]</span> <span class="n">elements</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">list</span><span class="p">(</span><span class="n">list</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="o">:</span> <span class="n">elements</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">]),</span> <span class="n">num_elements</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+	<span class="n">list</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">list</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">){</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">elements</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">num_elements</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+	<span class="kt">size_t</span> <span class="n">length</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">size_t</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">T</span><span class="o">*</span> <span class="n">new_elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">new_elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">delete</span> <span class="p">[]</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">;</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span> <span class="o">=</span> <span class="n">new_elements</span><span class="p">;</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">num_elements</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">elements</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cm">/*
+ * list&lt;int&gt; l;
+ * l[0] = 4;		// adding something new to the list
+ * l[0]++;			// modifying something in the list
+ * cout &lt;&lt; l[0] &lt;&lt; endl;		// retrieving from the list
+ */</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">"list.h"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">;</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h1 id="stlvector-예시">STL:VECTOR 예시</h1> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h1 id="inheritance-shape-class">INHERITANCE: SHAPE CLASS</h1> <p>shape.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">enum</span> <span class="n">col</span> <span class="p">{</span><span class="n">black</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">white</span><span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">shape</span>
+<span class="p">{</span>
+    <span class="n">col</span> <span class="n">colour</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">shape</span><span class="p">(</span><span class="n">col</span> <span class="n">c</span><span class="p">)</span> <span class="o">:</span> <span class="n">colour</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">area</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">perimeter</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">circle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">shape</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">circle</span><span class="p">(</span><span class="n">col</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">shape</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">radius</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">area</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">radius</span> <span class="o">*</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">perimeter</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">radius</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">triangle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">shape</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">triangle</span><span class="p">(</span><span class="n">col</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span> <span class="o">:</span> <span class="n">shape</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">base</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">height</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">virtual</span> <span class="kt">double</span> <span class="n">area</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">base</span> <span class="o">*</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">triangle</span> <span class="n">t</span><span class="p">(</span><span class="n">col</span><span class="o">::</span><span class="n">red</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">circle</span> <span class="n">c</span><span class="p">(</span><span class="n">col</span><span class="o">::</span><span class="n">black</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="c1">//shape s = c; // 부모에 자식 대입은 불가능!</span>
+    <span class="n">shape</span><span class="o">&amp;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// 이건 가능</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">area</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">area</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">area</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// virtual이 있기 때문에 c에 대한 정보로 처리, 없으면 s로 처리</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h1 id="number-class">NUMBER CLASS</h1> <p>number.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">number</span> <span class="p">{</span>
+<span class="nl">protected:</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">real_value</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">imaginary_value</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="k">virtual</span> <span class="n">complex_number</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">number</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="kt">double</span> <span class="n">r</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">real_value</span><span class="p">()</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">real_value</span><span class="p">();</span>
+		<span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">imaginary_value</span><span class="p">()</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">imaginary_value</span><span class="p">();</span>
+		<span class="k">return</span> <span class="n">complex_number</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">integer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">number</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">integer</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">real_value</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">imaginary_value</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">real</span> <span class="o">:</span> <span class="k">public</span> <span class="n">number</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">val</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">real</span><span class="p">(</span><span class="kt">double</span> <span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">real_value</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">imaginary_value</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">complex_number</span> <span class="o">:</span> <span class="k">public</span> <span class="n">real</span> <span class="p">{</span>
+	<span class="kt">double</span> <span class="n">imag</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">complex_number</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">real</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">imag</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">double</span> <span class="n">imaginary_value</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div> <h1 id="library-class-with-ptr-vector">LIBRARY CLASS with ptr vector</h1> <p>library.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef LIBRARY_H
+#define LIBRARY_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">library_item</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">library</span> <span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">*&gt;</span> <span class="n">catalogue</span><span class="p">;</span> <span class="c1">// library_item is not defined! prototype</span>
+<span class="nl">public:</span>
+	<span class="n">library</span><span class="p">()</span> <span class="o">:</span> <span class="n">catalogue</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">*&gt;</span><span class="p">())</span> <span class="p">{}</span>
+	<span class="kt">void</span> <span class="nf">add_library_item</span><span class="p">(</span><span class="n">library_item</span> <span class="o">*</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">how_many_overdue</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">library_item</span> <span class="p">{</span>
+	<span class="kt">bool</span> <span class="n">is_checked_out</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="k">virtual</span> <span class="kt">int</span> <span class="n">borrowing_period</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">7</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">library_item</span><span class="p">()</span> <span class="o">:</span> <span class="n">is_checked_out</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">loan</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">give_back</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">bool</span> <span class="n">can_borrow</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">is_late</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">days_after</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">borrowing_period</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">book</span> <span class="o">:</span> <span class="k">public</span> <span class="n">library_item</span> <span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="n">book</span><span class="p">()</span> <span class="o">:</span> <span class="n">library_item</span><span class="p">()</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">int</span> <span class="n">borrowing_period</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">14</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">journal</span> <span class="o">:</span> <span class="k">public</span> <span class="n">library_item</span> <span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="n">journal</span><span class="p">()</span> <span class="o">:</span> <span class="n">library_item</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>library.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"library.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">library</span><span class="o">::</span><span class="n">add_library_item</span><span class="p">(</span><span class="n">library_item</span> <span class="o">*</span><span class="n">new_item</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">catalogue</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">new_item</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">library</span><span class="o">::</span><span class="n">how_many_overdue</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">num_overdue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">library_item</span> <span class="o">*</span><span class="n">li</span> <span class="o">:</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">catalogue</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">li</span><span class="o">-&gt;</span><span class="n">is_late</span><span class="p">(</span><span class="n">days_after</span><span class="p">))</span>
+			<span class="n">num_overdue</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">num_overdue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">"library.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">library</span> <span class="n">l</span><span class="p">;</span>
+	<span class="n">book</span> <span class="n">b</span><span class="p">;</span>
+	<span class="n">journal</span> <span class="n">j</span><span class="p">;</span>
+	<span class="n">b</span><span class="p">.</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">j</span><span class="p">.</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">l</span><span class="p">.</span><span class="n">add_library_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+	<span class="n">l</span><span class="p">.</span><span class="n">add_library_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">j</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">.</span><span class="n">how_many_overdue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Problem: 이와 같은 메인함수를 작성해보자</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">"library.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">library</span><span class="o">*</span> <span class="nf">make_small_library</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">library</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">library</span><span class="p">;</span>
+	<span class="n">book</span> <span class="n">b</span><span class="p">;</span>
+	<span class="n">journal</span> <span class="n">j</span><span class="p">;</span>
+	<span class="n">b</span><span class="p">.</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">j</span><span class="p">.</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">l</span><span class="o">-&gt;</span><span class="n">add_library_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+	<span class="n">l</span><span class="o">-&gt;</span><span class="n">add_library_item</span><span class="p">(</span><span class="o">&amp;</span><span class="n">j</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">l</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">library</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">make_small_library</span><span class="p">();</span> <span class="c1">// 에러가 나는 이유: 함수의 스택이 파괴되면서 안에 있는 멤버 변수들까지 파괴됨 (stack-buffer-underflow)</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">how_many_overdue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">delete</span> <span class="n">l</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>해결법: 1 <code class="language-plaintext highlighter-rouge">catalogue</code>에 포인터 넣지 말고 클래스 자체를 넣기 2 <code class="language-plaintext highlighter-rouge">b</code>와 <code class="language-plaintext highlighter-rouge">j</code>를 힙에 넣어서 (<code class="language-plaintext highlighter-rouge">new</code>, <code class="language-plaintext highlighter-rouge">delete</code>) 스택이 파괴되어도 사라지지 않도록 하기 3 <code class="language-plaintext highlighter-rouge">shared ptr </code></p> <h1 id="library-class-with-shared-ptr">LIBRARY CLASS with shared ptr</h1> <p>library.h</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef LIBRARY_H
+#define LIBRARY_H
+</span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">library_item</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">library</span> <span class="p">{</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">&gt;&gt;</span> <span class="n">catalogue</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="n">library</span><span class="p">()</span> <span class="o">:</span> <span class="n">catalogue</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">&gt;&gt;</span><span class="p">())</span> <span class="p">{}</span>
+	<span class="kt">void</span> <span class="nf">add_library_item</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">&gt;</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">how_many_overdue</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">library_item</span> <span class="p">{</span>
+	<span class="kt">bool</span> <span class="n">is_checked_out</span><span class="p">;</span>
+<span class="nl">public:</span>
+	<span class="k">virtual</span> <span class="kt">int</span> <span class="n">borrowing_period</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">7</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">library_item</span><span class="p">()</span> <span class="o">:</span> <span class="n">is_checked_out</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">loan</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">give_back</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">bool</span> <span class="n">can_borrow</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">is_checked_out</span><span class="p">;</span> <span class="p">}</span>
+	<span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">is_late</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">days_after</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">borrowing_period</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">book</span> <span class="o">:</span> <span class="k">public</span> <span class="n">library_item</span> <span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="n">book</span><span class="p">()</span> <span class="o">:</span> <span class="n">library_item</span><span class="p">()</span> <span class="p">{}</span>
+	<span class="k">virtual</span> <span class="kt">int</span> <span class="n">borrowing_period</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">14</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">journal</span> <span class="o">:</span> <span class="k">public</span> <span class="n">library_item</span> <span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="n">journal</span><span class="p">()</span> <span class="o">:</span> <span class="n">library_item</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div> <p>library.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"library.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">library</span><span class="o">::</span><span class="n">add_library_item</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">&gt;</span> <span class="n">new_item</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">this</span><span class="o">-&gt;</span><span class="n">catalogue</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">new_item</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">library</span><span class="o">::</span><span class="n">how_many_overdue</span><span class="p">(</span><span class="kt">int</span> <span class="n">days_after</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">num_overdue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">library_item</span><span class="o">&gt;</span> <span class="n">li</span> <span class="o">:</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">catalogue</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">li</span><span class="o">-&gt;</span><span class="n">is_late</span><span class="p">(</span><span class="n">days_after</span><span class="p">))</span>
+			<span class="n">num_overdue</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">num_overdue</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <p>main.cc</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp">
+#include</span> <span class="cpf">"library.h"</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">library</span><span class="o">*</span> <span class="nf">make_small_library</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">library</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">library</span><span class="p">;</span>
+	<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">book</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">book</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">book</span><span class="p">);</span>
+	<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">journal</span><span class="o">&gt;</span> <span class="n">j</span> <span class="o">=</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">journal</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">journal</span><span class="p">);</span>
+	<span class="n">b</span><span class="o">-&gt;</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">j</span><span class="o">-&gt;</span><span class="n">loan</span><span class="p">();</span>
+	<span class="n">l</span><span class="o">-&gt;</span><span class="n">add_library_item</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+	<span class="n">l</span><span class="o">-&gt;</span><span class="n">add_library_item</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">l</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">library</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">make_small_library</span><span class="p">();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">how_many_overdue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">delete</span> <span class="n">l</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> </body></html>

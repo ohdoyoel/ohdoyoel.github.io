@@ -1,0 +1,549 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <h1 id="최댓값과-최솟값">최댓값과 최솟값</h1> <h2 id="두-수를-받고-최대최소를-반환하는-함수">두 수를 받고 최대/최소를 반환하는 함수</h2> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">min</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="매크로-함수-작성">매크로 함수 작성</h3> <blockquote class="prompt-info"> <p><strong>매크로 함수란?</strong> #define으로 함수를 미리 정의해두는 방법을 말한다. 주로 짧고 단순한, 많이 쓰이고 직관적인 구조를 취하는 함수는 매크로 함수로 정의한다.</p> </blockquote> <blockquote class="prompt-info"> <p><strong>삼항 연산자에 대하여</strong> <code class="language-plaintext highlighter-rouge">if (cond) A else B</code>와 같은 코드는 삼항 연산자로 간단하게 적을 수 있다. : <code class="language-plaintext highlighter-rouge">(cond?A:B)</code></p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define max(x, y) ((x)&gt;(y)?x:y)
+#define min(x, y) ((x)&lt;(y)?x:y)
+</span></code></pre></div></div> <blockquote class="prompt-warning"> <p>단, 매크로 함수는 <strong>그저 글자를 바꿔치기 하는 역할</strong>을 하기에 실수할 수 있는 여지가 매우 높다. 매크로 함수를 이용해야하는 특별한 이유가 없다면 보통의 함수로 코드를 작성하자.</p> </blockquote> <h2 id="세-수를-받고-최대최소를-반환하는-함수">세 수를 받고 최대/최소를 반환하는 함수</h2> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">z</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">z</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">z</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">z</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="배열의-최대값을-구하는-함수">배열의 최대값을 구하는 함수</h2> <blockquote class="prompt-warning"> <p>배열을 인자로 전달할 때에는, 포인터 형식으로 준다. 단, 이럴 경우 배열의 길이를 알 수 없기에 배열의 길이 역시 함수의 인자로 전달해야 한다.</p> </blockquote> <blockquote class="prompt-tip"> <p>배열의 길이는 어떻게 계산할 수 있을까? 많은 방법이 있지만, HARD한 코드로는 <code class="language-plaintext highlighter-rouge">sizeof arr / sizeof arr[0]</code>으로 배열의 길이를 계산할 수 있다.</p> </blockquote> <blockquote class="prompt-info"> <p>배열이나 문자열을 순회할 때에는 <code class="language-plaintext highlighter-rouge">size_t</code> 형식의 인덱스 변수를 선언하는 것이 국룰이다. 하지만 밑의 코드에서는 그냥 <code class="language-plaintext highlighter-rouge">int</code>를 썼다. (필자의 숙련도가 부족하니 너그러운 이해를 바란다.) 여담이지만, 위의 <code class="language-plaintext highlighter-rouge">sizeof</code> 연산자는 <code class="language-plaintext highlighter-rouge">size_t</code>를 반환한다.</p> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">max_arr</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// 배열에 완전 탐색 시키면서 최대값을 업데이트 할 것임</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// i가 0부터 시작하지 않는 이유는? 정답은 밑에...</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// 순회하고 있는 원소가 기존의 최대값보다 크면 최대값 업데이트</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-info"> <p>정답: 이미 max는 arr[0]이므로 밑의 if문을 통과하지 않을 것이 자명하다.</p> </blockquote> <h1 id="두-변수의-값-바꾸기">두 변수의 값 바꾸기</h1> <h2 id="포인터를-이용하여-값을-swap하는-함수">포인터를 이용하여 값을 swap하는 함수</h2> <blockquote class="prompt-info"> <p>main의 변수를 인자로 받을 때 call-by-value 방식을 사용하면 단순히 복사된 값을 사용하기 때문에 메모리도 낭비되고, 원본 값을 수정하지도 못한다. 따라서 많은 경우에 포인터로 인자를 넘기는 call-by-reference를 사용한다.</p> </blockquote> <blockquote class="prompt-tip"> <p>call-by-reference의 장점은 무엇일까?</p> <ol> <li> <code class="language-plaintext highlighter-rouge">main</code>의 원본 변수 값에 접근하여 다이렉트로 수정할 수 있다.</li> <li>여러 값을 처리(수정)해야되는 상황에서 유용하다. (이 경우 변수의 포인터를 이용하여 값들만 수정하고, 함수의 반환은 <code class="language-plaintext highlighter-rouge">void</code>형식(<code class="language-plaintext highlighter-rouge">return ;</code>)이다.)</li> </ol> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>    
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="배열의-두-원소를-swap하는-함수">배열의 두 원소를 swap하는 함수</h2> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">swap_arr</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>    
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-info"> <p>알고 있을 것 같기는 하지만… <code class="language-plaintext highlighter-rouge">arr[i]</code>는 <code class="language-plaintext highlighter-rouge">*(arr + i)</code>로 처리된다. 즉 결국 <code class="language-plaintext highlighter-rouge">[]</code> 연산자는 포인터 연산 + 값 뽑아오기 연산인 셈.</p> </blockquote> <h1 id="배열-회전">배열 회전</h1> <h2 id="1차원-배열-회전-오른쪽으로-한-칸">1차원 배열 회전 (오른쪽으로 한 칸)</h2> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png" alt="rotating-1d-array" w="400"> <em>1차원 배열 회전 (오른쪽)</em></p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">right_rotate</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">last</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">t</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// 왜 거꾸로 탐색할까? 밑에 빨간 영역 참고</span>
+    <span class="p">{</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span> <span class="c1">// 요게 포인트! 밑에 자세한 설명...</span>
+    <span class="p">}</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-tip"> <p>설명 : 위와 같은 상황에서, <code class="language-plaintext highlighter-rouge">A = B</code>라는 연산자를 바라볼 때 <strong>A는 나중 상황</strong>, <strong>B는 이전 상황</strong>으로 볼 수 있다. 즉, 위 그림에서 아래에 있는 배열은 A, 위에 있는 배열은 B인 셈이다. 이것을 먼저 고려한다면, 위 코드를 쉽게 작성할 수 있을 것이다.</p> </blockquote> <blockquote class="prompt-danger"> <p>이런 식으로 적으면 망한다!</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div> </div> <p>왜 안 되는지는 스스로 고민해보고 읽기를… 이 코드가 정상적으로 작동하지 않는 이유는, <code class="language-plaintext highlighter-rouge">arr[s + 1</code>의 값을 <code class="language-plaintext highlighter-rouge">arr[s]</code>로 고친 이후에 <code class="language-plaintext highlighter-rouge">arr[s + 2]</code>의 값을 <code class="language-plaintext highlighter-rouge">arr[s + 1]</code>로 고치기 때문이다. 즉, 이후에 필요한 변수의 값이 이전에 수정되는, 배열의 모든 원소가 <code class="language-plaintext highlighter-rouge">arr[s]</code>가 되는 결과를 초래한다. 필자는 이미 한 번 실수했으니 독자들은 그러지 말기를…</p> </blockquote> <p>위와 같은 생각을 했지만, 그럴 경우 범위가 애매해진다. 따라서 <code class="language-plaintext highlighter-rouge">last</code>라는 변수에 따로 <code class="language-plaintext highlighter-rouge">arr[t]</code>를 저장하고, 후에 <code class="language-plaintext highlighter-rouge">arr[s]</code>에 대입해주자.</p> <h2 id="1차원-배열-회전-왼쪽으로-한-칸">1차원 배열 회전 (왼쪽으로 한 칸)</h2> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/unnamed.png" alt="rotating-1d-array" w="400"> <em>1차원 배열 회전 (왼쪽)</em></p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">left_rotate</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">first</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">s</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>위의 1차원 배열 회전 (오른쪽으로 한 칸)을 참고하면 쉽게 작성할 수 있다. 이때도 마찬가지로 배열의 모든 원소가 한 원소로 덮어써지지 않도록 주의하자.</p> <h2 id="1차원-배열-회전-오른쪽으로-k칸">1차원 배열 회전 (오른쪽으로 k칸)</h2> <p>위의 1차원 배열 회전 (오른쪽으로 한 칸)을 k번 반복하면 되지만, 너무 NAIVE하다.</p> <blockquote class="prompt-tip"> <p>용어에 익숙치 않은 독자들을 위해 소개하자면, <strong>NAIVE하다</strong>의 뜻은 <strong>순진하다, 무식하다</strong> 정도의 뜻이다. (솔직히 무식하게 k번 움직이는 것보다는 더 멋진 코드가 있을 것. 이는 직감적으로 알 수 있음.)</p> </blockquote> <p>따라서 General한 Form을 찾아보자! 우선 오른쪽으로 한 칸이니까 오른쪽에서 왼쪽으로 배열을 돌아야겠다는 생각이 든다. (이 문장이 이해가 안된다면, 위의 빨간 영역을 다시 읽어보자.)</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">right_rotate_k</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">temp_arr</span><span class="p">;</span>
+    <span class="n">temp_arr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">temp_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">k</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">k</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">;</span> <span class="n">l</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_arr</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>우선 k칸만큼 회전할 때 임시적으로 저장해야 하는 놈들은 k개가 된다. 이것을 배열로 저장하자. 사이즈가 달라지므로 동적할당을 사용했다. 동적할당에 대해 모르겠다면 지금은 메모리를 미리 찜해놓는다 정도의 개념으로 알아두자. 중요한 것은 위의 for문과 배열의 index가 왜 저렇게 쓰였는지 정확하게 이해하는 것이다.</p> <h1 id="은행-대기-번호-관리-큐스택">은행 대기 번호 관리 (큐/스택)</h1> <p>큐(Queue)는 먼저 들어간 데이터가 먼저 나오는 자료구조를 말한다. (선입선출)</p> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/Queue-2-1.png" alt="queue" w="400"> <em>큐</em></p> <p>큐에 데이터를 넣을 때에는 <strong>enqueue</strong>라는 용어를 쓰고, 데이터를 뽑아낼 때에는 <strong>dequeue</strong>라는 용어를 쓴다.</p> <h2 id="배열로-큐-작성하기">배열로 큐 작성하기</h2> <p>큐를 가장 HARD한 방법으로 코딩하는 방법은, <code class="language-plaintext highlighter-rouge">head</code>, <code class="language-plaintext highlighter-rouge">tail</code>를 정의하여 배열에서 큐의 컨테이너의 범위를 지정하는 것이다. 쉽게 말해 먼저 들어온 놈을 먼저 내보낼 것인데, 이를 위해 먼저 들어온 놈을 가리키는 index를 변수로 두고 (<code class="language-plaintext highlighter-rouge">head</code>), 나중에 들어온 놈을 가리키는 index를 변수로 두는 것이다. (<code class="language-plaintext highlighter-rouge">tail</code>)</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">queue</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">// 왜 배열의 크기를 100개나 잡았을까? 정답은 밑의 빨간 영역에...</span>
+<span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="c1">// 값이 큐에 들어옴</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tail</span> <span class="o">-</span> <span class="n">head</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span> <span class="c1">// 큐의 사이즈가 8 이상이면 안 댐!</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is full!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">queue</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="c1">// 큐에서 tail의 위치에 입력 데이터 저장</span>
+    <span class="n">tail</span><span class="o">++</span><span class="p">;</span> <span class="c1">// tail 앞으로 한 칸 이동</span>
+    <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">dequeue</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tail</span> <span class="o">-</span> <span class="n">head</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is empty!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="n">head</span><span class="p">];</span> <span class="c1">// 현재 큐에서 head의 위치에 있는 데이터 반환, 왜 여기서 return을 하지 않았을까? 정답은 설명에...</span>
+    <span class="n">head</span><span class="o">++</span><span class="p">;</span> <span class="c1">// head 앞으로 한 칸 이동</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dequeue</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">enqueue</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-danger"> <p><strong>책의 코드는 틀렸다?</strong> 그렇다. 책의 코드(28p~29p)는 장의 서문에서 제시한 예시 출력을 반환하지 못한다. 필자가 왜 그런지 열심히 고민해봤는데, 고민의 결과는 다음과 같다.</p> <ul> <li>배열 <code class="language-plaintext highlighter-rouge">queue</code>의 크기가 8로 제한되어 있다.</li> <li>변수 <code class="language-plaintext highlighter-rouge">tail</code>의 경우 입력한 횟수만큼 증가한다. (즉, 매우 큰 수가 대입될 수 있다.)</li> <li>그.런.데! 명령어 <code class="language-plaintext highlighter-rouge">queue[tail]</code>이 존재한다. 따라서 이는 배열의 범위보다 큰 인덱스를 처리해야하는 문제로 귀결된다. 필자는 이 문제를 배열 <code class="language-plaintext highlighter-rouge">queue</code>의 크기를 나름 큰 크기로 세팅하여 해결하였으나(<code class="language-plaintext highlighter-rouge">queue[100]</code>), 입력을 100번 이상 받으면 다시 문제가 발생할 것이다. (즉 <code class="language-plaintext highlighter-rouge">queue[k]</code>로 선언했다면 입력을 k번 이상 받을 경우 문제가 발생한다.) 따라서 이 문제를 해결할 멋진 방법을 필요로 하게 된다.</li> </ul> </blockquote> <blockquote class="prompt-tip"> <p>필자는 코드의 일관된 작성을 위하여 인덱스 값을 사용하고 인덱스 값을 업데이트 하는 방식으로 코드를 통일했다. 예컨데 <code class="language-plaintext highlighter-rouge">enqueue(int n)</code>와 <code class="language-plaintext highlighter-rouge">dequeue()</code>에서</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>   <span class="n">queue</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="c1">// 인덱스 값 사용</span>
+   <span class="n">tail</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 인덱스 값 업데이트</span>
+   <span class="k">return</span> <span class="p">;</span>
+</code></pre></div> </div> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>   <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="n">head</span><span class="p">];</span> <span class="c1">// 인덱스 값 사용</span>
+   <span class="n">head</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 인덱스 값 업데이트</span>
+   <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+</code></pre></div> </div> <p>이렇게 작성한 이유는, 책의 코드 같은 경우 <code class="language-plaintext highlighter-rouge">head</code>와 <code class="language-plaintext highlighter-rouge">tail</code>을 생성할 때 각각 <code class="language-plaintext highlighter-rouge">head = 0</code>, <code class="language-plaintext highlighter-rouge">tail = -1</code>과 같이 썼는데, 이렇게 쓸 경우 tail이 -1로 초기화된 것에 대하여 의문점을 가질 수 있고, 무엇보다 직관적이지 못하다.</p> </blockquote> <blockquote class="prompt-tip"> <p>또 별건 아니지만, 책에서는 <code class="language-plaintext highlighter-rouge">queue_size</code> 변수를 따로 만들어서 큐의 크기를 직접 조종하였지만, 위와 같이 일관된 코드를 작성하고 나면 <code class="language-plaintext highlighter-rouge">queue_size</code> 변수가 굳이 필요 없다는 것을 알게 된다. 그저 큐의 크기가 필요할 때마다 <code class="language-plaintext highlighter-rouge">head - tail</code>로 계산하면 되기 때문이다. 코드의 일관된 작성은 interpretable한 코드를 낼 수 있고, 이는 더 나은 코드를 찾을 수 있다는 점에서 contribution이 있다.</p> </blockquote> <blockquote class="prompt-warning"> <p>책에 있는 코드에 오타가 있어서 시간을 많이 빼았겨 분하고 화가 나는가? 책의 저자에게 너무 열을 내지 않도록 주의하자. 개발과 관련된 수많은 책의 리뷰를 보다보면, 이따금씩 코드의 오탈자로 저자를 나무라는 분노의 리뷰를 많이 보았다. 하지만 이게 당신의 실력 향상에 도움이 되는가? <strong>전혀 도움 안된다.</strong> 물론, 오탈자의 정도가 심하다면 분명 수정이 필요하다. 하지만 코드를 직접 실행해보고, 디버깅해보며, 어떤 코드가 오류를 반환하고, 이를 어떻게 해결할 수 있는지 고민해보는 것도 좋은 공부가 될 것이다. (필자는 위의 빨간 영역을 적으며 많은 것을 배웠다.) 또한 책의 저자는 책의 서문에서 이미 오탈자에 대한 양해를 구하고 있으며, 코드 외적인 부분에서 내용을 훌륭하게 전달하고 있다고 생각한다. 그러니 포기하지 말고, 좀 더 공부해보자. :) (사실 이건 나 자신에게 하는 말과 같다.)</p> </blockquote> <h2 id="원형-큐-작성하기">원형 큐 작성하기</h2> <p>배열로 큐 작성하기에서 빨간 영역으로 작성한 배열로 작성한 큐의 한계를 기억하는가? 그것은 바로, <strong>배열 <code class="language-plaintext highlighter-rouge">queue[k]</code>로 선언했을 때 입력을 k번 이상 받을 경우 문제가 발생한다는 것이다.</strong> 왜냐하면 큐의 끝 인덱스를 나타내는 변수 <code class="language-plaintext highlighter-rouge">tail</code>은 입력 횟수에 비례하고, 입력 횟수는 제한이 없기에 배열의 크기보다 큰 인덱스가 들어갈 수 있기 때문이다.</p> <p>사실 배열로 작성한 큐의 문제는 그뿐만이 아니다. 메모리 효율성의 관점에서 엉망이다. 배열 <code class="language-plaintext highlighter-rouge">queue</code>에서 데이터 컨데이너로써 필요한 부분은 인덱스 <code class="language-plaintext highlighter-rouge">head ~ tail</code>이 전부이다. 그렇다면 <code class="language-plaintext highlighter-rouge">0 ~ head</code>, <code class="language-plaintext highlighter-rouge">tail ~ 100</code>은? (<code class="language-plaintext highlighter-rouge">queue</code>의 크기가 100이라고 전제하겠다.) 그냥 쓸데없는 부분이다. <strong>이 사용되지도 않을 변수들을 위해서 메모리 상에 미리 자리를 맡아놓아야 한다니, 아깝지 않은가?</strong></p> <p>이러한 관점에서 고민한 끝에, 새롭게 고안된 데이터 타입이 바로 원형 큐이다.</p> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/capture%202.png" alt="circular queue" w="400"> <em>원형 큐</em></p> <p>즉 위에서 구현한 배열로 만든 큐의 시작과 끝이 이어져있다고 생각하면 된다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define QUEUE_CAPACITY 8 // 많이 쓰이므로 미리 정의해놓자
+</span>
+<span class="kt">int</span> <span class="n">queue</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">queue_size</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is full!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">queue</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="p">(</span><span class="n">tail</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span> <span class="c1">// tail 앞으로 한 칸 이동, 범위를 넘어가면 0으로 회귀</span>
+    <span class="n">queue_size</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">dequeue</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">queue_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is empty!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="n">head</span><span class="p">];</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">head</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span> <span class="c1">// head 앞으로 한 칸 이동, 범위를 넘어가면 0으로 회귀</span>
+    <span class="n">queue_size</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dequeue</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">enqueue</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-tip"> <p>결국 원형 큐에서 가장 중요한 것은, <strong>인덱스를 증가시키되, 범위를 초과하면 0으로 회귀시키는 것이다.</strong> 그리고 이러한 아이디어는 정확히 나머지 연산자(<code class="language-plaintext highlighter-rouge">%</code>)와 부합한다. 이 아이디어는 다양하게 활용되므로, 잘 기억해두자.</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="n">tail</span> <span class="o">=</span> <span class="p">(</span><span class="n">tail</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span>
+</code></pre></div> </div> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">head</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span>
+</code></pre></div> </div> </blockquote> <blockquote class="prompt-tip"> <p>원형 큐에서 <code class="language-plaintext highlighter-rouge">head</code>와 <code class="language-plaintext highlighter-rouge">tail</code>을 인자로 받고, <code class="language-plaintext highlighter-rouge">queue_size</code>를 반환할 수 있는 함수를 짤 수는 없을까? 즉, 우리가 배열을 이용해서 큐를 구현할 때 사용했던 <code class="language-plaintext highlighter-rouge">tail - head</code>처럼 말이다. 결론부터 말하자면 조금 어려운 일인 것 같다. 필자는 밑의 코드까지 작성하고 포기했다.</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">queue_size</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tail</span> <span class="o">&gt;=</span> <span class="n">head</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="k">return</span> <span class="n">tail</span> <span class="o">-</span> <span class="n">head</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+       <span class="k">return</span> <span class="n">QUEUE_CAPACITY</span> <span class="o">-</span> <span class="p">(</span><span class="n">head</span> <span class="o">-</span> <span class="n">tail</span><span class="p">)</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div> </div> <p>왜 여기에서 포기하게 되었냐면, 디버깅을 해보니 <strong>“데이터가 큐에 꽉 찬 상황”과 “큐가 비어있는 상황”을 구분할 수 없었기 때문이다.</strong> 두 가지 상황 모두 <code class="language-plaintext highlighter-rouge">head == tail</code> 조건을 만족시킨다. (만약 책의 코드를 따랐다면, <code class="language-plaintext highlighter-rouge">head = tail + 1</code> 조건을 만족시킬 것이다.) 따라서 생각이 여기까지 도달했을 때, 다시 위로 올라가 <code class="language-plaintext highlighter-rouge">int queue_size</code>를 정의하고 <code class="language-plaintext highlighter-rouge">enqueue(int n)</code>과 <code class="language-plaintext highlighter-rouge">dequeue()</code>에 각각 <code class="language-plaintext highlighter-rouge">queue_size++</code>과 <code class="language-plaintext highlighter-rouge">queue_size--</code>를 추가했다… ㅠㅠ</p> </blockquote> <p>우리는 이렇게 원형 큐를 구현할 수 있었고, 이는 기존의 큐가 가진 문제점을 해결할 수 있다.</p> <h2 id="배열로-스택-작성하기">배열로 스택 작성하기</h2> <p>큐(Queue)는 먼저 들어간 데이터가 나중에 나오는, 즉 마지막에 들어간 데이터가 맨 처음에 나오는 자료구조를 말한다. (선입후출) (그러한 관점에서, 꽤 불공평하다.)</p> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/1_r4Bfo3rrFprzFM2zbgzZXA.jpeg" alt="stack" w="400"> <em>스택</em></p> <p>스택에 데이터를 넣을 때에는 <strong>push</strong>라는 용어를 쓰고, 데이터를 뽑아낼 때에는 <strong>pop</strong>라는 용어를 쓴다.</p> <p>배열로 큐를 구현했을 때와 마찬가지로, <strong>인덱스를 변수로</strong> 놓는 것이 구현의 첫 걸음이다. 넣는 인덱스와 뽑는 인덱스가 동일하므로, 이들을 변수 <code class="language-plaintext highlighter-rouge">top</code>으로 놓자.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">stack</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// top은 데이터가 들어왔을 때 놓을 인덱스로 놓자</span>
+
+<span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">top</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is full!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">stack</span><span class="p">[</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">top</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">pop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">top</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is empty!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="n">top</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">top</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pop</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">push</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>요런 식으로 구현할 수 있다. (큐보다 훨씬 쉽다.)</p> <blockquote class="prompt-tip"> <p>위 경우 스택의 크기는 <code class="language-plaintext highlighter-rouge">top</code>이라는 General한 방법으로 구할 수 있다.</p> </blockquote> <blockquote class="prompt-warning"> <p>쉽기야 하지만, 한 가지 고려해야할 것은 인덱스 변수 <code class="language-plaintext highlighter-rouge">top</code>이 “<code class="language-plaintext highlighter-rouge">push(n)</code>할 때 입력된 데이터가 들어갈 자리의 인덱스”인지 “<code class="language-plaintext highlighter-rouge">pop()</code>할 때 뽑힐 데이터의 인덱스”인지 구분하는 것이다. 위 코드의 경우 전자를 따랐다.</p> </blockquote> <h2 id="일반적인-데이터-타입을-다룰-수-있는-원형-큐-작성하기">일반적인 데이터 타입을 다룰 수 있는 (원형) 큐 작성하기</h2> <p>캬… 어려운 거 나왔다.</p> <blockquote class="prompt-info"> <p><strong>C언어에서 일반적인 데이터 타입을 다룰 수 있는 방법은 무엇일까?</strong> C언어에서 모든 데이터 타입의 변수를 다룰 수 있는 방법은 없지만, 모든 데이터 타입의 포인터를 저장할 수는 있다. 그것은 바로 <code class="language-plaintext highlighter-rouge">void *</code>이다. <code class="language-plaintext highlighter-rouge">void *</code>는 데이터의 주소값(포인터)을 대입할 수 있는데, 대입하거나 대입될 때 자동으로 형 변환이 일어난다.</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">*</span> <span class="n">x</span> <span class="o">=</span> <span class="n">ptr</span><span class="p">;</span> <span class="c1">// ptr &lt;- void* 타입</span>
+</code></pre></div> </div> </blockquote> <p>따라서 타입 코드만 조금 수정하면 될 것 같다.</p> <blockquote class="prompt-danger"> <p>ㅋㅋㅋ 방금 해보고 왔는데 안된다. <strong>C++에서는 기본적으로 <code class="language-plaintext highlighter-rouge">void*</code>를 임의의 다른 포인터형으로 자동 변환해주지 않는다.</strong> 수동으로 형변환을 해줘야 한다. (자동 변환해주는 거는 C에서의 이야기이다. 이러한 차이는 C++과 C의 미세한 차이에 속한다.)</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">*</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">ptr</span><span class="p">;</span> <span class="c1">// ptr &lt;- void* 타입</span>
+</code></pre></div> </div> </blockquote> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define QUEUE_CAPACITY 8
+</span>
+<span class="kt">void</span><span class="o">*</span> <span class="n">queue</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">// 큐의 원소는 각 값의 포인터</span>
+<span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">n</span><span class="p">)</span> <span class="c1">// enqueue시 인자는 값의 포인터</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">queue_size</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is full!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">queue</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="p">(</span><span class="n">tail</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span>
+    <span class="n">queue_size</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="o">*</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="c1">// 반환 값은 포인터 형식이므로 void*</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">queue_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"queue is empty!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">nullptr</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="n">head</span><span class="p">];</span> <span class="c1">// 반환 값은 포인터 형식이므로 void*</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">head</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">QUEUE_CAPACITY</span><span class="p">;</span>
+    <span class="n">queue_size</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-warning"> <p>사실 여기까지 적었지만, 필자는 <code class="language-plaintext highlighter-rouge">main()</code>을 어떻게 적어야 할지 잘 모르겠다.</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)(</span><span class="n">dequeue</span><span class="p">());</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">input</span><span class="p">;</span> <span class="c1">// 여기서 문제가 생긴듯</span>
+            <span class="n">enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div> </div> <p>여기까지 적었는데, 문제가 있다. 실행해보면 <code class="language-plaintext highlighter-rouge">dequeue</code>를 호출할 때마다 동일한 값만 나온다. 그리고 이것은 아마도 11번째 행 <code class="language-plaintext highlighter-rouge">else if (input &gt; 0)</code>영역이 문제인 것 같은데, 내가 기대했던 것은 매번 저 영역을 지날 때마다 <strong><code class="language-plaintext highlighter-rouge">int x</code>를 실행하여 이름은 <code class="language-plaintext highlighter-rouge">x</code>로 똑같지만 포인터 값이 항상 다른 변수를 만드는 것</strong>이었지만, 실행해보니 항상 똑같은 값이 들어가는 모양이다. (실제로 배열의 내부를 확인해보니 그렇더라) 이를 해결할 수 있는 다른 멋진 방법이 필요해보인다.</p> <blockquote> <p>다음에 이 글을 보면 해결할 수 있기를!</p> </blockquote> </blockquote> <h1 id="연결-리스트">연결 리스트</h1> <p>우리는 위에서 배열로 큐를 구현하는 것의 문제점과 한계를 직면했고, 그에 대한 해결책으로 원형 큐를 배웠다. 하지만, 해결책은 원형 큐만이 있는 것은 아니다. 우리가 배울 기법은 이 문제의 해결책이 되는데, 그것은 바로 연결 리스트이다.</p> <p>연결 리스트의 노드는 <code class="language-plaintext highlighter-rouge">key</code> 변수와 다음 노드를 가리키는 포인터 <code class="language-plaintext highlighter-rouge">struct _node *next</code>로 이루어져 있다. (포인터의 형은 구현 방식에 따라 차이가 있지만, 책에서는 <code class="language-plaintext highlighter-rouge">struct</code> 타입으로 구현하였다.) <code class="language-plaintext highlighter-rouge">head</code>는 첫번째 노드를 가리키고, <code class="language-plaintext highlighter-rouge">tail</code>은 마지막 노드를 가리킨다. 그리고 노드 <code class="language-plaintext highlighter-rouge">tail</code>의 포인터 값은 아무것도 가리키지 않기에, <code class="language-plaintext highlighter-rouge">NULL</code>을 가진다. (아래 그림을 보면 이해가 쉬울 것이다)</p> <dl> <dt>장점</dt> <dd>연결리스트는 배열과 다르게 중간에 노드를 삽입하거나 제거할 때 원소를 밀어내거나 이동시킬 필요가 없다. 그냥 연결을 끊고 새로운 노드와 붙이거나, 한 노드의 양 연결을 끊고 이 노드를 배재시킨 후 연결시키면 끝나기 때문이다.</dd> <dt>단점</dt> <dd>그러나 임의의 위치에 있는 (i번째) 원소를 찾는 과정이 오래 걸린다. 완전 탐색을 수행하기 때문.</dd> </dl> <p>연결리스트의 종류로는 이중 연결 리스트 (Doubly Linked List), 원형 연결 리스트 (Circular Linked List) 등이 있는데, 요 책에서는 단일 연결 리스트(Singular Linked List)만 다룬다.</p> <p><img src="/assets/img/2022-04-01-algorithm-with-ps-00/0_0XVK02Guco9xJMJL.png" alt="linked list" w="400"> <em>연결 리스트</em></p> <h2 id="연결-리스트로-큐-작성하기">연결 리스트로 큐 작성하기</h2> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">_node</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="nc">_node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_node</span> <span class="n">node_t</span><span class="p">;</span>
+
+<span class="n">node_t</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// head와 tail은 첫 노드와 마지막 노드를 가리키는 포인터, 초기는 NULL</span>
+
+<span class="kt">void</span> <span class="nf">insert_node</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="c1">// 숫자 n을 리스트에 추가할 것</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">new_node</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_t</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node_t</span><span class="p">));</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 추가된 노드가 가리켜야할 노드는? 아무것도 가리키지 않으므로 NULL!</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면</span>
+    <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">delete_node</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span> <span class="c1">// 출력 노드의 포인터</span>
+    <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 지금 리스트가 비어있다면</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// 출력 노드 = head</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> <span class="c1">// head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">delete_node</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">insert_node</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>연결 리스트 구현에 있어 몇 가지 유의해야하는 점들이 있다.</p> <blockquote class="prompt-info"> <p><strong>구조체(struct)에 대하여</strong> 구조체란 여러 변수들의 묶음으로 이해하면 편하다. 그리고 여러 변수들을 묶었기에, 이 구조체를 새로운 타입으로써 바라볼 수 있다.</p> <ul> <li>구조체 선언: 구조체 <code class="language-plaintext highlighter-rouge">_node</code>는 정수형 변수 <code class="language-plaintext highlighter-rouge">key</code>와 구조체 <code class="language-plaintext highlighter-rouge">_node</code>의 포인터 변수 <code class="language-plaintext highlighter-rouge">next</code>의 묶음이다. <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">_node</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="nc">_node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div> </div> </li> <li>구조체를 간지나게 쓰기: <code class="language-plaintext highlighter-rouge">struct _node *node</code>보다는 <code class="language-plaintext highlighter-rouge">node_t *node</code>가 더 간결하고 간지난다. 따라서 <code class="language-plaintext highlighter-rouge">typedef</code>를 통해서 구조체의 이름을 새로운 타입으로 정의하자. <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_node</span> <span class="n">node_t</span><span class="p">;</span> <span class="c1">// struct _node는 node_t</span>
+</code></pre></div> </div> </li> <li>구조체의 값 접근: 구조체 자체가 주어졌는지, 구조체의 포인터가 주어졌는지에 따라 다르다. 차이를 잘 기억해놓자. <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="c1">// 구조체가 주어짐</span>
+<span class="k">struct</span> <span class="nc">A</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 요런 . 연산자로 접근</span>
+<span class="c1">// 구조체의 포인터가 주어짐</span>
+<span class="k">struct</span> <span class="nc">A</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 요런 -&gt; 연산자로 접근</span>
+</code></pre></div> </div> </li> </ul> </blockquote> <blockquote class="prompt-tip"> <p><code class="language-plaintext highlighter-rouge">head</code>와 <code class="language-plaintext highlighter-rouge">tail</code>은 위 배열에서 보았던 방법과 같이 인덱스로 사용된 것이 아니고 포인터로 사용된다. 따라서 리스트가 빈 상황에서 꼭 아래와 같이 <code class="language-plaintext highlighter-rouge">NULL</code>로 초기화를 시켜주어야 한다. 그리고 리스트가 빈 상황은 <code class="language-plaintext highlighter-rouge">delete_node()</code> 안에서 head의 값을 업데이트할 때 head의 다음 노드를 가리키는 포인터가 <code class="language-plaintext highlighter-rouge">NULL</code> 인 것으로 알 수 있다.</p> <div class="language-c++ highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> <span class="c1">// head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면</span>
+<span class="p">{</span>
+    <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기</span>
+<span class="p">}</span>
+</code></pre></div> </div> </blockquote> <h2 id="이-연결-리스트는-대기번호를-몇-개까지-받을-수-있을까">이 연결 리스트는 대기번호를 몇 개까지 받을 수 있을까?</h2> <p>코드를 작성하여 확인해보자.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="n">insert_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote class="prompt-warning"> <p>지금 코드를 짜서 실행시키고 있긴 한데… 아직도 안 끝났다 ㅋㅋ 결과 해석은 나중에 써야할 듯.</p> </blockquote> <h2 id="연결-리스트를-이용하여-양쪽-끝에서-삽입과-삭제가-일어나는-double-ended-queue-작성하기-작성-중">연결 리스트를 이용하여 양쪽 끝에서 삽입과 삭제가 일어나는 Double Ended Queue 작성하기 (작성 중)</h2> <p>끝에 추가했던 코드를 맨 앞에 추가하는 코드로 수정하면 될 것 같다.</p> <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">_node</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="nc">_node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_node</span> <span class="n">node_t</span><span class="p">;</span>
+
+<span class="n">node_t</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// head와 tail은 첫 노드와 마지막 노드를 가리키는 포인터, 초기는 NULL</span>
+
+<span class="kt">void</span> <span class="nf">insert_front_node</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="c1">// 숫자 n을 리스트에 추가할 것</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">new_node</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_t</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node_t</span><span class="p">));</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// 추가된 노드가 가리켜야할 노드는? 맨 앞이 되므로 head!</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면</span>
+    <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 밑에 놈을 어떻게 적지? 정확히는, tail을 뽑고 tail을 어떻게 업데이트하지?</span>
+<span class="kt">int</span> <span class="nf">delete_front_node</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span> <span class="c1">// 출력 노드의 포인터</span>
+    <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 지금 리스트가 비어있다면</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// 출력 노드 = head</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> <span class="c1">// head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">insert_node</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="c1">// 숫자 n을 리스트에 추가할 것</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">new_node</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_t</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node_t</span><span class="p">));</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">key</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 추가된 노드가 가리켜야할 노드는? 아무것도 가리키지 않으므로 NULL!</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// head가 NULL이라면, 즉 지금 들어온 노드가 첫 번째 입력이라면</span>
+    <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">delete_node</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">node_t</span> <span class="o">*</span><span class="n">node</span><span class="p">;</span> <span class="c1">// 출력 노드의 포인터</span>
+    <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 지금 리스트가 비어있다면</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// 출력 노드 = head</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> <span class="c1">// head 노드는 출력되므로(사라지므로), head 노드는 그 다음 노드로 업데이트 됨</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="c1">// 다음 노드가 NULL이라면, 즉 위에서 뽑았던 노드가 마지막 노드였다면</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// 리스트가 텅 빈 것이므로 tail을 NULL로 바꾸기</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">input</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">input</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">delete_node</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">insert_node</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <blockquote> <p>오늘은 여기까지! (2022/4/3 16시)</p> </blockquote> </body></html>
