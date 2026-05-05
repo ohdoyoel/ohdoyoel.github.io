@@ -54,7 +54,7 @@
   --body-padding-x: calc(var(--unit) * 8);
   --body-padding-y: calc(var(--unit) * 8);
   --body-bleed: calc(var(--unit) * 16);
-  --body-max-width: calc(var(--unit) * 176);
+  --body-max-width: calc(var(--unit) * 152);
 
   --blockSpacingTop: 0px;
   --blockSpacingBottom: var(--line-height);

@@ -32,7 +32,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build 2>&1 | tail -8",
+    "buildCommand": "npm run build 2>&1 | tail -5",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -129,8 +129,8 @@
     },
     {
       "path": "src/styles/global.css",
-      "accessCount": 57,
-      "lastAccessed": 1777964995833,
+      "accessCount": 60,
+      "lastAccessed": 1777968518275,
       "type": "file"
     },
     {
@@ -147,14 +147,14 @@
     },
     {
       "path": "src/components/Entry.astro",
-      "accessCount": 26,
-      "lastAccessed": 1777964938726,
+      "accessCount": 30,
+      "lastAccessed": 1777968857544,
       "type": "file"
     },
     {
       "path": "src/i18n/ui.ts",
-      "accessCount": 18,
-      "lastAccessed": 1777902269132,
+      "accessCount": 19,
+      "lastAccessed": 1777968688223,
       "type": "file"
     },
     {
@@ -170,15 +170,45 @@
       "type": "file"
     },
     {
+      "path": "src/pages/blog/[id].astro",
+      "accessCount": 12,
+      "lastAccessed": 1777969988033,
+      "type": "file"
+    },
+    {
       "path": "src/components/Footer.astro",
       "accessCount": 11,
       "lastAccessed": 1777898098226,
       "type": "file"
     },
     {
+      "path": "src/pages/ko/blog/[id].astro",
+      "accessCount": 11,
+      "lastAccessed": 1777969989191,
+      "type": "file"
+    },
+    {
       "path": "src/layouts/BaseLayout.astro",
+      "accessCount": 10,
+      "lastAccessed": 1777968687336,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/project.astro",
+      "accessCount": 10,
+      "lastAccessed": 1777969805104,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/project.astro",
       "accessCount": 9,
-      "lastAccessed": 1777963344792,
+      "lastAccessed": 1777969801368,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/blog.astro",
+      "accessCount": 9,
+      "lastAccessed": 1777969988418,
       "type": "file"
     },
     {
@@ -194,15 +224,21 @@
       "type": "file"
     },
     {
-      "path": "src/components/Menu.astro",
-      "accessCount": 7,
-      "lastAccessed": 1777885906364,
+      "path": "src/pages/publication.astro",
+      "accessCount": 8,
+      "lastAccessed": 1777968367753,
       "type": "file"
     },
     {
-      "path": "src/pages/publication.astro",
-      "accessCount": 7,
-      "lastAccessed": 1777964125150,
+      "path": "src/components/Menu.astro",
+      "accessCount": 8,
+      "lastAccessed": 1777969151085,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/blog.astro",
+      "accessCount": 8,
+      "lastAccessed": 1777969987711,
       "type": "file"
     },
     {
@@ -218,27 +254,9 @@
       "type": "file"
     },
     {
-      "path": "src/pages/ko/project.astro",
+      "path": "src/data/types.ts",
       "accessCount": 6,
-      "lastAccessed": 1777964975421,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/ko/blog.astro",
-      "accessCount": 6,
-      "lastAccessed": 1777964981235,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/project.astro",
-      "accessCount": 5,
-      "lastAccessed": 1777964950372,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/blog.astro",
-      "accessCount": 5,
-      "lastAccessed": 1777964956610,
+      "lastAccessed": 1777969984167,
       "type": "file"
     },
     {
@@ -249,8 +267,8 @@
     },
     {
       "path": "src/components/Section.astro",
-      "accessCount": 4,
-      "lastAccessed": 1777963345640,
+      "accessCount": 5,
+      "lastAccessed": 1777968376428,
       "type": "file"
     },
     {
@@ -260,9 +278,39 @@
       "type": "file"
     },
     {
+      "path": "src/data/project.ts",
+      "accessCount": 4,
+      "lastAccessed": 1777969768964,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ProjectCard.astro",
+      "accessCount": 4,
+      "lastAccessed": 1777969792218,
+      "type": "file"
+    },
+    {
+      "path": "src/data/blog.ts",
+      "accessCount": 4,
+      "lastAccessed": 1777969984155,
+      "type": "file"
+    },
+    {
       "path": "astro.config.mjs",
-      "accessCount": 2,
-      "lastAccessed": 1777961961616,
+      "accessCount": 3,
+      "lastAccessed": 1777968683624,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/project/[id].astro",
+      "accessCount": 3,
+      "lastAccessed": 1777969973296,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/project/[id].astro",
+      "accessCount": 3,
+      "lastAccessed": 1777969978875,
       "type": "file"
     },
     {
@@ -272,21 +320,27 @@
       "type": "file"
     },
     {
-      "path": "src/data/types.ts",
+      "path": "src/i18n/utils.ts",
       "accessCount": 2,
-      "lastAccessed": 1777966161438,
+      "lastAccessed": 1777968688249,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/0.ko.md",
+      "accessCount": 2,
+      "lastAccessed": 1777969997690,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/0.en.md",
+      "accessCount": 2,
+      "lastAccessed": 1777969998230,
       "type": "file"
     },
     {
       "path": "src/pages/work.astro",
       "accessCount": 1,
       "lastAccessed": 1777821495656,
-      "type": "file"
-    },
-    {
-      "path": "src/i18n/utils.ts",
-      "accessCount": 1,
-      "lastAccessed": 1777823145144,
       "type": "file"
     },
     {
@@ -332,15 +386,21 @@
       "type": "file"
     },
     {
-      "path": "src/data/project.ts",
+      "path": "package.json",
       "accessCount": 1,
-      "lastAccessed": 1777964057599,
+      "lastAccessed": 1777968684041,
       "type": "file"
     },
     {
-      "path": "src/data/blog.ts",
+      "path": "src/content/project/0.en.md",
       "accessCount": 1,
-      "lastAccessed": 1777964084169,
+      "lastAccessed": 1777969866895,
+      "type": "file"
+    },
+    {
+      "path": "src/content/project/0.ko.md",
+      "accessCount": 1,
+      "lastAccessed": 1777969868944,
       "type": "file"
     }
   ],

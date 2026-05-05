@@ -1,7 +1,8 @@
-import type { Entry } from './types';
+import type { Project } from './types';
 
-export const projects: Entry[] = [
+export const projects: Project[] = [
   {
+    id: 0,
     period: '2605',
     title: { en: 'KAIST Roadmap Planner', ko: 'KAIST 로드맵 플래너' },
     subtitle: {
@@ -14,6 +15,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 1,
     period: '2603',
     title: { en: 'Shatter', ko: 'Shatter' },
     subtitle: {
@@ -26,6 +28,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 2,
     period: '2509 - 2512',
     title: { en: 'Skelly Clash', ko: '싸우자해골아 (Skelly Clash)' },
     subtitle: {
@@ -38,6 +41,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 3,
     period: '2511',
     title: { en: 'ER:ight?', ko: 'ER:ight?' },
     subtitle: {
@@ -50,6 +54,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 4,
     period: '2509',
     title: { en: '지(地)킴이', ko: '지(地)킴이' },
     subtitle: {
@@ -62,6 +67,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 5,
     period: '2503 - 2504',
     title: { en: 'Fruit Box Bot', ko: '사과게임 봇' },
     subtitle: {
@@ -74,6 +80,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 6,
     period: '2501',
     title: {
       en: 'Gyeonggi Youth Ladder Program — Branding',
@@ -89,6 +96,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 7,
     period: '2311 - 2401',
     title: { en: 'rokaf.click', ko: 'rokaf.click' },
     subtitle: {
@@ -101,6 +109,7 @@ export const projects: Entry[] = [
     },
   },
   {
+    id: 8,
     period: '2203 - 2212',
     title: { en: 'YoungCHA — Hands-Free Indoor Mobility', ko: 'YoungCHA — 핸즈프리 실내 모빌리티' },
     subtitle: {

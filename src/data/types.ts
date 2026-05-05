@@ -15,9 +15,18 @@ export type Entry = {
   subtitle?: Localized;
   authors?: Author[];
   description?: Localized;
-  link?: { href: string };
+  link?: { href: string; internal?: boolean };
   image?: { src: string; alt?: Localized };
 };
+
+export type BlogPost = {
+  id: number;
+  period: string;
+  title: Localized;
+  description?: Localized;
+};
+
+export type Project = Entry & { id: number };
 
 export type IntroLink = {
   to: string;

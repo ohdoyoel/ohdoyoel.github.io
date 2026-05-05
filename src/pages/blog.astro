@@ -2,12 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Menu from '../components/Menu.astro';
 import Entry from '../components/Entry.astro';
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, pageLink } from '../i18n/utils';
 import { profile } from '../data/profile';
 import { blogPosts } from '../data/blog';
+import type { Entry as EntryType } from '../data/types';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
+
+const entries: EntryType[] = blogPosts.map((p) => ({
+  period: p.period,
+  title: p.title,
+  description: p.description,
+  link: { href: pageLink(lang, `blog/${p.id}`), internal: true },
+}));
 ---
 <BaseLayout
   lang={lang}
@@ -22,7 +30,7 @@ const t = useTranslations(lang);
       <Menu lang={lang} current="blog" />
     </r-cell>
     <r-cell span="6" span-s="4" span-xs="row">
-      {blogPosts.map((e) => <Entry entry={e} lang={lang} />)}
+      {entries.map((e) => <Entry entry={e} lang={lang} />)}
     </r-cell>
   </r-grid>
 </BaseLayout>

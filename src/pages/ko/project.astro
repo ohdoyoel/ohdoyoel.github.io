@@ -1,13 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Menu from '../../components/Menu.astro';
-import Entry from '../../components/Entry.astro';
-import { useTranslations } from '../../i18n/utils';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { useTranslations, pageLink } from '../../i18n/utils';
 import { profile } from '../../data/profile';
 import { projects } from '../../data/project';
+import type { Project } from '../../data/types';
 
 const lang = 'ko' as const;
 const t = useTranslations(lang);
+
+const entries: Project[] = projects.map((p) => ({
+  ...p,
+  link: { href: pageLink(lang, `project/${p.id}`), internal: true },
+}));
 ---
 <BaseLayout
   lang={lang}
@@ -21,8 +27,10 @@ const t = useTranslations(lang);
     <r-cell order="-9" class="menu" span="2" span-s="2">
       <Menu lang={lang} current="project" />
     </r-cell>
-    <r-cell span="6" span-s="4" span-xs="row">
-      {projects.map((e) => <Entry entry={e} lang={lang} />)}
-    </r-cell>
+    {entries.map((e) => (
+      <r-cell span="2" span-s="2" span-xs="row">
+        <ProjectCard entry={e} lang={lang} />
+      </r-cell>
+    ))}
   </r-grid>
 </BaseLayout>

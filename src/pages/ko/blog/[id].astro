@@ -1,0 +1,139 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Menu from '../../../components/Menu.astro';
+import { useTranslations, pageLink } from '../../../i18n/utils';
+import { profile } from '../../../data/profile';
+import { blogPosts } from '../../../data/blog';
+
+export const getStaticPaths = (() => {
+  return blogPosts.map((p) => ({ params: { id: String(p.id) }, props: { post: p } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const lang = 'ko' as const;
+const t = useTranslations(lang);
+
+const modules = import.meta.glob<any>('../../../content/blog/*.ko.md', { eager: true });
+const Content = modules[`../../../content/blog/${post.id}.ko.md`]?.Content;
+
+const period = post.period.replace(/Present/g, t('meta.present'));
+---
+<BaseLayout
+  lang={lang}
+  pageClass="page-blog"
+  title={`${post.title[lang]} — ${profile.name[lang]}`}
+>
+  <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
+    <r-cell order="-10" span="4" span-s="2">
+      <h1>{t('page.blog.heading')}</h1>
+    </r-cell>
+    <r-cell order="-9" class="menu" span="2" span-s="2">
+      <Menu lang={lang} current="blog" />
+    </r-cell>
+
+    <r-cell span="1" span-s="1" span-xs="row">
+      <a class="back-arrow" href={pageLink(lang, 'blog')} aria-label={t('page.blog')}>←</a>
+    </r-cell>
+    <r-cell span="5" span-s="3" span-xs="row">
+      <div class="post-title-row">
+        <h2 class="post-title">{post.title[lang]}</h2>
+        <time class="post-period">{period}</time>
+      </div>
+      {post.description && <p class="post-description">{post.description[lang]}</p>}
+      <article class="post-body">
+        {Content ? <Content /> : <p>(내용이 없습니다)</p>}
+      </article>
+    </r-cell>
+  </r-grid>
+</BaseLayout>
+
+<style>
+  .back-arrow {
+    display: inline-block;
+    font-size: var(--font-size-9);
+    line-height: var(--line-height-9);
+    letter-spacing: var(--letter-spacing-9);
+    color: var(--foreground-color);
+    font-weight: 600;
+  }
+  .back-arrow:hover {
+    background-color: transparent;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: var(--foreground-color-dimmed);
+    text-decoration: none;
+  }
+  .post-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: calc(var(--unit) * 2);
+  }
+  .post-title {
+    font-size: var(--font-size-7);
+    line-height: var(--line-height-7);
+    letter-spacing: var(--letter-spacing-7);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .post-period {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .post-description {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    margin-top: calc(var(--unit) * 1);
+    margin-bottom: calc(var(--unit) * 4);
+  }
+  .post-body :global(h2) {
+    font-size: var(--font-size-5);
+    line-height: var(--line-height-5);
+    letter-spacing: var(--letter-spacing-5);
+    font-weight: 600;
+    margin-top: calc(var(--unit) * 6);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .post-body :global(h3) {
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-4);
+    letter-spacing: var(--letter-spacing-4);
+    font-weight: 600;
+    margin-top: calc(var(--unit) * 4);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .post-body :global(p) {
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-3);
+    letter-spacing: var(--letter-spacing-3);
+  }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-3);
+    letter-spacing: var(--letter-spacing-3);
+    padding-left: calc(var(--unit) * 4);
+  }
+  .post-body :global(blockquote) {
+    border-left: 2px solid var(--foreground-color-dimmed);
+    padding-left: calc(var(--unit) * 2);
+    color: var(--foreground-color-dimmed);
+    margin-left: 0;
+  }
+  .post-body :global(a[href]) {
+    text-decoration: underline;
+  }
+</style>

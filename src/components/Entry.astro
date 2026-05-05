@@ -12,6 +12,7 @@ const resolveHref = (s: string) => (s.startsWith('#') || isAbsolute(s) ? s : ass
 const imageSrc = entry.image && resolveHref(entry.image.src);
 const imageAlt = entry.image?.alt?.[lang] ?? entry.title[lang];
 const linkHref = entry.link && resolveHref(entry.link.href);
+const linkAttrs = entry.link?.internal ? {} : { target: '_blank', rel: 'noopener noreferrer' };
 const period = entry.period.replace(/Present/g, t('meta.present'));
 ---
 <div class="entry">
@@ -21,7 +22,7 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
     </p>
     <h3>
       {entry.link
-        ? <a href={linkHref} target="_blank" rel="noopener noreferrer">{entry.title[lang]}</a>
+        ? <a href={linkHref} {...linkAttrs}>{entry.title[lang]}</a>
         : entry.title[lang]}
     </h3>
     {entry.authors && (
@@ -41,7 +42,7 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
   {entry.image && (
     <div class="entry-image">
       {entry.link
-        ? <a href={linkHref} target="_blank" rel="noopener noreferrer"><img src={imageSrc} alt={imageAlt} loading="lazy" /></a>
+        ? <a href={linkHref} {...linkAttrs}><img src={imageSrc} alt={imageAlt} loading="lazy" /></a>
         : <img src={imageSrc} alt={imageAlt} loading="lazy" />}
     </div>
   )}
@@ -63,16 +64,19 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
   }
   .entry-image {
     grid-column: 6;
+    position: relative;
     overflow: hidden;
     background: rgba(var(--foreground-color-rgb), 0.04);
     line-height: 0;
   }
   .entry-image a {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 100%;
-    height: 100%;
   }
   .entry-image img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -87,6 +91,7 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
     }
     .entry-image {
       grid-column: 1;
+      position: relative;
       aspect-ratio: 16 / 9;
     }
   }
