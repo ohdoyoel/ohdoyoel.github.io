@@ -25,10 +25,10 @@ const period = post.period.replace(/Present/g, t('meta.present'));
   title={`${post.title[lang]} — ${profile.name[lang]}`}
 >
   <r-grid class="main post" columns="6" columns-s="4">
-    <r-cell order="-10" span="4" span-s="2">
+    <r-cell order="-10" span="4" span-s="row">
       <h1>{t('page.blog.heading')}</h1>
     </r-cell>
-    <r-cell order="-9" class="menu" span="2" span-s="2">
+    <r-cell order="-9" class="menu" span="2" span-s="row">
       <Menu lang={lang} current="blog" />
     </r-cell>
 

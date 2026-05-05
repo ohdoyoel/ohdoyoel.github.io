@@ -288,6 +288,9 @@ r-grid.main .menu {
     height: auto;
     padding-top: 0;
   }
+  r-grid > r-cell {
+    grid-column: 1 / -1 !important;
+  }
 }
 
 r-grid.main .menu .menu-list {

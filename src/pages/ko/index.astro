@@ -27,12 +27,12 @@ const featuredBlogs: EntryType[] = blogPosts.slice(0, 3).map((p) => ({
   description="이력서 및 개인 홈페이지."
 >
   <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
-    <r-cell order="-10" span="4" span-s="2">
+    <r-cell order="-10" span="4" span-s="row">
       <h1>{t('hero.about')} {profile.name[lang]}입니다</h1>
       <p class="cv-link"><a href={assetLink('cv.pdf')} download>{t('nav.cv')} (PDF)</a></p>
     </r-cell>
 
-    <r-cell order="-9" class="menu" span="2" span-s="2">
+    <r-cell order="-9" class="menu" span="2" span-s="row">
       <Menu lang={lang} current="home" />
     </r-cell>
 
