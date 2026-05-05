@@ -1,7 +1,7 @@
 {
-  "tool_name": "Read",
-  "tool_input_preview": "{\"file_path\":\"/Users/ohdoyoel/work/side/cv/src/pages/ko\"}",
-  "error": "EISDIR: illegal operation on a directory, read '/Users/ohdoyoel/work/side/cv/src/pages/ko'",
-  "timestamp": "2026-05-05T08:06:10.864Z",
-  "retry_count": 1
+  "tool_name": "WebFetch",
+  "tool_input_preview": "{\"url\":\"https://technical-writing.dev/tutorial/index.html\",\"prompt\":\"List all the writing principles and tone/style guidelines covered in this tutorial. Include Korean example sentences (good vs bad) ...",
+  "error": "Request failed with status code 404",
+  "timestamp": "2026-05-05T08:45:57.788Z",
+  "retry_count": 2
 }

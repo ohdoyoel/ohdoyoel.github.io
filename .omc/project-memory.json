@@ -129,20 +129,20 @@
     },
     {
       "path": "src/styles/global.css",
-      "accessCount": 60,
-      "lastAccessed": 1777968518275,
+      "accessCount": 62,
+      "lastAccessed": 1777972181915,
       "type": "file"
     },
     {
       "path": "src/pages/about.astro",
-      "accessCount": 45,
-      "lastAccessed": 1777964115062,
+      "accessCount": 47,
+      "lastAccessed": 1777973345048,
       "type": "file"
     },
     {
       "path": "src/pages/ko/about.astro",
-      "accessCount": 42,
-      "lastAccessed": 1777964152749,
+      "accessCount": 44,
+      "lastAccessed": 1777973347074,
       "type": "file"
     },
     {
@@ -242,6 +242,12 @@
       "type": "file"
     },
     {
+      "path": "src/data/blog.ts",
+      "accessCount": 8,
+      "lastAccessed": 1777971795429,
+      "type": "file"
+    },
+    {
       "path": "src/pages/ko/publication.astro",
       "accessCount": 7,
       "lastAccessed": 1777964905730,
@@ -290,12 +296,6 @@
       "type": "file"
     },
     {
-      "path": "src/data/blog.ts",
-      "accessCount": 4,
-      "lastAccessed": 1777969984155,
-      "type": "file"
-    },
-    {
       "path": "astro.config.mjs",
       "accessCount": 3,
       "lastAccessed": 1777968683624,
@@ -314,6 +314,36 @@
       "type": "file"
     },
     {
+      "path": "src/content/blog/1.ko.md",
+      "accessCount": 3,
+      "lastAccessed": 1777971077412,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/1.en.md",
+      "accessCount": 3,
+      "lastAccessed": 1777971102956,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/2.ko.md",
+      "accessCount": 3,
+      "lastAccessed": 1777971148004,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/0.ko.md",
+      "accessCount": 3,
+      "lastAccessed": 1777971814523,
+      "type": "file"
+    },
+    {
+      "path": "src/content/blog/0.en.md",
+      "accessCount": 3,
+      "lastAccessed": 1777971814749,
+      "type": "file"
+    },
+    {
       "path": "public/papers/youngcha.pdf",
       "accessCount": 2,
       "lastAccessed": 1777962973961,
@@ -323,18 +353,6 @@
       "path": "src/i18n/utils.ts",
       "accessCount": 2,
       "lastAccessed": 1777968688249,
-      "type": "file"
-    },
-    {
-      "path": "src/content/blog/0.ko.md",
-      "accessCount": 2,
-      "lastAccessed": 1777969997690,
-      "type": "file"
-    },
-    {
-      "path": "src/content/blog/0.en.md",
-      "accessCount": 2,
-      "lastAccessed": 1777969998230,
       "type": "file"
     },
     {
