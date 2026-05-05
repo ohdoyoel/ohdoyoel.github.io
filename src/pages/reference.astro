@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Menu from '../components/Menu.astro';
-import Entry from '../components/Entry.astro';
+import ReferenceCard from '../components/ReferenceCard.astro';
 import { useTranslations } from '../i18n/utils';
-import { references, profile } from '../data/cv';
+import { profile } from '../data/profile';
+import { references } from '../data/reference';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
@@ -20,8 +21,10 @@ const t = useTranslations(lang);
     <r-cell order="-9" class="menu" span="2" span-s="2">
       <Menu lang={lang} current="reference" />
     </r-cell>
-    <r-cell span="4" span-s="4" span-xs="row">
-      {references.map((e) => <Entry entry={e} lang={lang} />)}
-    </r-cell>
+    {references.map((e) => (
+      <r-cell span="2" span-s="2" span-xs="row">
+        <ReferenceCard entry={e} lang={lang} />
+      </r-cell>
+    ))}
   </r-grid>
 </BaseLayout>

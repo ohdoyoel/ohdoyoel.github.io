@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"/Users/ohdoyoel/work/side/cv/public/papers/pacman2.pdf\"}",
+  "error": "This PDF has 18 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: \"1-5\"). Maximum 20 pages per request.",
+  "timestamp": "2026-05-05T06:36:12.716Z",
+  "retry_count": 2
+}

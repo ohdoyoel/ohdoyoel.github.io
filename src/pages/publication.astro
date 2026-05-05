@@ -4,7 +4,8 @@ import Menu from '../components/Menu.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
 import { useTranslations } from '../i18n/utils';
-import { papers, patents, profile } from '../data/cv';
+import { profile } from '../data/profile';
+import { papers, patents } from '../data/publication';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);

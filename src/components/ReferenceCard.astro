@@ -1,0 +1,97 @@
+---
+import type { Entry } from '../data/types';
+import type { Lang } from '../i18n/ui';
+import { assetLink } from '../i18n/utils';
+
+interface Props { entry: Entry; lang: Lang }
+const { entry, lang } = Astro.props;
+
+const isAbsolute = (s: string) => /^([a-z]+:)?\/\//i.test(s) || s.startsWith('/') || s.startsWith('data:');
+const resolveHref = (s: string) => (s.startsWith('#') || isAbsolute(s) ? s : assetLink(s));
+const imageSrc = entry.image && resolveHref(entry.image.src);
+const imageAlt = entry.image?.alt?.[lang] ?? entry.title[lang];
+---
+<div class="ref-card">
+  <div class="ref-header">
+    <div class="ref-image">
+      {imageSrc ? <img src={imageSrc} alt={imageAlt} loading="lazy" /> : <div class="ref-placeholder" aria-hidden="true" />}
+    </div>
+    <div class="ref-meta">
+      <h3>
+        {entry.title[lang]}
+        {entry.position && <span class="position">{entry.position[lang]}</span>}
+      </h3>
+      {entry.subtitle && <p class="subtitle">{entry.subtitle[lang]}</p>}
+    </div>
+  </div>
+  {entry.description && <blockquote class="quote">“{entry.description[lang]}”</blockquote>}
+</div>
+
+<style>
+  .ref-card {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) * 2);
+    margin-bottom: var(--blockSpacingBottom);
+  }
+  .ref-header {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--unit) * 2);
+  }
+  .ref-image {
+    flex: 0 0 calc(var(--unit) * 8);
+    width: calc(var(--unit) * 8);
+    height: calc(var(--unit) * 8);
+    overflow: hidden;
+    background: rgba(var(--foreground-color-rgb), 0.04);
+    line-height: 0;
+  }
+  .ref-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ref-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--foreground-color-rgb), 0.06);
+  }
+  .ref-meta {
+    min-width: 0;
+  }
+  .ref-meta h3 {
+    font-size: var(--font-size-4);
+    line-height: 22px;
+    letter-spacing: var(--letter-spacing-4);
+    font-weight: 600;
+    margin: 0 0 var(--h3-margin-bottom);
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .ref-meta .position {
+    margin-left: calc(var(--unit) * 1);
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+    font-weight: var(--font-weight-regular);
+    color: var(--foreground-color-dimmed);
+  }
+  .ref-meta .subtitle {
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+    color: var(--foreground-color-dimmed);
+    margin: 0;
+  }
+  .quote {
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+    margin: 0;
+    quotes: "“" "”";
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-import type { Entry } from '../data/cv';
+import type { Entry } from '../data/types';
 import type { Lang } from '../i18n/ui';
 import { assetLink, useTranslations } from '../i18n/utils';
 
@@ -55,8 +55,11 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
     align-items: stretch;
   }
   .entry-content {
-    grid-column: 1 / 6;
+    grid-column: 1 / -1;
     min-width: 0;
+  }
+  .entry:has(.entry-image) .entry-content {
+    grid-column: 1 / 6;
   }
   .entry-image {
     grid-column: 6;

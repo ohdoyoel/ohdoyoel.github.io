@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Menu from '../../components/Menu.astro';
 import Entry from '../../components/Entry.astro';
 import { useTranslations } from '../../i18n/utils';
-import { projects, profile } from '../../data/cv';
+import { profile } from '../../data/profile';
+import { projects } from '../../data/project';
 
 const lang = 'ko' as const;
 const t = useTranslations(lang);
@@ -20,7 +21,7 @@ const t = useTranslations(lang);
     <r-cell order="-9" class="menu" span="2" span-s="2">
       <Menu lang={lang} current="project" />
     </r-cell>
-    <r-cell span="4" span-s="4" span-xs="row">
+    <r-cell span="6" span-s="4" span-xs="row">
       {projects.map((e) => <Entry entry={e} lang={lang} />)}
     </r-cell>
   </r-grid>

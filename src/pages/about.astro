@@ -4,11 +4,12 @@ import Menu from '../components/Menu.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
 import { useTranslations, assetLink, pageLink } from '../i18n/utils';
+import { profile } from '../data/profile';
 import {
-  intro, profile,
+  intro,
   education, work, awards, certificates,
   programming, research, skills, thisWebsite,
-} from '../data/cv';
+} from '../data/about';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
