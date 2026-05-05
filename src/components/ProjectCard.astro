@@ -112,6 +112,10 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
   .project-content p {
     margin-bottom: 0;
   }
+  .project-content p {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
   .project-content .subtitle {
     font-size: var(--font-size-1);
     line-height: var(--line-height-1);

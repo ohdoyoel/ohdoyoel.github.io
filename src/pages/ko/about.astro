@@ -45,7 +45,7 @@ const t = useTranslations(lang);
 
     <r-cell class="divider" span="row"></r-cell>
 
-    <r-cell span="2" span-s="2" span-xs="row">
+    <r-cell span="2" span-s="row">
       <Section title={t('section.education')}>
         {education.map((e) => <Entry entry={e} lang={lang} />)}
       </Section>
@@ -56,17 +56,17 @@ const t = useTranslations(lang);
       </Section>
     </r-cell>
 
-    <r-cell span="2" span-s="2" span-xs="row">
+    <r-cell span="2" span-s="row">
       <Section title={t('section.work')}>
         {work.map((e) => <Entry entry={e} lang={lang} />)}
       </Section>
     </r-cell>
-    <r-cell span="2" span-s="2" span-xs="row">
+    <r-cell span="2" span-s="row">
       <Section title={t('section.award')}>
         {awards.map((e) => <Entry entry={e} lang={lang} />)}
       </Section>
     </r-cell>
-    <r-cell span="2" span-s="2" span-xs="row">
+    <r-cell span="2" span-s="row">
       <Section title={t('section.certificate')}>
         {certificates.map((e) => <Entry entry={e} lang={lang} />)}
       </Section>

@@ -32,19 +32,18 @@ const period = post.period.replace(/Present/g, t('meta.present'));
       <Menu lang={lang} current="blog" />
     </r-cell>
 
-    <r-cell span="1" span-s="2">
+    <r-cell span="1+1" span-s="row">
       <a class="back-arrow" href={pageLink(lang, 'blog')} aria-label={t('page.blog')}>←</a>
     </r-cell>
-    <r-cell class="post-meta-cell" span="5" span-s="2">
+    <r-cell span="2+4" span-s="row" class="post-title-cell">
+      <h2 class="post-title">{post.title[lang]}</h2>
+      {post.description && <p class="post-description">{post.description[lang]}</p>}
+    </r-cell>
+    <r-cell span="6+1" span-s="row" class="post-period-cell">
       <time class="post-period">{period}</time>
     </r-cell>
 
-    <r-cell span="2+4" span-s="row">
-      <h2 class="post-title">{post.title[lang]}</h2>
-    </r-cell>
-
     <r-cell class="post-body-cell" span="2+4" span-s="row">
-      {post.description && <p class="post-description">{post.description[lang]}</p>}
       <article class="post-body">
         {Content ? <Content /> : <p class="post-empty">(내용이 없습니다)</p>}
       </article>
@@ -71,24 +70,13 @@ const period = post.period.replace(/Present/g, t('meta.present'));
     color: var(--foreground-color-dimmed);
     text-decoration: none;
   }
-  .post-meta-cell {
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-  }
-  .post-period {
-    font-size: var(--font-size-1);
-    line-height: var(--line-height-1);
-    letter-spacing: var(--letter-spacing-1);
-    color: var(--foreground-color-dimmed);
-    white-space: nowrap;
-  }
   .post-title {
     font-size: var(--font-size-7);
     line-height: var(--line-height-7);
     letter-spacing: var(--letter-spacing-7);
     font-weight: 600;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
@@ -97,8 +85,20 @@ const period = post.period.replace(/Present/g, t('meta.present'));
     line-height: var(--line-height-2);
     letter-spacing: var(--letter-spacing-2);
     color: var(--foreground-color-dimmed);
-    margin-top: 0;
-    margin-bottom: calc(var(--unit) * 4);
+    margin-top: calc(var(--unit) * 1);
+    margin-bottom: 0;
+  }
+  .post-period-cell {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  .post-period {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    white-space: nowrap;
   }
   .post-empty {
     color: var(--foreground-color-dimmed);

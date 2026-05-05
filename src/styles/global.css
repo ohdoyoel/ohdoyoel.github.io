@@ -288,9 +288,6 @@ r-grid.main .menu {
     height: auto;
     padding-top: 0;
   }
-  r-grid > r-cell {
-    grid-column: 1 / -1 !important;
-  }
 }
 
 r-grid.main .menu .menu-list {
@@ -412,4 +409,12 @@ r-grid[columns="6"] { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   line-height: var(--line-height-2);
   letter-spacing: var(--letter-spacing-2);
   margin-bottom: var(--h3-margin-bottom);
+}
+
+.entry p,
+.entry .subtitle,
+.entry .description,
+.entry .authors {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }

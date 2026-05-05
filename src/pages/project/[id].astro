@@ -37,20 +37,19 @@ const imageAlt = post.image?.alt?.[lang] ?? post.title[lang];
       <Menu lang={lang} current="project" />
     </r-cell>
 
-    <r-cell span="1" span-s="2">
+    <r-cell span="1+1" span-s="row">
       <a class="back-arrow" href={pageLink(lang, 'project')} aria-label={t('page.project')}>←</a>
     </r-cell>
-    <r-cell class="post-meta-cell" span="5" span-s="2">
+    <r-cell span="2+4" span-s="row" class="post-title-cell">
+      {post.subtitle && <p class="post-subtitle">{post.subtitle[lang]}</p>}
+      <h2 class="post-title">{post.title[lang]}</h2>
+      {post.description && <p class="post-description">{post.description[lang]}</p>}
+    </r-cell>
+    <r-cell span="6+1" span-s="row" class="post-period-cell">
       <time class="post-period">{period}</time>
     </r-cell>
 
-    <r-cell span="2+4" span-s="row">
-      {post.subtitle && <p class="post-subtitle">{post.subtitle[lang]}</p>}
-      <h2 class="post-title">{post.title[lang]}</h2>
-    </r-cell>
-
     <r-cell class="post-body-cell" span="2+4" span-s="row">
-      {post.description && <p class="post-description">{post.description[lang]}</p>}
       {imageSrc && (
         <div class="post-image">
           <img src={imageSrc} alt={imageAlt} loading="lazy" />
@@ -82,18 +81,6 @@ const imageAlt = post.image?.alt?.[lang] ?? post.title[lang];
     color: var(--foreground-color-dimmed);
     text-decoration: none;
   }
-  .post-meta-cell {
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-  }
-  .post-period {
-    font-size: var(--font-size-1);
-    line-height: var(--line-height-1);
-    letter-spacing: var(--letter-spacing-1);
-    color: var(--foreground-color-dimmed);
-    white-space: nowrap;
-  }
   .post-subtitle {
     font-size: var(--font-size-1);
     line-height: var(--line-height-1);
@@ -107,7 +94,8 @@ const imageAlt = post.image?.alt?.[lang] ?? post.title[lang];
     line-height: var(--line-height-7);
     letter-spacing: var(--letter-spacing-7);
     font-weight: 600;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
@@ -116,8 +104,20 @@ const imageAlt = post.image?.alt?.[lang] ?? post.title[lang];
     line-height: var(--line-height-2);
     letter-spacing: var(--letter-spacing-2);
     color: var(--foreground-color-dimmed);
-    margin-top: 0;
-    margin-bottom: calc(var(--unit) * 4);
+    margin-top: calc(var(--unit) * 1);
+    margin-bottom: 0;
+  }
+  .post-period-cell {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  .post-period {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    white-space: nowrap;
   }
   .post-image {
     margin-bottom: calc(var(--unit) * 4);

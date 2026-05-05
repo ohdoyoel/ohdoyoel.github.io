@@ -28,7 +28,7 @@ const entries: Project[] = projects.map((p) => ({
       <Menu lang={lang} current="project" />
     </r-cell>
     {entries.map((e) => (
-      <r-cell span="2" span-s="2" span-xs="row">
+      <r-cell span="2" span-s="row">
         <ProjectCard entry={e} lang={lang} />
       </r-cell>
     ))}

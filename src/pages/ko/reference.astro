@@ -22,7 +22,7 @@ const t = useTranslations(lang);
       <Menu lang={lang} current="reference" />
     </r-cell>
     {references.map((e) => (
-      <r-cell span="2" span-s="2" span-xs="row">
+      <r-cell span="2" span-s="row">
         <ReferenceCard entry={e} lang={lang} />
       </r-cell>
     ))}

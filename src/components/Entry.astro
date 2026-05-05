@@ -50,19 +50,27 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
 
 <style>
   .entry {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .entry-content {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .entry-content :global(h3),
+  .entry-content :global(p) {
+    max-width: 100%;
+  }
+  .entry:has(.entry-image) {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     column-gap: var(--column-gap);
     align-items: stretch;
   }
-  .entry-content {
-    grid-column: 1 / -1;
-    min-width: 0;
-  }
   .entry:has(.entry-image) .entry-content {
     grid-column: 1 / 6;
   }
-  .entry-image {
+  .entry:has(.entry-image) .entry-image {
     grid-column: 6;
     position: relative;
     overflow: hidden;
@@ -83,15 +91,14 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
     display: block;
   }
   @media (max-width: 600px) {
-    .entry {
+    .entry:has(.entry-image) {
       grid-template-columns: 1fr;
     }
-    .entry-content {
+    .entry:has(.entry-image) .entry-content {
       grid-column: 1;
     }
-    .entry-image {
+    .entry:has(.entry-image) .entry-image {
       grid-column: 1;
-      position: relative;
       aspect-ratio: 16 / 9;
     }
   }
