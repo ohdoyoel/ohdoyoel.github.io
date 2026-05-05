@@ -1,0 +1,274 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777821046949,
+  "projectRoot": "/Users/ohdoyoel/work/side/cv",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "astro",
+        "version": "5.0.0",
+        "category": "fullstack"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build 2>&1 | tail -5",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "astro dev",
+      "build": "astro build",
+      "preview": "astro preview",
+      "astro": "astro"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 2,
+      "lastAccessed": 1777821046929,
+      "keyFiles": [
+        "favicon.svg",
+        "index.html"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 1,
+      "lastAccessed": 1777821046929,
+      "keyFiles": [
+        "favicon.svg"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1777821046932,
+      "keyFiles": []
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 5,
+      "lastAccessed": 1777821046932,
+      "keyFiles": [
+        "Entry.astro",
+        "Footer.astro",
+        "Intro.astro"
+      ]
+    },
+    "src/data": {
+      "path": "src/data",
+      "purpose": "Data files",
+      "fileCount": 1,
+      "lastAccessed": 1777821046933,
+      "keyFiles": [
+        "cv.ts"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 7,
+      "lastAccessed": 1777821046933,
+      "keyFiles": [
+        "about.astro",
+        "blog.astro",
+        "index.astro"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/data/cv.ts",
+      "accessCount": 62,
+      "lastAccessed": 1777906152754,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/global.css",
+      "accessCount": 55,
+      "lastAccessed": 1777903654947,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/about.astro",
+      "accessCount": 43,
+      "lastAccessed": 1777902809760,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/about.astro",
+      "accessCount": 40,
+      "lastAccessed": 1777902812347,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Entry.astro",
+      "accessCount": 23,
+      "lastAccessed": 1777906040065,
+      "type": "file"
+    },
+    {
+      "path": "src/i18n/ui.ts",
+      "accessCount": 18,
+      "lastAccessed": 1777902269132,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/index.astro",
+      "accessCount": 16,
+      "lastAccessed": 1777903470099,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/index.astro",
+      "accessCount": 15,
+      "lastAccessed": 1777903471210,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Footer.astro",
+      "accessCount": 11,
+      "lastAccessed": 1777898098226,
+      "type": "file"
+    },
+    {
+      "path": "src/layouts/BaseLayout.astro",
+      "accessCount": 8,
+      "lastAccessed": 1777901364341,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Menu.astro",
+      "accessCount": 7,
+      "lastAccessed": 1777885906364,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/publication.astro",
+      "accessCount": 5,
+      "lastAccessed": 1777904736820,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/publication.astro",
+      "accessCount": 5,
+      "lastAccessed": 1777904737895,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Section.astro",
+      "accessCount": 3,
+      "lastAccessed": 1777898429777,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Intro.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777823230563,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/project.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891940525,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/blog.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891944820,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/reference.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891948076,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/project.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891954637,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/blog.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891959447,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/reference.astro",
+      "accessCount": 2,
+      "lastAccessed": 1777891960278,
+      "type": "file"
+    },
+    {
+      "path": "astro.config.mjs",
+      "accessCount": 2,
+      "lastAccessed": 1777961961616,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/work.astro",
+      "accessCount": 1,
+      "lastAccessed": 1777821495656,
+      "type": "file"
+    },
+    {
+      "path": "src/i18n/utils.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777823145144,
+      "type": "file"
+    },
+    {
+      "path": "public/papers/youngcha.pdf",
+      "accessCount": 1,
+      "lastAccessed": 1777906949864,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

@@ -1,0 +1,25 @@
+---
+import { localizedHome, pageLink, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  current?: 'home' | 'about' | 'project' | 'publication' | 'blog' | 'reference' | null;
+}
+const { lang, current = null } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+  { key: 'about', href: pageLink(lang, 'about'), label: t('nav.about') },
+  { key: 'publication', href: pageLink(lang, 'publication'), label: t('nav.publication') },
+  { key: 'project', href: pageLink(lang, 'project'), label: t('nav.project') },
+  { key: 'blog', href: pageLink(lang, 'blog'), label: t('nav.blog') },
+  { key: 'reference', href: pageLink(lang, 'reference'), label: t('nav.reference') },
+] as const;
+---
+<nav class="menu-list">
+  <a href={localizedHome(lang)} class:list={['dot', { active: current === 'home' }]} aria-label="Home">●</a>
+  {items.map((item) => (
+    <a href={item.href} class:list={[{ active: current === item.key }]}>{item.label}</a>
+  ))}
+</nav>

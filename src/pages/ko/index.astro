@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Menu from '../../components/Menu.astro';
+import Section from '../../components/Section.astro';
+import Entry from '../../components/Entry.astro';
+import { useTranslations, pageLink, assetLink } from '../../i18n/utils';
+import { tagline, projects, papers, profile } from '../../data/cv';
+
+const lang = 'ko' as const;
+const t = useTranslations(lang);
+const featuredProjects = projects.slice(0, 3);
+const featuredPapers = papers.slice(0, 2);
+---
+<BaseLayout
+  lang={lang}
+  title={`${profile.name[lang]} — 이력서`}
+  description="이력서 및 개인 홈페이지."
+>
+  <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
+    <r-cell order="-10" span="4" span-s="2">
+      <h1>{t('hero.about')} {profile.name[lang]}입니다</h1>
+      <p class="cv-link"><a href={assetLink('cv.pdf')} download>{t('nav.cv')} (PDF)</a></p>
+    </r-cell>
+
+    <r-cell order="-9" class="menu" span="2" span-s="2">
+      <Menu lang={lang} current="home" />
+    </r-cell>
+
+    <r-cell span="2">
+      <Section title={t('section.paper')}>
+        {featuredPapers.map((e) => <Entry entry={e} lang={lang} compact />)}
+      </Section>
+      <p class="see-all"><a href={pageLink(lang, 'publication')} class="dimmed">전체 논문 보기 →</a></p>
+    </r-cell>
+
+    <r-cell span="2">
+      <Section title={t('section.project')}>
+        {featuredProjects.map((e) => <Entry entry={e} lang={lang} compact />)}
+      </Section>
+      <p class="see-all"><a href={pageLink(lang, 'project')} class="dimmed">전체 프로젝트 보기 →</a></p>
+    </r-cell>
+
+    <r-cell class="intro" span="2" span-s="3" span-xs="row">
+      {tagline[lang].map((line) => <p>{line}</p>)}
+    </r-cell>
+  </r-grid>
+</BaseLayout>
+
+<style>
+  .cv-link {
+    margin-top: calc(var(--unit) * 1);
+    font-size: var(--font-size-2);
+    color: var(--menu-inactive-color);
+  }
+  .cv-link a {
+    color: inherit;
+  }
+  .cv-link a:hover {
+    color: var(--menu-active-color);
+  }
+  .see-all {
+    margin-top: calc(var(--unit) * 2);
+    font-size: var(--font-size-2);
+  }
+</style>

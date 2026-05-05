@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Menu from '../components/Menu.astro';
+import Section from '../components/Section.astro';
+import Entry from '../components/Entry.astro';
+import { useTranslations } from '../i18n/utils';
+import { papers, patents, profile } from '../data/cv';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout
+  lang={lang}
+  pageClass="page-publication"
+  title={`${t('page.publication')} — ${profile.name[lang]}`}
+>
+  <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
+    <r-cell order="-10" span="4" span-s="2">
+      <h1>{t('page.publication.heading')}</h1>
+    </r-cell>
+    <r-cell order="-9" class="menu" span="2" span-s="2">
+      <Menu lang={lang} current="publication" />
+    </r-cell>
+    <r-cell span="6" span-s="4" span-xs="row">
+      <Section title={t('section.paper')}>
+        {papers.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+      <Section title={t('section.patent')}>
+        {patents.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+    </r-cell>
+  </r-grid>
+</BaseLayout>

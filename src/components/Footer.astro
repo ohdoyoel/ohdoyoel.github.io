@@ -1,0 +1,124 @@
+---
+import { useTranslations, pageLink } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const other: Lang = lang === 'en' ? 'ko' : 'en';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const path = Astro.url.pathname;
+const stripped = path.startsWith(base) ? path.slice(base.length) : path.replace(/^\//, '');
+const parts = stripped.split('/').filter(Boolean);
+const slug = (parts[0] === 'ko' ? parts.slice(1) : parts).join('/');
+const otherHref = pageLink(other, slug);
+---
+<footer class="site-footer">
+  <button
+    class="yolo-toggle"
+    type="button"
+    data-yolo-toggle
+    aria-pressed="false"
+    aria-label="Toggle YOLO mode"
+  >
+    <span>YOLO</span>
+    <span class="dot" aria-hidden="true"></span>
+  </button>
+  <a href={otherHref} class="lang-toggle">{t('nav.lang')}</a>
+</footer>
+
+<script>
+  // Lang-toggle scroll preservation
+  const SCROLL_KEY = '__langSwitchScroll';
+  document.addEventListener(
+    'click',
+    (e) => {
+      const target = e.target as Element | null;
+      if (target && target.closest('.lang-toggle')) {
+        sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+      }
+    },
+    true,
+  );
+  document.addEventListener('astro:after-swap', () => {
+    const saved = sessionStorage.getItem(SCROLL_KEY);
+    if (saved !== null) {
+      sessionStorage.removeItem(SCROLL_KEY);
+      window.scrollTo(0, parseInt(saved, 10) || 0);
+    }
+  });
+
+  // YOLO mode (smooth view transitions + future flair)
+  const YOLO_KEY = 'yolo';
+  function syncYolo() {
+    const on = localStorage.getItem(YOLO_KEY) === 'on';
+    document.documentElement.classList.toggle('yolo', on);
+    document.querySelectorAll('[data-yolo-toggle]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(on));
+    });
+  }
+  syncYolo();
+  document.addEventListener('astro:after-swap', syncYolo);
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    if (target && target.closest('[data-yolo-toggle]')) {
+      const current = localStorage.getItem(YOLO_KEY) === 'on';
+      localStorage.setItem(YOLO_KEY, current ? 'off' : 'on');
+      syncYolo();
+    }
+  });
+</script>
+
+<style>
+  .site-footer {
+    margin-top: calc(var(--unit) * 12);
+    padding-top: calc(var(--unit) * 4);
+    border-top: 1px solid var(--menu-inactive-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: calc(var(--unit) * 4);
+    color: var(--menu-inactive-color);
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+  }
+  .yolo-toggle {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: var(--menu-inactive-color);
+    font: inherit;
+    font-size: inherit;
+    letter-spacing: 0.14em;
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--unit) * 0.75);
+  }
+  .yolo-toggle:hover {
+    color: var(--menu-active-color);
+  }
+  .yolo-toggle .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: transparent;
+    transition: background 120ms;
+  }
+  .yolo-toggle[aria-pressed='true'] .dot {
+    background: currentColor;
+  }
+  .lang-toggle {
+    color: var(--menu-inactive-color);
+    text-decoration: none;
+    letter-spacing: 0.14em;
+    font-weight: var(--font-weight-medium);
+  }
+  .lang-toggle:hover {
+    color: var(--menu-active-color);
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import type { Entry } from '../data/cv';
+import type { Lang } from '../i18n/ui';
+import { assetLink, useTranslations } from '../i18n/utils';
+
+interface Props { entry: Entry; lang: Lang; compact?: boolean }
+const { entry, lang, compact = false } = Astro.props;
+const t = useTranslations(lang);
+
+const isAbsolute = (s: string) => /^([a-z]+:)?\/\//i.test(s) || s.startsWith('/') || s.startsWith('data:');
+const resolveHref = (s: string) => (s.startsWith('#') || isAbsolute(s) ? s : assetLink(s));
+const imageSrc = entry.image && resolveHref(entry.image.src);
+const imageAlt = entry.image?.alt?.[lang] ?? entry.title[lang];
+const linkHref = entry.link && resolveHref(entry.link.href);
+const period = entry.period.replace(/Present/g, t('meta.present'));
+---
+<div class="entry">
+  <div class="entry-content">
+    <p class="subtitle">
+      {entry.subtitle ? <>{entry.subtitle[lang]} · <time>{period}</time></> : <time>{period}</time>}
+    </p>
+    <h3>
+      {entry.link
+        ? <a href={linkHref} target="_blank" rel="noopener noreferrer">{entry.title[lang]}</a>
+        : entry.title[lang]}
+    </h3>
+    {entry.authors && (
+      <p class="authors">
+        {entry.authors.map((a, i) => (
+          <>
+            {i > 0 ? ', ' : ''}
+            {a.href
+              ? <a href={resolveHref(a.href)} target="_blank" rel="noopener noreferrer">{a.self ? <strong>{a.name[lang]}</strong> : a.name[lang]}</a>
+              : (a.self ? <strong>{a.name[lang]}</strong> : a.name[lang])}
+          </>
+        ))}
+      </p>
+    )}
+    {!compact && entry.description && <p class="description">{entry.description[lang]}</p>}
+  </div>
+  {entry.image && (
+    <div class="entry-image">
+      {entry.link
+        ? <a href={linkHref} target="_blank" rel="noopener noreferrer"><img src={imageSrc} alt={imageAlt} loading="lazy" /></a>
+        : <img src={imageSrc} alt={imageAlt} loading="lazy" />}
+    </div>
+  )}
+</div>
+
+<style>
+  .entry {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: var(--column-gap);
+    align-items: stretch;
+  }
+  .entry-content {
+    grid-column: 1 / 6;
+    min-width: 0;
+  }
+  .entry-image {
+    grid-column: 6;
+    overflow: hidden;
+    background: rgba(var(--foreground-color-rgb), 0.04);
+    line-height: 0;
+  }
+  .entry-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .entry-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 600px) {
+    .entry {
+      grid-template-columns: 1fr;
+    }
+    .entry-content {
+      grid-column: 1;
+    }
+    .entry-image {
+      grid-column: 1;
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

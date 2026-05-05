@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Menu from '../components/Menu.astro';
+import Section from '../components/Section.astro';
+import Entry from '../components/Entry.astro';
+import { useTranslations, assetLink, pageLink } from '../i18n/utils';
+import {
+  intro, profile,
+  education, work, awards, certificates,
+  programming, research, skills, thisWebsite,
+} from '../data/cv';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout
+  lang={lang}
+  pageClass="page-about"
+  title={`${t('page.about')} — ${profile.name[lang]}`}
+>
+  <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
+    <r-cell order="-10" span="4" span-s="2">
+      <h1>{t('page.about.heading')}</h1>
+    </r-cell>
+    <r-cell order="-9" class="menu" span="2" span-s="2">
+      <Menu lang={lang} current="about" />
+    </r-cell>
+
+    <r-cell class="intro" span="4" span-s="3" span-xs="row">
+      {intro.map((line) => (
+        line.link
+          ? <p>{line.text[lang]} <a href={pageLink(lang, line.link.to)}>{line.link.label[lang]}</a></p>
+          : <p>{line.text[lang]}</p>
+      ))}
+    </r-cell>
+    <r-cell class="portrait" span="2" span-s="1" span-xs="row">
+      <img src={assetLink('me.jpg')} alt={profile.name[lang]} />
+      <ul class="portrait-links">
+        {profile.links.map((l) => (
+          <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+        ))}
+      </ul>
+    </r-cell>
+
+    <r-cell class="divider" span="row"></r-cell>
+
+    <r-cell span="2" span-s="2" span-xs="row">
+      <Section title={t('section.education')}>
+        {education.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+    </r-cell>
+    <r-cell class="research" span="4" span-s="row" span-xs="row">
+      <Section title={t('section.research')}>
+        {research[lang].map((p) => <p>{p}</p>)}
+      </Section>
+    </r-cell>
+
+    <r-cell span="2" span-s="2" span-xs="row">
+      <Section title={t('section.work')}>
+        {work.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+    </r-cell>
+    <r-cell span="2" span-s="2" span-xs="row">
+      <Section title={t('section.award')}>
+        {awards.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+    </r-cell>
+    <r-cell span="2" span-s="2" span-xs="row">
+      <Section title={t('section.certificate')}>
+        {certificates.map((e) => <Entry entry={e} lang={lang} />)}
+      </Section>
+    </r-cell>
+
+    <r-cell class="divider" span="row"></r-cell>
+
+    <r-cell class="programming" span="4" span-s="row" span-xs="row">
+      <Section title={t('section.programming')}>
+        {programming[lang].map((p) => <p>{p}</p>)}
+      </Section>
+    </r-cell>
+    <r-cell class="tech-stack-cell" span="2" span-s="row" span-xs="row">
+      <Section title={t('section.skills')}>
+        <dl class="tech-stack">
+          {skills.map((s) => (
+            <>
+              <dt>{s.label}</dt>
+              <dd>{s.items.join(' · ')}</dd>
+            </>
+          ))}
+        </dl>
+      </Section>
+    </r-cell>
+    <r-cell class="this-website" span="2" span-s="row" span-xs="row">
+      <Section title={t('section.website')}>
+        <p>{thisWebsite.text[lang]}</p>
+        <p><a href={thisWebsite.thanks.href} target="_blank" rel="noopener noreferrer">{thisWebsite.thanks.label[lang]}</a></p>
+      </Section>
+    </r-cell>
+  </r-grid>
+</BaseLayout>
+
+<style>
+  .portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: rgba(var(--foreground-color-rgb), 0.04);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .portrait-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: var(--line-height);
+    font-family: var(--titleFont);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-6);
+    line-height: var(--line-height-6);
+    letter-spacing: var(--letter-spacing-6);
+  }
+  .portrait-links a {
+    color: var(--foreground-color-dimmed);
+  }
+  .portrait-links a:hover {
+    color: var(--foreground-color);
+    text-decoration: none;
+  }
+  .programming p + p,
+  .research p + p {
+    margin-top: var(--line-height);
+  }
+  @media (min-width: 601px) {
+    .programming { grid-row: span 2; }
+  }
+  .tech-stack {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-auto-rows: min-content;
+    column-gap: calc(var(--unit) * 4);
+    row-gap: calc(var(--unit) * 2);
+    margin: 0;
+  }
+  .tech-stack dt {
+    margin: 0;
+    color: var(--foreground-color-dimmed);
+  }
+  .tech-stack dd {
+    margin: 0;
+  }
+  .divider {
+    border-top: var(--hr-weight) solid var(--foreground-color);
+    height: 0;
+    margin: 0;
+  }
+</style>

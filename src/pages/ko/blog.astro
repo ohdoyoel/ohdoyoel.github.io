@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Menu from '../../components/Menu.astro';
+import Entry from '../../components/Entry.astro';
+import { useTranslations } from '../../i18n/utils';
+import { blogPosts, profile } from '../../data/cv';
+
+const lang = 'ko' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout
+  lang={lang}
+  pageClass="page-blog"
+  title={`${t('page.blog')} — ${profile.name[lang]}`}
+>
+  <r-grid class="main" columns="6" columns-s="4" columns-xs="2">
+    <r-cell order="-10" span="4" span-s="2">
+      <h1>{t('page.blog.heading')}</h1>
+    </r-cell>
+    <r-cell order="-9" class="menu" span="2" span-s="2">
+      <Menu lang={lang} current="blog" />
+    </r-cell>
+    <r-cell span="4" span-s="4" span-xs="row">
+      {blogPosts.map((e) => <Entry entry={e} lang={lang} />)}
+    </r-cell>
+  </r-grid>
+</BaseLayout>

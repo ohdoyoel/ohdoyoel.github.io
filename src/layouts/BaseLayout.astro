@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n/ui';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  pageClass?: string;
+}
+
+const { lang, title, description, pageClass = 'home' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+<!doctype html>
+<html lang={lang} class:list={['dark', pageClass]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href={`${base}styles/raster.css`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <ClientRouter />
+    <script is:inline>
+      if (localStorage.getItem('yolo') === 'on') {
+        document.documentElement.classList.add('yolo');
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+    <Footer lang={lang} />
+  </body>
+</html>

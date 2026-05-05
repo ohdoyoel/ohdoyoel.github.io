@@ -1,0 +1,19 @@
+---
+import { intro, profile } from '../data/cv';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<p>{intro[lang]}</p>
+<p class="role"><span class="dimmed">{profile.role[lang]}</span></p>
+
+<style>
+  .role {
+    font-family: var(--sansFont), system-ui, sans-serif;
+    font-size: var(--fontSize);
+    line-height: var(--line-height);
+    font-weight: 400;
+    margin-top: calc(var(--unit) * 2);
+  }
+</style>
