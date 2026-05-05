@@ -129,8 +129,8 @@
     },
     {
       "path": "src/styles/global.css",
-      "accessCount": 62,
-      "lastAccessed": 1777972181915,
+      "accessCount": 64,
+      "lastAccessed": 1777974124188,
       "type": "file"
     },
     {
@@ -152,39 +152,39 @@
       "type": "file"
     },
     {
+      "path": "src/pages/index.astro",
+      "accessCount": 21,
+      "lastAccessed": 1777975243869,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/index.astro",
+      "accessCount": 20,
+      "lastAccessed": 1777975249142,
+      "type": "file"
+    },
+    {
       "path": "src/i18n/ui.ts",
       "accessCount": 19,
       "lastAccessed": 1777968688223,
       "type": "file"
     },
     {
-      "path": "src/pages/index.astro",
-      "accessCount": 18,
-      "lastAccessed": 1777964120387,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/ko/index.astro",
-      "accessCount": 17,
-      "lastAccessed": 1777964900410,
-      "type": "file"
-    },
-    {
       "path": "src/pages/blog/[id].astro",
-      "accessCount": 12,
-      "lastAccessed": 1777969988033,
+      "accessCount": 15,
+      "lastAccessed": 1777975242254,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/blog/[id].astro",
+      "accessCount": 14,
+      "lastAccessed": 1777975254694,
       "type": "file"
     },
     {
       "path": "src/components/Footer.astro",
       "accessCount": 11,
       "lastAccessed": 1777898098226,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/ko/blog/[id].astro",
-      "accessCount": 11,
-      "lastAccessed": 1777969989191,
       "type": "file"
     },
     {
@@ -266,6 +266,18 @@
       "type": "file"
     },
     {
+      "path": "src/pages/project/[id].astro",
+      "accessCount": 6,
+      "lastAccessed": 1777975278857,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/ko/project/[id].astro",
+      "accessCount": 6,
+      "lastAccessed": 1777975294965,
+      "type": "file"
+    },
+    {
       "path": "src/data/reference.ts",
       "accessCount": 5,
       "lastAccessed": 1777966167131,
@@ -299,18 +311,6 @@
       "path": "astro.config.mjs",
       "accessCount": 3,
       "lastAccessed": 1777968683624,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/project/[id].astro",
-      "accessCount": 3,
-      "lastAccessed": 1777969973296,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/ko/project/[id].astro",
-      "accessCount": 3,
-      "lastAccessed": 1777969978875,
       "type": "file"
     },
     {

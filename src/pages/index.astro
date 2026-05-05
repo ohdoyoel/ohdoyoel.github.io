@@ -4,14 +4,22 @@ import Menu from '../components/Menu.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
 import { useTranslations, pageLink, assetLink } from '../i18n/utils';
-import { tagline, profile } from '../data/profile';
+import { profile } from '../data/profile';
 import { projects } from '../data/project';
 import { papers } from '../data/publication';
+import { blogPosts } from '../data/blog';
+import type { Entry as EntryType } from '../data/types';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
 const featuredProjects = projects.slice(0, 3);
 const featuredPapers = papers.slice(0, 2);
+const featuredBlogs: EntryType[] = blogPosts.slice(0, 3).map((p) => ({
+  period: p.period,
+  title: p.title,
+  description: p.description,
+  link: { href: pageLink(lang, `blog/${p.id}`), internal: true },
+}));
 ---
 <BaseLayout
   lang={lang}
@@ -42,8 +50,11 @@ const featuredPapers = papers.slice(0, 2);
       <p class="see-all"><a href={pageLink(lang, 'project')} class="dimmed">See all projects →</a></p>
     </r-cell>
 
-    <r-cell class="intro" span="2" span-s="3" span-xs="row">
-      {tagline[lang].map((line) => <p>{line}</p>)}
+    <r-cell span="2" span-s="3" span-xs="row">
+      <Section title={t('section.blog')}>
+        {featuredBlogs.map((e) => <Entry entry={e} lang={lang} compact />)}
+      </Section>
+      <p class="see-all"><a href={pageLink(lang, 'blog')} class="dimmed">See all posts →</a></p>
     </r-cell>
   </r-grid>
 </BaseLayout>
