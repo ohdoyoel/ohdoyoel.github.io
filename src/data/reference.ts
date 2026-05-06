@@ -86,7 +86,7 @@ const jaeeulLee: Entry = {
     en: 'AI Researcher',
     ko: 'AI 연구자',
   },
-  title: { en: 'Jaeeul Lee', ko: '이재율' },
+  title: { en: 'Jaeeul Lee', ko: '이재을' },
   subtitle: {
     en: 'CJ OliveNetworks',
     ko: 'CJ 올리브네트웍스',
@@ -97,7 +97,28 @@ const jaeeulLee: Entry = {
   },
   image: {
     src: 'people/jaeeullee.jpg',
-    alt: { en: 'Jaeeul Lee', ko: '이재율' },
+    alt: { en: 'Jaeeul Lee', ko: '이재을' },
+  },
+};
+
+const jaeminAhn: Entry = {
+  period: '',
+  position: {
+    en: 'Frontend Web Developer',
+    ko: '프론트엔드 웹 개발자',
+  },
+  title: { en: 'Jaemin Ahn', ko: '안재민' },
+  subtitle: {
+    en: 'Freelancer',
+    ko: '프리랜서',
+  },
+  description: {
+    en: 'I had the pleasure of working on a project with Doyeol, and I was deeply impressed by his sense of responsibility and ability to structure code. He has an outstanding ability to implement optimized solutions with efficiency in mind, especially in backend development. Additionally, his ability to view projects with a broad perspective during the feature design process stood out, and I have been amazed by this several times. Even during his military service, he consistently dedicated himself to development projects during his free time, demonstrating his diligence and self-directed attitude.',
+    ko: '도열 씨와 함께 프로젝트를 진행하며 그의 책임감과 코드 구조화 역량에 깊은 인상을 받았습니다. 특히 백엔드 개발에 있어 효율성을 고려한 최적화된 구현 능력이 뛰어납니다. 또한 기능 설계 과정에서 넓은 시야로 프로젝트를 바라보는 역량이 돋보였으며, 이러한 점에서 여러 차례 감탄한 바 있습니다. 군 복무 중에도 휴식 시간을 활용해 개발 프로젝트에 꾸준히 몰두한 점에서, 그의 성실성과 자기주도적인 태도를 확인할 수 있었습니다.',
+  },
+  image: {
+    src: 'people/jaeminahn.jpeg',
+    alt: { en: 'Jaemin Ahn', ko: '안재민' },
   },
 };
 
@@ -107,4 +128,5 @@ export const references: Entry[] = [
   dayHong,
   dahyunChoi,
   jaeeulLee,
+  jaeminAhn,
 ];
