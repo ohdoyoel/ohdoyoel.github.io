@@ -32,7 +32,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build 2>&1 | tail -3 && echo \"---verify CSS---\" && CSS=$(ls /Users/ohdoyoel/work/side/cv/dist/_astro/*.css | head -1) && grep -oE \"r-grid > r-cell[^}]+grid-column[^}]+}\" \"$CSS\"",
+    "buildCommand": "npm run build 2>&1 | tail -3",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -188,6 +188,12 @@
       "type": "file"
     },
     {
+      "path": "src/data/reference.ts",
+      "accessCount": 13,
+      "lastAccessed": 1778081556739,
+      "type": "file"
+    },
+    {
       "path": "src/components/ReferenceCard.astro",
       "accessCount": 12,
       "lastAccessed": 1778037725528,
@@ -299,12 +305,6 @@
       "path": "src/components/Section.astro",
       "accessCount": 6,
       "lastAccessed": 1777984378998,
-      "type": "file"
-    },
-    {
-      "path": "src/data/reference.ts",
-      "accessCount": 5,
-      "lastAccessed": 1777966167131,
       "type": "file"
     },
     {

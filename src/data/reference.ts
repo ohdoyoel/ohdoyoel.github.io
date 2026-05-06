@@ -33,7 +33,7 @@ const seungbinJeong: Entry = {
     ko: 'Royal College of Art',
   },
   description: {
-    en: 'Over several years of working together in both project and research lab settings, I have had the opportunity to closely observe Doyeol\'s way of thinking and approach to work. He approaches problems with a balanced blend of logic and intuition, not just developing solutions but deeply understanding the essence of the problem and designing thoughtful solutions. Above all, his curiosity across various domains and ability to connect them has elevated the quality of collaboration and made working together enjoyable.',
+    en: 'Over several years of working alongside him on projects and in the research lab, I have had the chance to watch closely how Doyeol thinks and works. He approaches problems with a balanced blend of logic and intuition — not just shipping a solution, but pinning down what the problem actually is and designing for that. What I value most is his curiosity across very different domains and his ability to connect them; it lifts the quality of the collaboration and makes working with him a real pleasure.',
     ko: '수 년간 프로젝트와 연구실 생활을 함께하며 도열 씨의 사고 방식과 일에 대한 태도를 가까이에서 지켜볼 수 있었습니다. 도열 씨는 논리와 감각이 균형을 이루는 방식으로 문제에 접근하며, 단순히 개발하는 데 그치지 않고 문제의 본질을 파악하고 해결책을 설계합니다. 무엇보다, 다양한 분야를 넘나드는 도열 씨의 호기심과 이를 연결하는 능력은 협업의 질을 높이고 함께 일하는 즐거움을 만들어 주었습니다.',
   },
   image: {
@@ -54,7 +54,7 @@ const dayHong: Entry = {
     ko: 'UNIST 컴퓨터공학과 졸업생',
   },
   description: {
-    en: 'Same university, same department, studying together and walking the same path as developers through project assignments and club activities. Doyeol is a friend with a deep passion for development, a proactive attitude towards new challenges, and the confidence to pursue goals. He is a developer who can lead collaborative synergy and enhance development productivity through his active thinking that independently considers ideas and his proactive attitude that can make suggestions first for improving common goals.',
+    en: 'We have been at the same school in the same department, walking the same path as developers through coursework, projects, and club activities. Doyeol is the kind of friend with a deep passion for the craft, an open posture toward new challenges, and the confidence to actually pursue what he sets out to do. He thinks ideas through on his own and is the first to bring suggestions to the table when there is a shared goal to improve — exactly what makes him a developer who lifts both the team\'s synergy and its productivity.',
     ko: '같은 학교, 같은 학과에서 함께 공부하며 프로젝트 과제 뿐만 아니라 개발 동아리 활동 등 같은 개발자의 길을 걸어온 친구입니다. 도열이는 개발에 대한 깊은 열정, 새로운 분야에 도전하는 적극적인 자세, 그리고 목표를 향해 나아갈 수 있는 자신감을 갖춘 친구였습니다. 특히 스스로 아이디어를 고민하는 능동적인 사고와 공동 목표 개선을 위해 먼저 제안할 수 있는 적극적인 태도를 통해 협업 시너지를 이끌어내며 개발 생산성을 높일 줄 아는 개발자입니다.',
   },
   image: {
@@ -71,7 +71,7 @@ const dahyunChoi: Entry = {
   },
   title: { en: 'Dahyeon Choi', ko: '최다현' },
   description: {
-    en: 'He is the most free-spirited and adventurous person among the principle-oriented people I have met. He challenges whatever he wants to do and succeeds, but never loses his inner values. I remember how he respected me as a director and gave advice as a junior, even though I was much younger.',
+    en: 'He is the most free-spirited and adventurous person I have met among those who hold to their principles. He takes on whatever he wants to and pulls it off, without ever losing the values that anchor him. Even though I was much younger, he respected me as the play\'s director and offered advice with the humility of a junior club member — that has stayed with me.',
     ko: '제가 본 원칙주의자들 중 가장 자유롭고 도전적인 사람입니다. 하고싶은 건 뭐든 도전하고, 또 성공해내지만 내면의 가치관을 잃지 않습니다. 한참 어린 저도 연출로서 존중해주고 후배로서 조언해주는 모습이 기억에 남습니다.',
   },
   image: {
@@ -92,7 +92,7 @@ const jaeeulLee: Entry = {
     ko: 'CJ 올리브네트웍스',
   },
   description: {
-    en: 'The true charm of my friend Doyeol lies in his broad experience and sense of balance that does not get bogged down in his major field. Even amidst a busy academic schedule, he continues to engage in extracurricular activities such as band club activities and performing on stage in theater productions, showing himself to be a versatile talent who works hard and fully enjoys the process outside of his major. This successful balancing of various activities clearly demonstrates his excellent time management skills and diligence. I strongly recommend my friend Doyeol, who communicates excellently with team members in development projects just as he interacts with colleagues and audiences on stage, as a bright talent who will shine in any organization.',
+    en: 'What I find genuinely compelling about Doyeol is the breadth of his experience and the sense of balance that keeps him from being defined by his major alone. Even with a packed academic schedule, he sustains a parallel life in band and theater — working hard at it and clearly enjoying the process. Pulling that off as well as he does is a plain demonstration of his time management and diligence. The same way he reads his fellow performers and the audience on stage, he reads the people on his development teams, which is why I strongly recommend him as someone who will be a bright presence in any organization.',
     ko: '오도열 친구의 진정한 매력은 전공 분야에만 매몰되지 않는 폭넓은 경험과 균형 감각에 있습니다. 바쁜 학사 일정 속에서도 밴드 동아리 활동을 이어나가고 연극 공연 무대에 오르는 등, 전공 외적인 활동에서도 누구보다 땀 흘려 노력하며 그 과정을 온전히 즐길 줄 아는 다재다능한 인재입니다. 이처럼 다양한 활동을 성공적으로 병행하는 모습은 그의 탁월한 시간 관리 능력과 성실함을 여실히 증명합니다. 무대 위에서 동료, 관객과 교감하듯 개발 프로젝트에서도 팀원들과 훌륭하게 소통하는 오도열 친구를, 어느 조직에서든 밝게 빛날 인재로 강력히 추천합니다.',
   },
   image: {
@@ -113,12 +113,33 @@ const jaeminAhn: Entry = {
     ko: '프리랜서',
   },
   description: {
-    en: 'I had the pleasure of working on a project with Doyeol, and I was deeply impressed by his sense of responsibility and ability to structure code. He has an outstanding ability to implement optimized solutions with efficiency in mind, especially in backend development. Additionally, his ability to view projects with a broad perspective during the feature design process stood out, and I have been amazed by this several times. Even during his military service, he consistently dedicated himself to development projects during his free time, demonstrating his diligence and self-directed attitude.',
+    en: 'I had the pleasure of working on a project with Doyeol and came away deeply impressed by his sense of ownership and the way he structures code. He has a particular knack for landing efficient, well-optimized implementations on the backend. Just as striking is the wide-angle view he keeps during feature design — I have been quietly impressed by this more than once. Even during his military service, he kept building on his own time, which says everything about his diligence and self-direction.',
     ko: '도열 씨와 함께 프로젝트를 진행하며 그의 책임감과 코드 구조화 역량에 깊은 인상을 받았습니다. 특히 백엔드 개발에 있어 효율성을 고려한 최적화된 구현 능력이 뛰어납니다. 또한 기능 설계 과정에서 넓은 시야로 프로젝트를 바라보는 역량이 돋보였으며, 이러한 점에서 여러 차례 감탄한 바 있습니다. 군 복무 중에도 휴식 시간을 활용해 개발 프로젝트에 꾸준히 몰두한 점에서, 그의 성실성과 자기주도적인 태도를 확인할 수 있었습니다.',
   },
   image: {
     src: 'people/jaeminahn.jpeg',
     alt: { en: 'Jaemin Ahn', ko: '안재민' },
+  },
+};
+
+const seonghyeonBae: Entry = {
+  period: '',
+  position: {
+    en: 'Military Officer (Captain)',
+    ko: '군종장교 (대위)',
+  },
+  title: { en: 'Seonghyeon Bae', ko: '배성현' },
+  subtitle: {
+    en: 'Republic of Korea Air Force',
+    ko: '대한민국 공군',
+  },
+  description: {
+    en: 'Among all the young men I met during my service as an Air Force chaplain, Doyeol Oh stands out as the most exceptional. He earned the deep trust of both officers and enlisted soldiers and was selected as a "Top Soldier" (으뜸병사). He showed an outstanding ability to attentively read concerns within the unit and mediate them with skill. Even during his service, he won an award at a Ministry of National Defense-hosted software development competition, proving his diligence and remarkable capability as a developer. With character, technical ability, and a strong sense of responsibility to community all in balance, Doyeol will, I am certain, be a colleague that any organization can trust and rely on — I recommend him without reservation.',
+    ko: '오도열 군은 제가 공군 군목으로 복무할 때 만난 청년 중 단연 최고의 인재입니다. 간부와 병사 모두에게 두터운 신뢰를 받아 ’으뜸병사‘로 선발되었으며, 부대 내 고충을 세심히 파악하고 능숙하게 조율하는 탁월한 소통 능력을 보여주었습니다. 또한 군 복무 중에도 국방부 주관 프로그램 개발 경진대회에서 수상하며 개발자로서의 성실함과 뛰어난 역량까지 증명해 냈습니다. 인품과 실력, 공동체에 대한 책임감을 두루 갖춘 오도열 군은 어떤 조직에서든 믿고 의지할 수 있는 동료가 될 것이라 확신하며 기꺼이 추천합니다.',
+  },
+  image: {
+    src: 'people/seonghyeonbae.jpg',
+    alt: { en: 'Seonghyeon Bae', ko: '배성현' },
   },
 };
 
@@ -129,4 +150,5 @@ export const references: Entry[] = [
   dahyunChoi,
   jaeeulLee,
   jaeminAhn,
+  seonghyeonBae,
 ];
