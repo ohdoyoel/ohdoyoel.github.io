@@ -69,8 +69,8 @@ export const papers: Entry[] = [
       ko: 'KAIST 인공지능 개론 · 과제 3 · 팩맨 경연대회 상',
     },
     description: {
-      en: 'Two-vs-two CTF Pacman team — goal-commit ghost-aware A* offense, alpha-beta minimax defense, and a 42-feature linear evaluator tuned by population-based self-play with held-out zoo anchors. 40/40 on the official grading run; 77.1% over a 792-game external SOTA sweep with zero runtime errors.',
-      ko: '2대2 CTF 팩맨 팀 — 목표-커밋형 유령 인지 A* 공격, 알파-베타 미니맥스 수비, 42차원 선형 평가함수를 Held-out 앵커 기반 population self-play로 튜닝. 공식 채점 40/40, 외부 SOTA 792게임 스윕 77.1% 승률, 런타임 오류 0.',
+      en: 'A two-vs-two CTF Pacman team built on classical search — goal-commit A* offense, alpha-beta minimax defense, 42-feature linear evaluator — plus a held-out verification protocol designed to defeat zoo-overfitting. The contribution is treating the student round-robin as an unseen distribution head-on, generalizing via hand-inspectable weights and external anchors instead of deep RL.',
+      ko: '2대2 CTF 팩맨에서 deep RL 대신 hand-inspectable 42차원 선형 평가함수와, zoo-overfitting을 차단하는 held-out 검증 프로토콜로 일반화를 만든 팀이다. 학생 라운드로빈이 unseen distribution이라는 점을 정면에서 다룬 게 핵심이다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -95,8 +95,8 @@ export const papers: Entry[] = [
       ko: 'KAIST 인공지능 개론 · 과제 2',
     },
     description: {
-      en: 'Adversarial multi-agent search on the CS188 Pacman framework — reflex evaluator (food / ghost / scared-ghost terms), n-agent minimax with depth-on-wraparound, and alpha-beta pruning matched to the autograder’s strict-inequality reference, plus a discussion of action-ordering effects on pruning.',
-      ko: 'CS188 팩맨 위에서 적대 다중 에이전트 탐색 구현 — Reflex 평가함수(음식·유령·겁먹은 유령), n-에이전트 Minimax(에이전트 인덱스 wrap 시 깊이 감소), 오토그레이더의 엄격 부등호 기준에 맞춘 Alpha-Beta 가지치기. 행동 순서가 가지치기 효율에 미치는 영향까지 논의.',
+      en: 'An analysis that disentangles three effects commonly conflated in adversarial Pacman: action ordering has two dimensions (pruning efficiency vs tie-breaking), minimax is brittle against random ghosts via pessimism cascade rather than evaluation quality, and on trapped layouts the −1 living penalty creates a "swift-death preference" that makes deeper search rush a ghost.',
+      ko: '적대 다중 에이전트 탐색에서 흔히 한 덩어리로 묶이는 세 효과를 분리해 보인 분석이다. 행동 ordering이 가지치기 효율과 tie-breaking 두 차원으로 갈라진다는 점, 무작위 유령 앞에서 Minimax는 평가함수가 아니라 pessimism cascade로 깨진다는 점, 좁은 맵에서 −1 living penalty가 즉사를 지연된 죽음보다 strictly 높은 값으로 만들어 팩맨이 유령에게 돌진하는 "swift-death preference"가 나타난다는 점이다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -121,8 +121,8 @@ export const papers: Entry[] = [
       ko: 'KAIST 인공지능 개론 · 과제 1',
     },
     description: {
-      en: 'Classical graph search on the UC Berkeley CS188 Pacman framework — DFS / BFS / UCS / A* with a shared visited-set template. Includes a written reflection on pop-vs-push goal testing, lazy duplicate handling for priority-queue searches, and where each algorithm’s optimality guarantee actually comes from.',
-      ko: 'UC Berkeley CS188 팩맨 위에서 고전 그래프 탐색(DFS·BFS·UCS·A*)을 공통 visited-set 템플릿으로 구현. 푸시/팝 시점의 목표 검사, 우선순위 큐 탐색에서의 지연 중복 처리, 각 알고리즘 최적성 보장의 출처에 대한 회고 포함.',
+      en: 'DFS / BFS / UCS / A* on the CS188 framework, plus a custom admissible heuristic — Blockage Detection + Tarjan articulation-point Portal Detection + dead-end peeling — that expands 34.4% fewer nodes than Manhattan on average. Per-call preprocessing made wall-clock time worse for single queries, a clean illustration of the search-quality vs evaluator-cost tradeoff.',
+      ko: 'DFS·BFS·UCS·A* 구현과 함께, Manhattan 대비 평균 34.4% 적은 노드를 expand하는 admissible 휴리스틱(Blockage Detection + Tarjan articulation Portal + dead-end peeling)을 제안한다. 다만 per-call 전처리 비용 때문에 단일 쿼리 wall-clock은 오히려 늦어진다 — 탐색 품질 vs 평가자 비용 트레이드오프를 깔끔하게 보인 사례다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -147,8 +147,8 @@ export const papers: Entry[] = [
       ko: 'UNIST 기계학습 · 파이널 프로젝트 보고서',
     },
     description: {
-      en: 'Dual-confidence SVM weighting: global probability captures feature outliers; local KNN consistency captures label outliers. Additive (rather than multiplicative) combination yields stable robustness across noise levels (Iris, Wine, Titanic).',
-      ko: '이중 신뢰도 SVM 가중치 — 전역 확률로 특성 이상치를, 지역 KNN 일관성으로 라벨 이상치를 포착. 곱셈 대신 가산 결합으로 다양한 노이즈 수준(Iris, Wine, Titanic)에서 강건성 향상.',
+      en: 'A weighted soft-margin SVM with slack penalty C_i = C · (p_i + n_i) / 2, where p_i is a class-conditional Gaussian probability (catching feature outliers) and n_i is a KNN label-consistency score (catching label outliers). The novelty is the additive aggregation: a multiplicative form collapses when either signal breaks (e.g. the Gaussian assumption on Titanic), while the average lets the surviving signal carry the weight.',
+      ko: '특성 이상치 검출(클래스 가우시안 확률 p_i)과 라벨 이상치 검출(KNN 라벨 일관성 n_i)을 한 SVM에 통합하는 가중 슬랙 패널티 C_i = C·(p_i + n_i)/2를 제안한다. 곱셈이 아닌 가산 평균이 핵심으로, 한 신호가 무너져도(예: 가우시안이 깨지는 Titanic) 다른 쪽이 받쳐 "weakest link" 문제를 회피한다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -182,8 +182,8 @@ export const papers: Entry[] = [
       { name: { en: 'Junghoon Kim', ko: '김정훈' }, href: '#' },
     ],
     description: {
-      en: 'Adaptive label propagation (ALP) for LBSN graph clustering. Real-time entropy-based weighting balances structural vs. spatial information — separates structurally connected but geographically distant cities (e.g. Nashville vs. Atlanta).',
-      ko: 'LBSN 그래프 클러스터링을 위한 적응형 라벨 전파(ALP). 엔트로피 기반 실시간 가중치로 구조 정보와 위치 정보 균형을 조절 — 구조적으로 연결되어 있지만 지리적으로 떨어진 도시(예: 내슈빌·애틀랜타) 분리.',
+      en: 'An adaptive label propagation for LBSN where each node\'s structural-vs-spatial weight is α = 1 − H/log|L|, derived from the entropy of its neighbor labels. When neighbors agree, the Jaccard structural term dominates; when they disagree, the Haversine spatial term takes over — visually separating structurally connected but geographically distant cities (e.g. Nashville vs. Atlanta).',
+      ko: '라벨 엔트로피로부터 α = 1 − H/log|L|를 산출해, 구조 유사도(Jaccard)와 위치 유사도(Haversine)의 비중을 노드별로 적응 조절하는 라벨 전파를 제안한다. 이웃 라벨이 일치하면 구조가, 어긋나면 위치가 주도하면서 — 구조적으로 연결되어 있지만 지리적으로 떨어진 도시(예: 내슈빌·애틀랜타)를 시각적으로 분리한다.',
     },
     image: {
       src: 'papers/alp.png',
@@ -205,8 +205,8 @@ export const papers: Entry[] = [
       ko: 'UNIST 알고리즘 · 최우수논문상',
     },
     description: {
-      en: 'Hybrid TSP solver: k-means clustering + dynamic dispatch between Held-Karp (exact) and Christofides (approximate). ~7× faster than Christofides on mona-lisa100k (under 10s vs. 66s+) without accuracy loss.',
-      ko: 'TSP 하이브리드 솔버 — k-means 클러스터링 + Held-Karp(정확)와 Christofides(근사) 동적 디스패치. mona-lisa100k에서 Christofides 대비 약 7배 빠름 (10초 미만 vs 66초 이상).',
+      en: 'A four-stage hierarchical TSP solver: k-means partitions cities into clusters of size ≤ 22 so Held-Karp becomes feasible, then both inter-cluster and intra-cluster tours dispatch by size between Held-Karp and Christofides, with a final entry/exit alignment to minimize cluster-boundary transitions. On mona-lisa100k it is ~8× faster than Christofides at ~2% lower cost. Won UNIST CSE331 Best Paper Award.',
+      ko: 'k-means로 도시를 22개 이하 클러스터로 쪼개 Held-Karp가 가능하게 만든 뒤, 클러스터 간/내부 TSP 모두 크기로 Held-Karp/Christofides를 갈라 푸는 4단계 하이브리드 솔버를 제안한다. mona-lisa100k에서 Christofides보다 약 8배 빠르고 비용도 약 2% 낮다. UNIST CSE331 최우수논문상.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -231,8 +231,8 @@ export const papers: Entry[] = [
       ko: 'UNIST 알고리즘 · 과제 1',
     },
     description: {
-      en: 'C++ implementation and benchmarking of six classical (Bubble, Selection, Insertion, Quick, Heap, Merge) and six modern (Cocktail Shaker, Comb, Tournament, Library, Intro, Tim) sorts across random / sorted / reverse / partial inputs at 10³–10⁶. Tim and median-of-three Quick scaled cleanly to 10⁶, where Bubble took 3942s vs Tim’s 0.2s.',
-      ko: '12종 정렬 알고리즘(고전 6 + 현대 6) C++ 구현 및 벤치마크 — 랜덤·정렬·역정렬·부분정렬 입력, 10³~10⁶ 크기. Tim과 중간값-3 Quick은 10⁶까지 안정적으로 확장되었고, 같은 크기에서 Bubble 3942초 vs Tim 0.2초.',
+      en: 'A C++ benchmark of twelve sorts across random / sorted / reverse / partial inputs from 10³ to 10⁶. Two findings worth keeping: vanilla Lomuto Quick crashes on sorted input from unbalanced recursion (median-of-three pivoting is practically required), and a naive multithreaded Tim variant ran slower than single-threaded Tim because thread-creation overhead dominated the merge gain.',
+      ko: '12종 정렬을 C++로 구현해 10³~10⁶ 입력에서 벤치마크한 보고서다. 새로 확인한 건 두 가지 — Lomuto Quick은 정렬 입력에서 불균형 재귀로 크래시하므로 중간값-3 피벗이 사실상 필수라는 점, 그리고 멀티스레드 Tim 변형은 스레드 오버헤드가 병합 이득을 상회해 단일 스레드보다 느려진다는 점이다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -257,8 +257,8 @@ export const papers: Entry[] = [
       ko: 'ICROS (제어로봇시스템학회) 2024',
     },
     description: {
-      en: 'YoungCHA — a chair-shaped indoor shared mobility with hands-free, intuitive steering. Saddle rotation is read by a potentiometer and tracked by a PID-controlled steering motor (STM32F303RE, encoder calibration via a hard-stop button); the throttle is replaced by a kick-to-start scheme. Designed to provide both seated rest and motion in large indoor venues.',
-      ko: '영차(YoungCHA) — 의자 형태의 실내 공유형 모빌리티. 안장의 회전을 가변저항으로 읽고 STM32F303RE 기반 PID로 조향 모터를 추종(엔코더 캘리브레이션은 하드스톱 버튼으로 보정), 엑셀 대신 발구름 시동을 채택. 넓은 실내 공간에서 휴식과 이동을 한 폼팩터로 제공.',
+      en: 'A chair-shaped indoor mobility with hands-free steering: a potentiometer reads saddle rotation and an STM32F303RE drives a PID-controlled steering motor, and the throttle is replaced by a kick-to-start scheme. Both hands and feet stay free while moving, and the form factor lets you sit and rest the moment you stop.',
+      ko: '안장의 회전을 가변저항으로 읽고 STM32F303RE 기반 PID로 조향 모터를 추종하는, 핸들 없는 의자형 실내 모빌리티를 제안한다. 엑셀도 제거하고 발구름 시동으로 대체했다 — 이동 중에는 두 손과 발이 자유롭고, 멈추면 그대로 의자가 된다.',
     },
     authors: [
       { name: { en: 'Donghoon Nam', ko: '남동훈' }, href: '#' },

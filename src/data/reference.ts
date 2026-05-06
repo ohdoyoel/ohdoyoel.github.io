@@ -76,9 +76,31 @@ const dahyunChoi: Entry = {
   },
 };
 
+const jaeeulLee: Entry = {
+  period: '',
+  position: {
+    en: 'AI Researcher',
+    ko: 'AI 연구자',
+  },
+  title: { en: 'Jaeeul Lee', ko: '이재율' },
+  subtitle: {
+    en: 'CJ OliveNetworks',
+    ko: 'CJ 올리브네트웍스',
+  },
+  description: {
+    en: 'The true charm of my friend Doyeol lies in his broad experience and sense of balance that does not get bogged down in his major field. Even amidst a busy academic schedule, he continues to engage in extracurricular activities such as band club activities and performing on stage in theater productions, showing himself to be a versatile talent who works hard and fully enjoys the process outside of his major. This successful balancing of various activities clearly demonstrates his excellent time management skills and diligence. I strongly recommend my friend Doyeol, who communicates excellently with team members in development projects just as he interacts with colleagues and audiences on stage, as a bright talent who will shine in any organization.',
+    ko: '오도열 친구의 진정한 매력은 전공 분야에만 매몰되지 않는 폭넓은 경험과 균형 감각에 있습니다. 바쁜 학사 일정 속에서도 밴드 동아리 활동을 이어나가고 연극 공연 무대에 오르는 등, 전공 외적인 활동에서도 누구보다 땀 흘려 노력하며 그 과정을 온전히 즐길 줄 아는 다재다능한 인재입니다. 이처럼 다양한 활동을 성공적으로 병행하는 모습은 그의 탁월한 시간 관리 능력과 성실함을 여실히 증명합니다. 무대 위에서 동료, 관객과 교감하듯 개발 프로젝트에서도 팀원들과 훌륭하게 소통하는 오도열 친구를, 어느 조직에서든 밝게 빛날 인재로 강력히 추천합니다.',
+  },
+  image: {
+    src: 'people/jaeeullee.jpg',
+    alt: { en: 'Jaeeul Lee', ko: '이재율' },
+  },
+};
+
 export const references: Entry[] = [
   solYou,
   seungbinJeong,
   dayHong,
   dahyunChoi,
+  jaeeulLee,
 ];
