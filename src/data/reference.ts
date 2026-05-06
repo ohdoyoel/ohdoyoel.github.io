@@ -143,6 +143,23 @@ const seonghyeonBae: Entry = {
   },
 };
 
+const jeonghoonPark: Entry = {
+  period: '',
+  position: {
+    en: 'UNIST CSE Undergraduate',
+    ko: 'UNIST 컴퓨터공학과 학부생',
+  },
+  title: { en: 'Jeonghoon Park', ko: '박정훈' },
+  description: {
+    en: "Doryeol is a junior I first met in a band club, but I actually remembered him even before that because he was introduced as a student who wrotes the outstanding assignment in class. We grew closer after performing together in the band and collaborating on a machine learning project. I had already seen how capable he was at studying and projects many times, but what impressed me most was that he doesn't just play the guitar well—he truly understands music and knows how to deeply immerse himself in what he loves. Despite being talented in so many ways, he is always humble, and every time we talk about the future, I am reminded of how diligent and sincere he is.",
+    ko: '도열이는 밴드 동아리에서 처음 알게 된 후배지만, 사실 그 전부터 수업 과제 우수 사례로 소개돼서 기억에 남아 있던 친구였습니다. 이후 밴드에서 같이 공연도 나가고, 머신러닝 프로젝트도 함께 하면서 가까워졌습니다. 공부나 프로젝트를 잘하는 모습은 이미 여러 번 봤지만, 개인적으로는 도열이가 단순히 기타를 잘 치는 걸 넘어 음악을 정말 잘 이해하고, 좋아하는 것에 깊게 몰입할 줄 아는 친구라는 점이 인상 깊었습니다. 여러 면에서 뛰어난데도 늘 겸손하고, 함께 미래 이야기를 나눌 때마다 성실하고 진지한 사람이라는 생각이 들었습니다.',
+  },
+  image: {
+    src: 'people/jeonghoonpark.jpeg',
+    alt: { en: 'Jeonghoon Park', ko: '박정훈' },
+  },
+};
+
 export const references: Entry[] = [
   solYou,
   seungbinJeong,
@@ -151,4 +168,5 @@ export const references: Entry[] = [
   jaeeulLee,
   jaeminAhn,
   seonghyeonBae,
+  jeonghoonPark,
 ];
