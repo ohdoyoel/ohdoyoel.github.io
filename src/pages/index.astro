@@ -12,9 +12,12 @@ import type { Entry as EntryType } from '../data/types';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
-const featuredProjects = projects.slice(0, 3);
-const featuredPapers = papers.slice(0, 2);
-const featuredBlogs: EntryType[] = blogPosts.slice(0, 3).map((p) => ({
+const featuredPapers = papers.slice(0, 5);
+const featuredProjects: EntryType[] = projects.slice(0, 5).map((p) => ({
+  ...p,
+  link: { href: pageLink(lang, `project/${p.id}`), internal: true },
+}));
+const featuredBlogs: EntryType[] = blogPosts.slice(0, 5).map((p) => ({
   period: p.period,
   title: p.title,
   description: p.description,

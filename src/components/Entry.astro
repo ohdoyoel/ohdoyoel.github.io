@@ -25,7 +25,7 @@ const period = entry.period.replace(/Present/g, t('meta.present'));
         ? <a href={linkHref} {...linkAttrs}>{entry.title[lang]}</a>
         : entry.title[lang]}
     </h3>
-    {entry.authors && (
+    {!compact && entry.authors && (
       <p class="authors">
         {entry.authors.map((a, i) => (
           <>

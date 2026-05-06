@@ -21,8 +21,8 @@ export const intro: IntroLine[] = [
   },
   {
     text: {
-      en: 'Most of my research has gathered around robotics and human-grounded RL — close cousins of the question above.',
-      ko: '지금까지의 연구는 대부분 로보틱스와 인간 기반 RL 주변에서 이루어졌습니다 — 위 질문과 같은 갈래입니다.',
+      en: 'My papers so far keep circling that same question — how to abstract some slice of human-world interaction into something an algorithm can actually run. The shape changes (search, RL, optimization, robotics), the question does not.',
+      ko: '지금까지 쓴 논문들도 결국 같은 질문에서 출발해요 — 사람과 세상이 얽히는 어떤 단면을, 어떻게 알고리즘이 돌릴 수 있는 형태로 추상화할까. 모양만 탐색·강화학습·최적화·로보틱스로 달랐을 뿐이에요.',
     },
     link: {
       to: 'publication',
@@ -31,8 +31,8 @@ export const intro: IntroLine[] = [
   },
   {
     text: {
-      en: "I've built a handful of projects worth talking about — at work, in research, and on weekends.",
-      ko: '지금까지 마음에 드는 프로젝트 몇 개를 만들어왔습니다 — 회사에서, 연구실에서, 그리고 주말에.',
+      en: "I make a lot of side projects too — for class or hackathons, at work, and sometimes just because the idea wouldn't sit still.",
+      ko: '프로젝트도 자주 만들어 왔어요 — 수업이나 해커톤으로, 회사 일로, 가끔은 그냥 머릿속에서 떠나지 않아서요.',
     },
     link: {
       to: 'project',
@@ -99,8 +99,8 @@ export const work: Entry[] = [
   {
     period: '2201 - 2212',
     title: {
-      en: 'UNIST · DECS Lab (Prof. Hui-sung Lee)',
-      ko: 'UNIST · DECS Lab (이희승 교수님)',
+      en: 'UNIST DECS Lab (Prof. Hui-sung Lee)',
+      ko: 'UNIST DECS Lab (이희승 교수님)',
     },
     description: { en: 'Embedded Software Developer', ko: '임베디드 소프트웨어 개발자' },
     link: { href: 'https://sites.google.com/view/decs-unist' },
@@ -223,27 +223,31 @@ export const skills: { label: string; items: string[] }[] = [
 
 export const programming: Localized<string[]> = {
   en: [
-    "I started building things because of open-world games — GTA V most of all. In middle school I opened Unity for the first time to make one of my own, and that's where my life as a developer began. What I fell in love with wasn't the game; it was the act of taking a problem or principle from the world, modeling it mathematically, and watching it come alive inside a machine.",
-    "In college that fascination shifted toward services — web and apps. While serving in the military, at a base 800m up a mountain, I taught myself Next.js, React, and Tailwind in the evening hours we were allowed online. Shipping something useful, fast, had its own kind of catharsis. I wanted to be the developer who turned ideas into working software quickly.",
-    "By the time I was discharged, the world had changed: generative AI had arrived. The thing I had been good at — shipping software, fast — was no longer scarce. I started a frontend job with Claude open beside me, and the unease grew sharper. For a while I doubted whether building still meant anything I could call my own.",
-    "What pulled me back was the first paragraph. What I had loved as a kid wasn't shipping; it was abstraction — rendering the world in code. So I chose to live as a researcher. The shipping skill didn't disappear; it became the other hand of the same craft. Today I think of myself as a researcher who can build UX-aware software fast, with AI as a multiplier rather than a threat.",
+    "Programming started, for me, with games. I loved open worlds — GTA V most of all — enough that in middle school I opened Unity to try building one of my own. That's when I learned the thing that has stayed with me: what I'd actually fallen for wasn't the game on screen, but the act underneath it — taking a principle or problem from the world, modeling it mathematically, and watching the model come alive inside a machine. That moment is the start of my life as a developer.",
+    "In college the fascination shifted from games to services — web and apps. There's a particular catharsis in seeing an idea become a working thing in days instead of months, and I chased it. I held onto that during military service, too: at a base 800 meters up a mountain, I taught myself Next.js, React, and Tailwind in the evening hours we were allowed online. The identity I was building, then, was the developer who turns a social problem into shipped software, fast.",
+    "By the time I was discharged, the world had changed. Generative AI had arrived, and the skill I had spent years sharpening — shipping fast — was no longer scarce. I started a frontend job with Claude open beside me, and the shift became impossible to ignore. For a while I doubted whether building, on its own, could still be a craft I could call mine.",
+    "Eventually I came back to the starting point. What I had loved as a kid wasn't shipping; it was abstraction — taking the world, restating it in math, then writing it into code. The thing in paragraph one. So I chose to live as a researcher. The shipping skill didn't disappear; it became the other hand of the same craft. Today I'm trying to be someone who abstracts the world through research and ships those results into UX-aware software, fast — with AI sitting between the two hands as a tool.",
   ],
   ko: [
-    '어릴 때부터 GTA V 같은 오픈월드 게임을 좋아했습니다. 중학생 때 처음으로 Unity를 열어 직접 게임을 만들기 시작했고, 거기서 제 개발자 인생이 시작됐습니다. 제가 사랑했던 건 게임 자체가 아니라, 세상의 어떤 문제나 원리를 수학적으로 모델링해 컴퓨터 안에서 코드로 구현하는 행위였습니다.',
-    '대학에 들어와서는 그 관심이 서비스 개발 — 웹과 앱 — 으로 옮겨갔습니다. 군 복무 중에는 해발 800m가 넘는 자대 사이버지식정보방에서 연등 시간을 쪼개 Next.js, React, Tailwind를 익혔습니다. 사회의 문제를 빠르게 짚어 서비스로 만들어 내는 데서 오는 카타르시스가 있었습니다. 그땐 더 빠르게 소프트웨어를 생산하는 개발자가 되고 싶었습니다.',
-    "전역하고 돌아오니 세상이 달라져 있었습니다. 생성형 AI의 등장이었습니다. '빠르게 만든다'는 저의 강점은 더 이상 희소하지 않았습니다. 회사에서 프론트엔드 개발자로 일하며 옆자리에 클로드를 두기 시작하자 두려움은 더 또렷해졌고, 한동안 개발에 대한 회의가 깊었습니다.",
-    "다시 시작점을 돌아봤습니다. 어릴 때 제가 좋아했던 건 '만드는 일'이 아니라 '추상하는 일'이었습니다 — 세상을 코드로 옮기는 일, 첫 문단의 그 일. 그래서 연구자로 살기로 마음먹었습니다. 만드는 능력은 사라지지 않았고, 같은 손의 다른 한쪽이 되었습니다. 지금의 저는 UX를 고려한 서비스를 AI를 활용해 빠르게 개발할 수 있는 연구자입니다.",
+    '저의 프로그래밍은 게임에서 시작됐습니다. GTA V 같은 오픈월드 게임을 너무 좋아해서, 중학생 때 직접 그런 세상을 만들어보고 싶다는 마음으로 Unity를 열었어요. 거기서 깨달은 게 있습니다 — 제가 끌렸던 건 화면 위의 게임이 아니라, 그 아래에 있는 행위였다는 것. 세상의 어떤 원리나 문제를 수학으로 모델링해 컴퓨터 안에서 코드로 살려내는 일. 그 순간이 제 개발자 인생의 시작점입니다.',
+    '대학에 들어오면서 그 관심은 게임에서 서비스로 — 웹과 앱으로 — 옮겨갔습니다. 머릿속의 아이디어가 몇 달이 아니라 며칠 만에 세상에서 동작하는 무언가가 되는 데서 오는 카타르시스가 컸어요. 군 복무 중에도 그 관성은 놓지 않았습니다. 해발 800m가 넘는 자대 사이버지식정보방에서 연등 시간을 쪼개 Next.js·React·Tailwind를 익혔어요. 그 시절 저의 정체성은 "사회의 문제를 빠르게 짚어 서비스로 옮겨내는 개발자"였습니다.',
+    '전역하고 돌아오니 세상이 달라져 있었습니다. 생성형 AI의 등장이었어요. 그동안 갈고닦아온 무기 — "빠르게 만든다" — 가 더 이상 희소하지 않게 되었습니다. 회사에서 프론트엔드 개발자로 일하며 옆자리에 Claude를 두기 시작하자, 그 사실은 더 또렷해졌습니다. 한동안은 만드는 일 자체가 저에게 무엇을 남길 수 있는지를 두고 회의가 깊었습니다.',
+    '결국 시작점으로 돌아갔습니다. 어릴 때 제가 사랑했던 건 \'만드는 일\'이 아니라 \'추상하는 일\'이었습니다 — 세상을 수학으로 옮기고, 그것을 다시 코드로 적어내는, 첫 문단의 바로 그 일. 그래서 연구자로 살기로 마음먹었습니다. 만드는 능력은 사라지지 않고, 같은 손의 다른 한쪽이 되었어요. 지금의 저는 연구로 세상을 추상화하고, 그 결과를 UX를 고려한 서비스의 형태로 빠르게 옮길 수 있는 사람이 되려 합니다 — AI는 그 두 손을 잇는 도구로 곁에 둡니다.',
   ],
 };
 
 export const research: Localized<string[]> = {
   en: [
-    "My research interest centers on modeling how humans interact with the world, so that intelligent agents can learn to do the same. The two methods closest to that question are reinforcement learning from human feedback — which treats human preference as the supervisory signal that grounds an agent in our intent — and robotics, which treats the body as the medium through which interaction actually happens.",
-    "Around this core, I'm drawn to video understanding, HCI, and Safe AI; the long horizon is AGI.",
+    "My research interest centers on modeling how humans interact with the world — so that intelligent agents can learn to do the same. What I enjoy is taking the structure of human cognition, action, and language as it grips the environment, and translating it into a form an algorithm can actually run.",
+    'The two methods closest to that question, in my view, are RLHF and robotics. RLHF treats human preference as a supervisory signal — the way to turn "what people want" into something a model can be trained against, anchoring an agent in our intent. Robotics treats the body as the medium where interaction actually happens — the place where every assumption a model carries is pressure-tested against physics, and where the gaps in that model become visible. The two grip the same problem from opposite ends: signaling intent on one side, embodying it on the other.',
+    'Around this core sit three adjacent fields. Video Understanding is the input problem — letting models read human behavior and context as it unfolds over time. HCI is the interface problem — how a learned agent should breathe alongside the people it works with. Safe AI is the responsibility problem — the boundaries inside which a trained agent must operate.',
+    'On the long horizon, these five meet in the same place: AGI.',
   ],
   ko: [
-    '제 연구 관심은 사람이 세상과 상호작용하는 방식을 모델링하는 데 있습니다 — 지능형 에이전트가 그 방식을 학습할 수 있도록 하기 위해서입니다. 이 질문에 가장 가까운 두 접근은 RLHF와 로보틱스입니다. RLHF는 인간의 선호를 에이전트의 행동을 우리의 의도로 정렬시키는 감독 신호로 다루고, 로보틱스는 신체를 상호작용이 실제로 일어나는 매개로 다룹니다.',
-    '이 핵심 주변에는 Video Understanding, HCI, Safe AI가 있고, 끝에는 AGI가 있습니다.',
+    '제 연구 관심은 사람이 세상과 상호작용하는 방식을 모델링하는 데 있습니다 — 지능형 에이전트가 그 방식을 학습할 수 있게 하기 위해서입니다. 사람의 인지·행동·언어가 환경과 맞물리는 구조를 알고리즘이 다룰 수 있는 형태로 옮기는 일을 좋아합니다.',
+    '이 질문에 가장 가까운 두 접근은 RLHF와 로보틱스라고 봅니다. RLHF는 인간의 선호를 감독 신호로 다뤄 에이전트의 행동을 우리의 의도와 정렬시킵니다 — "사람은 무엇을 원하는가"를 학습 가능한 신호로 풀어내는 일이지요. 로보틱스는 신체를 상호작용이 실제로 일어나는 매개로 다룹니다 — 시뮬레이션의 추상이 물리 법칙과 마찰하는 지점에서, 모델이 놓치고 있던 가정들이 드러나는 곳입니다. 두 접근은 같은 문제의 양 끝을 쥐고 있습니다: 의도의 신호화(RLHF)와, 그 신호의 체화(로보틱스).',
+    '이 핵심 주변에는 세 갈래가 함께 있습니다. Video Understanding은 시간 위에 펼쳐지는 사람의 행동과 맥락을 모델이 입력으로 받아들이게 하는 문제이고, HCI는 학습된 에이전트가 사람과 어떤 호흡으로 협업할지를 묻는 인터페이스의 문제, Safe AI는 그 에이전트가 어떤 경계 안에서 동작해야 하는지를 정하는 책임의 문제입니다.',
+    '긴 시간축의 끝에는 AGI가 있습니다. 위 다섯 갈래가 결국 한 자리에서 만나는 지점이라고 생각합니다.',
   ],
 };
 

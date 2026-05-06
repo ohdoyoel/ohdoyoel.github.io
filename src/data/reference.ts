@@ -59,8 +59,26 @@ const dayHong: Entry = {
   },
 };
 
+const dahyunChoi: Entry = {
+  period: '',
+  position: {
+    en: 'UNIST former president of theater club NEST',
+    ko: 'UNIST 연극동아리 NEST 전 회장',
+  },
+  title: { en: 'Dahyeon Choi', ko: '최다현' },
+  description: {
+    en: 'He is the most free-spirited and adventurous person among the principle-oriented people I have met. He challenges whatever he wants to do and succeeds, but never loses his inner values. I remember how he respected me as a director and gave advice as a junior, even though I was much younger.',
+    ko: '제가 본 원칙주의자들 중 가장 자유롭고 도전적인 사람입니다. 하고싶은 건 뭐든 도전하고, 또 성공해내지만 내면의 가치관을 잃지 않습니다. 한참 어린 저도 연출로서 존중해주고 후배로서 조언해주는 모습이 기억에 남습니다.',
+  },
+  image: {
+    src: 'people/dahyeonchoi.jpg',
+    alt: { en: 'Dahyeon Choi', ko: '최다현' },
+  },
+};
+
 export const references: Entry[] = [
   solYou,
   seungbinJeong,
   dayHong,
+  dahyunChoi,
 ];
