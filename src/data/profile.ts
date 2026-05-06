@@ -8,7 +8,7 @@ export const profile = {
   } satisfies Localized,
   email: 'ohdoyoel@gmail.com',
   links: [
-    { label: 'CV (PDF)', href: '#' },
+    { label: 'CV (PDF)', href: '/cv_ohdoyeol.pdf' },
     { label: 'GitHub', href: 'https://github.com/ohdoyoel' },
     { label: 'LinkedIn', href: 'https://linkedin.com/in/ohdoyoel' },
     { label: 'Scholar', href: 'https://scholar.google.com/citations?user=Ld0QNwcAAAAJ' },

@@ -1,0 +1,310 @@
+% Doyeol Oh — Curriculum Vitae
+% Compiles cleanly on Overleaf (pdfLaTeX). No external assets required.
+
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- packages ----------
+\usepackage[margin=0.85in,top=0.7in,bottom=0.7in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue!50!black,linkcolor=blue!50!black]{hyperref}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- spacing ----------
+\setlist[itemize]{leftmargin=1.2em,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlength{\parskip}{4pt}
+
+% ---------- section style ----------
+\titleformat{\section}
+  {\normalsize\bfseries\scshape}
+  {}{0em}{}
+  [\vspace{-6pt}\rule{\textwidth}{0.5pt}\vspace{-2pt}]
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+% ---------- entry helper ----------
+% \cvrow{lhs}{rhs}: bolded heading with right-aligned date
+\newcommand{\cvrow}[2]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}\textbf{#1} & {#2}\end{tabularx}\par
+}
+% \cvsub{description line}: italic-ish secondary line
+\newcommand{\cvsub}[1]{\noindent #1\par}
+
+% ---------- pubs / projects entry ----------
+% \pub{title}{venue}{date}{authors}{description}
+\newcommand{\pub}[5]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}\textbf{#1} & {#3}\end{tabularx}\par
+  \noindent\emph{#2}\par
+  \ifx\relax#4\relax\else\noindent #4\par\fi
+  \ifx\relax#5\relax\else\noindent\small #5\par\fi
+  \vspace{10pt}
+}
+
+\begin{document}
+\pagestyle{empty}
+
+% ============================================================
+%  HEADER
+% ============================================================
+\begin{center}
+  {\LARGE\bfseries Doyeol Oh}\\[4pt]
+  {\normalsize Undergraduate Researcher\ \textbar\ Full-Stack Developer}\\[6pt]
+  \small
+  \href{mailto:ohdoyoel@gmail.com}{ohdoyoel@gmail.com}
+  \ \textbar\
+  \href{https://github.com/ohdoyoel}{github}
+  \ \textbar\
+  \href{https://linkedin.com/in/ohdoyoel}{linkedin}
+  \ \textbar\
+  \href{https://scholar.google.com/citations?user=Ld0QNwcAAAAJ}{google scholar}
+  \ \textbar\
+  \href{https://ohdoyoel.github.io/}{personal page}
+\end{center}
+
+\vspace{-4pt}
+
+% ============================================================
+%  RESEARCH INTEREST
+% ============================================================
+\vspace{4pt}
+\section*{Research Interest}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+My research interest centers on modeling how humans interact with the world --- so that
+intelligent agents can learn to do the same. The two methods closest to that question, in
+my view, are RLHF and robotics: RLHF turns ``what people want'' into a supervisory signal
+that anchors an agent in our intent, while robotics treats the body as the medium where
+interaction is pressure-tested against physics. Adjacent to this core sit three problems:
+Video Understanding (input), HCI (interface), and Safe AI (responsibility). On the long
+horizon, all five meet at AGI.
+
+% ============================================================
+%  EDUCATION
+% ============================================================
+\vspace{4pt}
+\section*{Education}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{Ulsan National Institute of Science and Technology (UNIST)}{Mar 2021 -- Present}
+\cvsub{B.S. in Computer Science and Engineering. GPA: 4.05 / 4.30.}
+\vspace{4pt}
+
+\cvrow{Korea Advanced Institute of Science and Technology (KAIST)}{Mar 2026 -- Present}
+\cvsub{Exchange Student, School of Computing.}
+\vspace{4pt}
+
+\cvrow{University of Auckland --- English Language Academy}{Jan 2025 -- Feb 2025}
+\cvsub{Certificate in Advanced English (C1).}
+
+% ============================================================
+%  EXPERIENCE
+% ============================================================
+\vspace{4pt}
+\section*{Experience}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{Peulda Co., Ltd.}{Jan 2026 -- Present}
+\cvsub{Software Developer. Frontend, deploying UX-aware services with AI-assisted workflows.}
+\vspace{4pt}
+
+\cvrow{UNIST DM Lab (Prof.\ Junghoon Kim)}{May 2025 -- Nov 2025}
+\cvsub{Undergraduate Researcher. Graph clustering on location-based social networks; first-author KDBC 2025 paper and KR patent application.}
+\vspace{4pt}
+
+\cvrow{UNIST DECS Lab (Prof.\ Hui-sung Lee)}{Jan 2022 -- Dec 2022}
+\cvsub{Embedded Software Developer. Designed steering control for an indoor mobility prototype; ICROS 2024 paper.}
+
+% ============================================================
+%  PUBLICATIONS
+% ============================================================
+\vspace{4pt}
+\section*{Publications}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\noindent Author marked in \textbf{bold}.\par\vspace{4pt}
+
+% \pub{Solving Korean Four-Ball Carom Billiards with Reinforcement Learning: Meta-Pretrained Initialization under Sparse Rewards}
+% {KAIST Introduction to Reinforcement Learning, Project Report}
+% {Jun 2026}
+% {\textbf{Doyeol Oh}, Byungmo Kang, Seojun Park}
+% {}
+
+% \pub{ASTraMut: AST-Guided Mutation Testing for Java}
+% {KAIST Automated Software Testing, Project Report}
+% {Jun 2026}
+% {\textbf{Doyeol Oh}, Hyunji Park, Junseo Jang, Dongjae Lee}
+% {}
+
+\pub{Capture-the-Flag Pacman with Self-Play Tuned Heuristics}
+{KAIST Introduction to Artificial Intelligence, Assignment 3 (Pacman Competition Award)}
+{May 2026}
+{\textbf{Doyeol Oh}}
+{A two-vs-two CTF Pacman team built on classical search (goal-commit A$^\star$ offense, alpha-beta minimax defense, 42-feature linear evaluator) plus a held-out verification protocol designed to defeat zoo-overfitting. The contribution is treating the student round-robin as an unseen distribution head-on, generalizing via hand-inspectable weights and external anchors instead of deep RL. 40/40 official; 77.1\% over a 792-game external SOTA sweep.}
+
+\pub{Multi-Agent Search for Pacman: Reflex, Minimax, and Alpha-Beta}
+{KAIST Introduction to Artificial Intelligence, Assignment 2}
+{Apr 2026}
+{\textbf{Doyeol Oh}}
+{An analysis that disentangles three commonly-conflated effects in adversarial Pacman: action ordering has two dimensions (pruning efficiency vs.\ tie-breaking), minimax is brittle against random ghosts via pessimism cascade rather than evaluation quality, and on trapped layouts the $-1$ living penalty creates a ``swift-death preference'' that makes deeper search rush a ghost.}
+
+\pub{Graph Search for Pacman: DFS, BFS, UCS, and A$^\star$}
+{KAIST Introduction to Artificial Intelligence, Assignment 1}
+{Mar 2026}
+{\textbf{Doyeol Oh}}
+{DFS\,/\,BFS\,/\,UCS\,/\,A$^\star$ on the CS188 framework, plus a custom admissible heuristic (Blockage Detection $+$ Tarjan articulation-point Portal Detection $+$ dead-end peeling) that expands 34.4\% fewer nodes than Manhattan on average. Per-call preprocessing made wall-clock time worse for single queries --- a clean illustration of the search-quality vs.\ evaluator-cost tradeoff.}
+
+\pub{SKiP: SVM Weighted by K-Nearest-Neighbors and Class Probability for Weakening Outliers}
+{UNIST Machine Learning, Final Project Report}
+{Dec 2025}
+{\textbf{Doyeol Oh}, Jeonghoon Park, Jaemin Kim, KangJun Lee}
+{A weighted soft-margin SVM with slack penalty $C_i = C \cdot (p_i + n_i)/2$, where $p_i$ is a class-conditional Gaussian probability (catching feature outliers) and $n_i$ is a KNN label-consistency score (catching label outliers). The novelty is the additive aggregation: a multiplicative form collapses when either signal breaks, while the average lets the surviving signal carry the weight.}
+
+\pub{Entropy-Guided Adaptive Label Propagation for Location-Aware Graph Clustering}
+{Korean Database Conference (KDBC) 2025}
+{Nov 2025}
+{\textbf{Doyeol Oh}$^{*}$, Hyewon Kim$^{*}$, Dahee Kim, Junghoon Kim$^{\dagger}$}
+{An adaptive label propagation for LBSN where each node's structural-vs-spatial weight is $\alpha = 1 - H/\log|L|$, derived from the entropy of its neighbor labels. When neighbors agree, the Jaccard structural term dominates; when they disagree, the Haversine spatial term takes over.}
+
+\pub{Hylos: Hierarchically Localized Optimization Strategy for TSP}
+{UNIST Introduction to Algorithms, Assignment 2 (Best Paper Award)}
+{Jun 2025}
+{\textbf{Doyeol Oh}}
+{A four-stage hierarchical TSP solver: $k$-means partitions cities into clusters of size $\leq 22$ so Held--Karp becomes feasible, then both inter-cluster and intra-cluster tours dispatch by size between Held--Karp and Christofides, with a final entry/exit alignment to minimize cluster-boundary transitions. On mona-lisa100k, $\sim 8\times$ faster than Christofides at $\sim$2\% lower cost.}
+
+\pub{Comparative Study of Twelve Sorting Algorithms}
+{UNIST Introduction to Algorithms, Assignment 1 (Best Paper Award)}
+{Apr 2025}
+{\textbf{Doyeol Oh}}
+{A C++ benchmark of twelve sorts across random / sorted / reverse / partial inputs from $10^3$ to $10^6$. Two findings worth keeping: vanilla Lomuto Quick crashes on sorted input from unbalanced recursion (median-of-three pivoting is practically required), and a naive multithreaded Tim variant ran slower than single-threaded Tim because thread-creation overhead dominated the merge gain.}
+
+\pub{Development of Intuitive Steering Mechanism for Hands-Free Operation of Indoor Shared Mobility}
+{ICROS (Institute of Control, Robotics, and Systems) 2024}
+{Jul 2024}
+{Donghoon Nam, \textbf{Doyeol Oh}, Seongjae Lee, Yunjeong Gwak, Hui-sung Lee}
+{A chair-shaped indoor mobility with hands-free steering: a potentiometer reads saddle rotation and an STM32F303RE drives a PID-controlled steering motor; the throttle is replaced by a kick-to-start scheme.}
+
+% ============================================================
+%  PATENTS
+% ============================================================
+\vspace{4pt}
+\section*{Patents}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{System and Method for Spatially Proximate Community Detection Based on Entropy-Weighted Adaptive Label Propagation}{Feb 2026}
+\cvsub{KR 10-2026-0027653 (filed 2026-02-11).}
+
+% ============================================================
+%  SELECTED PROJECTS
+% ============================================================
+\vspace{4pt}
+\section*{Selected Projects}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{Skelly Clash --- Toss HTML5 Game Challenge}{Sep 2025 -- Dec 2025}
+\cvsub{3D roguelike survival action game running natively in the browser. Wave-based skeleton enemies, OOP-driven game loop, leveling. Featured in the Toss app game tab; deployed via Vercel.}
+\vspace{4pt}
+
+\cvrow{ER:ight? --- 3rd Digital Healthcare Hackathon}{Nov 2025}
+\cvsub{AI platform for emergency-room suicide-attempt patients. Fills the 138-min average wait with CBT-based AI counseling (text and voice) and delivers CAMS summaries to medical staff.}
+\vspace{4pt}
+
+\cvrow{$\geq$kim-i --- 2025 kakao $\times$ goorm Season-thon}{Sep 2025}
+\cvsub{Eco-campaign service that visualizes generative AI's CO$_2$ footprint and proposes walking challenges to offset it. Real-time GPS step tracking via Flutter Geolocator. Co-led with Sujin Yoon and Junun Kim.}
+\vspace{4pt}
+
+\cvrow{Fruit Box Bot --- Personal}{Mar 2025 -- Apr 2025}
+\cvsub{Bot that recognizes apple-game numbers on screen, solves the puzzle, and operates the mouse. Gameplay video went viral on Instagram (250k views, 7k shares, 4k likes).}
+\vspace{4pt}
+
+\cvrow{Gyeonggi Youth Ladder Program --- Branding Page}{Jan 2025}
+\cvsub{Web service to establish program identity and archive 1st-cohort activities (personal missions, portfolios). UI inspired by Toss and Hour-express --- minimalist, readable.}
+\vspace{4pt}
+
+\cvrow{Military Welfare Map}{Jul 2023 -- Jul 2024}
+\cvsub{Web service that integrates scattered military welfare information into a map-based UI for soldiers and their families. Includes location-based discount visualization and an AI chatbot ``GPT Sergeant'' for conversational access. \emph{Minister of Defense Award, 2024 National Defense Public Data Competition.}}
+\vspace{4pt}
+
+\cvrow{rokaf.click --- popcat.click for ROKAF units}{Nov 2023 -- Jan 2024}
+\cvsub{Click-counting site for Republic of Korea Air Force units, modeled after popcat.click's country competition.}
+\vspace{4pt}
+
+\cvrow{YoungCHA --- Hands-Free Indoor Mobility (BTS Research Program)}{Mar 2022 -- Dec 2022}
+\cvsub{Chair-shaped indoor mobility with hands-free steering: rotate the saddle to turn, kick to start. Co-lead with Seongjae Lee. Published as ICROS 2024.}
+
+% ============================================================
+%  AWARDS & HONORS
+% ============================================================
+\vspace{4pt}
+\section*{Awards \& Honors}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{Minister of Defense Award --- 2024 National Defense Public Data Competition}{Jul 2024}
+\cvsub{Ministry of National Defense, Republic of Korea. ``Military Welfare Map'' (Service Development).}
+\vspace{4pt}
+
+\cvrow{Best Paper Award --- UNIST Introduction to Algorithms}{Jun 2025}
+\cvsub{For \emph{Hylos: Hierarchically Localized Optimization Strategy for TSP}.}
+\vspace{4pt}
+
+\cvrow{Pacman Competition Award --- KAIST Introduction to Artificial Intelligence}{May 2026}
+\cvsub{For the Capture-the-Flag Pacman team. Won 40/40 official games.}
+\vspace{4pt}
+
+\cvrow{Gold \& Bronze Prize, U-Challenge / X-Corps Plus Festival}{Nov 2022}
+\cvsub{UNIST BTS (BrainToSociety) Research Program, ``YoungCHA''.}
+\vspace{4pt}
+
+\cvrow{Top Team \& Top Participant --- OUTTA AI Bootcamp (1st cohort)}{Aug 2022}
+\cvsub{1st of 27 teams; 5th of 61 participants.}
+\vspace{4pt}
+
+\cvrow{National Excellent Scholarship (STEM)}{Mar 2021 -- Present}
+\cvsub{Korean government merit-based scholarship.}
+
+% ============================================================
+%  ACTIVITIES & PROGRAMS
+% ============================================================
+\vspace{4pt}
+\section*{Activities \& Programs}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\cvrow{Mentor --- CSE Mentor-Mentee Program (UNIST)}{Sep 2025 -- Dec 2025}
+\cvsub{Selected as 1st-place team.}
+\vspace{4pt}
+
+\cvrow{White Hacker Training Program --- Ulsan Information Industry Promotion Agency}{Aug 2025}
+\cvsub{1st-place team in final CTF competition.}
+\vspace{4pt}
+
+\cvrow{Frontend Devlopment Instructor --- 9roomthonUNIV (goorm $\times$ UNIST)}{Mar 2025 -- Jun 2025}
+
+% ============================================================
+%  TECHNICAL SKILLS
+% ============================================================
+\vspace{4pt}
+\section*{Technical Skills}
+\vspace{-4pt}
+\rule{\textwidth}{0.5pt}\vspace{2pt}
+
+\begin{itemize}[leftmargin=0pt,label={}]
+  \item \textbf{Frontend:} React, Next.js, Styled-components, Tailwind CSS
+  \item \textbf{Mobile:} Flutter, React Native
+  \item \textbf{Infrastructure:} Vercel, Supabase, Google Cloud Platform
+  \item \textbf{Embedded:} C, MBED, Arduino, Raspberry Pi
+  \item \textbf{AI / ML:} NumPy, PyTorch, Gymnasium
+  \item \textbf{Tooling:} Git, Docker, Figma, Notion, Linear, Claude Code, Vim
+\end{itemize}
+
+\end{document}
