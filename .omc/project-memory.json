@@ -32,7 +32,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build 2>&1 | tail -3",
+    "buildCommand": "npm run build 2>&1 | tail -3 && echo \"---verify CSS---\" && CSS=$(ls /Users/ohdoyoel/work/side/cv/dist/_astro/*.css | head -1) && grep -oE \"r-grid > r-cell[^}]+grid-column[^}]+}\" \"$CSS\"",
     "testCommand": null,
     "lintCommand": null,
     "devCommand": "npm run dev",
@@ -123,8 +123,8 @@
   "hotPaths": [
     {
       "path": "src/styles/global.css",
-      "accessCount": 70,
-      "lastAccessed": 1777984492775,
+      "accessCount": 72,
+      "lastAccessed": 1778059628834,
       "type": "file"
     },
     {
