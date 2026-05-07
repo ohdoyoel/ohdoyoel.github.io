@@ -151,12 +151,33 @@ const jeonghoonPark: Entry = {
   },
   title: { en: 'Jeonghoon Park', ko: '박정훈' },
   description: {
-    en: "Doryeol is a junior I first met in a band club, but I actually remembered him even before that because he was introduced as a student who wrotes the outstanding assignment in class. We grew closer after performing together in the band and collaborating on a machine learning project. I had already seen how capable he was at studying and projects many times, but what impressed me most was that he doesn't just play the guitar well—he truly understands music and knows how to deeply immerse himself in what he loves. Despite being talented in so many ways, he is always humble, and every time we talk about the future, I am reminded of how diligent and sincere he is.",
+    en: "Doyeol is a junior I first met in a band club, but I actually remembered him even before that because he was introduced as a student who wrotes the outstanding assignment in class. We grew closer after performing together in the band and collaborating on a machine learning project. I had already seen how capable he was at studying and projects many times, but what impressed me most was that he doesn't just play the guitar well—he truly understands music and knows how to deeply immerse himself in what he loves. Despite being talented in so many ways, he is always humble, and every time we talk about the future, I am reminded of how diligent and sincere he is.",
     ko: '도열이는 밴드 동아리에서 처음 알게 된 후배지만, 사실 그 전부터 수업 과제 우수 사례로 소개돼서 기억에 남아 있던 친구였습니다. 이후 밴드에서 같이 공연도 나가고, 머신러닝 프로젝트도 함께 하면서 가까워졌습니다. 공부나 프로젝트를 잘하는 모습은 이미 여러 번 봤지만, 개인적으로는 도열이가 단순히 기타를 잘 치는 걸 넘어 음악을 정말 잘 이해하고, 좋아하는 것에 깊게 몰입할 줄 아는 친구라는 점이 인상 깊었습니다. 여러 면에서 뛰어난데도 늘 겸손하고, 함께 미래 이야기를 나눌 때마다 성실하고 진지한 사람이라는 생각이 들었습니다.',
   },
   image: {
     src: 'people/jeonghoonpark.jpeg',
     alt: { en: 'Jeonghoon Park', ko: '박정훈' },
+  },
+};
+
+const seonggeunAhn: Entry = {
+  period: '',
+  position: {
+    en: 'UNIST former president of student council',
+    ko: 'UNIST 전 총학생회장',
+  },
+  title: { en: 'Seonggeun Ahn', ko: '안성근' },
+  subtitle: {
+    en: 'Cheiron',
+    ko: 'Cheiron',
+  },
+  description: {
+    en: 'Doyeol is the kind of person who earns your trust on a human level when you watch him up close — solid and warm at the same time. More than anything, what is built into him is the diligence of clearly identifying priorities and seeing things through to the end with disciplined time management. The way he refuses to settle into existing systems, never afraid to take on a new field, has a positive influence on the people around him. He is a versatile friend who genuinely enjoys not only his studies but also singing, guitar, and theater — being around someone like that makes conversations richer and makes you want to build something with him. Whenever Doyeol brings a new challenge or asks for collaboration, I will gladly make the time to be part of it.',
+    ko: '도열은 곁에서 지켜보는 사람에게 인간적으로 신뢰를 주는, 단단하면서도 따뜻한 사람입니다. 무엇보다 본인에게 주어진 업무의 우선순위를 명확히 파악하고 철저한 시간 관리를 통해 맡은 바를 끝까지 해내는 성실함이 몸에 배어있는 친구입니다. 특히 기존의 체제에 안주하거나 얽매이지 않고, 새로운 분야에 대한 도전을 두려워하지 않는 태도는 주변인들에게도 좋은 영향을 줍니다. 학업 뿐만 아니라 노래, 기타, 연극 같은 예술도 진심으로 즐길 줄 아는 다재다능한 친구인데, 그런 도열과 함께하면 대화가 풍부해지고, 같이 뭔가를 만들고 싶어지는 기분이 듭니다. 도열로부터 새로운 도전이나 협업 요청이 있다면 저는 언제든 기꺼이 시간을 내어 함께할 생각입니다.',
+  },
+  image: {
+    src: 'people/seonggeunahn.jpeg',
+    alt: { en: 'Seonggeun Ahn', ko: '안성근' },
   },
 };
 
@@ -169,4 +190,5 @@ export const references: Entry[] = [
   jaeminAhn,
   seonghyeonBae,
   jeonghoonPark,
+  seonggeunAhn,
 ];
