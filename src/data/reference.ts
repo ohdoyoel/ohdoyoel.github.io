@@ -181,6 +181,23 @@ const seonggeunAhn: Entry = {
   },
 };
 
+const donghoonNam: Entry = {
+  period: '',
+  position: {
+    en: 'Infortainment Hardware Developer',
+    ko: 'Infortainment 하드웨어 개발자',
+  },
+  title: { en: 'Donghoon Nam', ko: '남동훈' },
+  description: {
+    en: 'Doyeol is the kind of teammate whose real value shows up in collaboration. He does not stay confined to software development — his curiosity and creativity reach into other directions, and that is what makes the projects he is on richer and more complete. At the same time, his positive, thoughtful character makes him a genuinely compelling person to know, both as a colleague and as a friend. Working with him has been a real pleasure.',
+    ko: '도열 씨는 협업에서 진정한 가치를 발휘하는 동료입니다. SW 개발에만 머물지 않고, 다각적인 방향으로 탐구심과 창의력을 표출하여 프로젝트를 풍부하고 완성도 있게 이끌어냅니다. 동시에 긍정적이고 속이 깊은 도열은 동료로서 또는 한 사람으로서 충분히 매력적인 사람으로 생각되며 도열과 함께 협업할 수 있어 즐거웠습니다.',
+  },
+  image: {
+    src: 'people/donghoonnam.jpg',
+    alt: { en: 'Donghoon Nam', ko: '남동훈' },
+  },
+};
+
 export const references: Entry[] = [
   solYou,
   seungbinJeong,
@@ -191,4 +208,5 @@ export const references: Entry[] = [
   seonghyeonBae,
   jeonghoonPark,
   seonggeunAhn,
+  donghoonNam,
 ];
