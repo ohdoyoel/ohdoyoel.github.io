@@ -164,6 +164,12 @@
       "type": "file"
     },
     {
+      "path": "src/data/publication.ts",
+      "accessCount": 20,
+      "lastAccessed": 1778588139618,
+      "type": "file"
+    },
+    {
       "path": "src/i18n/ui.ts",
       "accessCount": 19,
       "lastAccessed": 1777968688223,
@@ -179,12 +185,6 @@
       "path": "src/pages/ko/blog/[id].astro",
       "accessCount": 17,
       "lastAccessed": 1777984217784,
-      "type": "file"
-    },
-    {
-      "path": "src/data/publication.ts",
-      "accessCount": 17,
-      "lastAccessed": 1778038903731,
       "type": "file"
     },
     {

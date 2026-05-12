@@ -82,7 +82,6 @@ export const papers: Entry[] = [
         ko: 'papers/pacman3.png',
       },
     },
-    link: { href: 'papers/pacman3.pdf' },
   },
   {
     period: '2604',
@@ -108,7 +107,6 @@ export const papers: Entry[] = [
         ko: 'papers/pacman2.png',
       },
     },
-    link: { href: 'papers/pacman2.pdf' },
   },
   {
     period: '2603',
@@ -134,7 +132,6 @@ export const papers: Entry[] = [
         ko: 'papers/pacman1.png',
       },
     },
-    link: { href: 'papers/pacman1.pdf' },
   },
   {
     period: '2512',
