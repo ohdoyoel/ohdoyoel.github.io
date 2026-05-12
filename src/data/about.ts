@@ -109,14 +109,29 @@ export const work: Entry[] = [
 
 export const awards: Entry[] = [
   {
+    period: '2605',
+    subtitle: {
+      en: 'KAIST Office of Student Affairs & Policy, Office of Student Life, Office of Academic Affairs ',
+      ko: 'KAIST 학생정책처, 학생생활처, 교무처',
+    },
+    title: {
+      en: 'KAIST AI Future Challenge Idea Competition',
+      ko: 'KAIST AI Future Challenge 아이디어 공모전',
+    },
+    description: {
+      en: 'First Prize, Provost’s Award, 「Cognitive Immune AI」',
+      ko: '최우수상, 교학부총장상, 「인지면역 AI」',
+    },
+  }, 
+  {
     period: '2407',
     subtitle: {
       en: 'Ministry of National Defense, Republic of Korea',
       ko: '대한민국 국방부',
     },
     title: {
-      en: '2024 National Defense Public Data Competition',
-      ko: '2024 국방 공공데이터 활용 경진대회 ',
+      en: 'National Defense Public Data Competition',
+      ko: '국방 공공데이터 활용 경진대회 ',
     },
     description: {
       en: 'Minister of Defense Award, 「Military Welfare Map」 (Service Development)',

@@ -206,6 +206,12 @@
       "type": "file"
     },
     {
+      "path": "src/data/about.ts",
+      "accessCount": 11,
+      "lastAccessed": 1778587940074,
+      "type": "file"
+    },
+    {
       "path": "src/layouts/BaseLayout.astro",
       "accessCount": 10,
       "lastAccessed": 1777968687336,
@@ -251,12 +257,6 @@
       "path": "src/pages/reference.astro",
       "accessCount": 9,
       "lastAccessed": 1778037658134,
-      "type": "file"
-    },
-    {
-      "path": "src/data/about.ts",
-      "accessCount": 9,
-      "lastAccessed": 1778042156870,
       "type": "file"
     },
     {
