@@ -1,0 +1,283 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Menu from '../../../components/Menu.astro';
+import { useTranslations, pageLink, assetLink } from '../../../i18n/utils';
+import { profile } from '../../../data/profile';
+import { aboutPosts } from '../../../data/about';
+
+export const getStaticPaths = (() => {
+  return aboutPosts.map((p) => ({ params: { id: String(p.postId) }, props: { post: p } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const lang = 'ko' as const;
+const t = useTranslations(lang);
+
+const modules = import.meta.glob<any>('../../../content/about/*.ko.md', { eager: true });
+const Content = modules[`../../../content/about/${post.postId}.ko.md`]?.Content;
+
+const period = post.period.replace(/Present/g, t('meta.present'));
+
+const isAbsolute = (s: string) => /^([a-z]+:)?\/\//i.test(s) || s.startsWith('/') || s.startsWith('data:');
+const resolveHref = (s: string) => (s.startsWith('#') || isAbsolute(s) ? s : assetLink(s));
+const imageSrc = post.image && resolveHref(post.image.src);
+const imageAlt = post.image?.alt?.[lang] ?? post.title[lang];
+---
+<BaseLayout
+  lang={lang}
+  pageClass="page-about"
+  title={`${post.title[lang]} — ${profile.name[lang]}`}
+>
+  <r-grid class="main post" columns="6" columns-s="4">
+    <r-cell order="-10" span="4" span-s="row">
+      <h1>{t('page.about.heading')}</h1>
+    </r-cell>
+    <r-cell order="-9" class="menu" span="2" span-s="row">
+      <Menu lang={lang} current="about" />
+    </r-cell>
+
+    <r-cell span="1+1" span-s="row">
+      <a class="back-arrow" href={pageLink(lang, 'about')} aria-label={t('page.about')}>←</a>
+    </r-cell>
+    <r-cell span="2+4" span-s="row" class="post-title-cell">
+      {post.subtitle && <p class="post-subtitle">{post.subtitle[lang]}</p>}
+      <h2 class="post-title">{post.title[lang]}</h2>
+      {post.description && <p class="post-description">{post.description[lang]}</p>}
+    </r-cell>
+    <r-cell span="6+1" span-s="row" class="post-period-cell">
+      <time class="post-period">{period}</time>
+    </r-cell>
+
+    <r-cell class="post-body-cell" span="2+4" span-s="row">
+      {imageSrc && (
+        <div class="post-image">
+          <img src={imageSrc} alt={imageAlt} loading="lazy" />
+        </div>
+      )}
+      <article class="post-body">
+        {Content ? <Content /> : <p class="post-empty">(No content)</p>}
+      </article>
+    </r-cell>
+  </r-grid>
+</BaseLayout>
+
+<style>
+  .back-arrow {
+    display: inline-block;
+    font-size: var(--font-size-9);
+    line-height: var(--line-height-9);
+    letter-spacing: var(--letter-spacing-9);
+    color: var(--foreground-color);
+    font-weight: 600;
+  }
+  .back-arrow:hover {
+    background-color: transparent;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: var(--foreground-color-dimmed);
+    text-decoration: none;
+  }
+  .post-subtitle {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    margin-top: 0;
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .post-title {
+    font-size: var(--font-size-7);
+    line-height: var(--line-height-7);
+    letter-spacing: var(--letter-spacing-7);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .post-description {
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+    color: var(--foreground-color-dimmed);
+    margin-top: calc(var(--unit) * 1);
+    margin-bottom: 0;
+  }
+  .post-period-cell {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  .post-period {
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    color: var(--foreground-color-dimmed);
+    white-space: nowrap;
+  }
+  .post-image {
+    margin-bottom: calc(var(--unit) * 4);
+    background: rgba(var(--foreground-color-rgb), 0.06);
+    line-height: 0;
+  }
+  .post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .post-empty {
+    color: var(--foreground-color-dimmed);
+  }
+  @media (max-width: 640px) {
+    .back-arrow {
+      font-size: var(--font-size-7);
+      line-height: var(--line-height-7);
+      letter-spacing: var(--letter-spacing-7);
+    }
+  }
+  .post-body :global(h2) {
+    font-size: var(--font-size-5);
+    line-height: var(--line-height-5);
+    letter-spacing: var(--letter-spacing-5);
+    font-weight: 600;
+    margin-top: calc(var(--unit) * 6);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .post-body :global(h3) {
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-4);
+    letter-spacing: var(--letter-spacing-4);
+    font-weight: 600;
+    margin-top: calc(var(--unit) * 4);
+    margin-bottom: calc(var(--unit) * 1);
+  }
+  .post-body :global(p) {
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-3);
+    letter-spacing: var(--letter-spacing-3);
+  }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-3);
+    letter-spacing: var(--letter-spacing-3);
+    padding-left: calc(var(--unit) * 4);
+  }
+  .post-body :global(blockquote) {
+    border-left: 2px solid var(--foreground-color-dimmed);
+    padding-left: calc(var(--unit) * 2);
+    color: var(--foreground-color-dimmed);
+    margin-left: 0;
+  }
+  .post-body :global(a[href]) {
+    text-decoration: underline;
+  }
+  .post-body :global(.post-gallery-wrap) {
+    position: relative;
+    margin: 0 0 calc(var(--unit) * 4);
+  }
+  .post-body :global(.post-gallery) {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: calc(var(--unit) * 2);
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .post-body :global(.post-gallery::-webkit-scrollbar) {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .post-body :global(.post-gallery img) {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    scroll-snap-align: start;
+    display: block;
+    margin: 0;
+    background: rgba(var(--foreground-color-rgb), 0.06);
+  }
+  .post-body :global(.post-gallery-arrow) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(var(--unit) * 6);
+    height: calc(var(--unit) * 6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: var(--font-size-5);
+    line-height: 1;
+    z-index: 1;
+    transition: opacity 0.15s ease, background 0.15s ease;
+    padding: 0;
+  }
+  .post-body :global(.post-gallery-arrow.prev) { left: calc(var(--unit) * 2); }
+  .post-body :global(.post-gallery-arrow.next) { right: calc(var(--unit) * 2); }
+  .post-body :global(.post-gallery-arrow:hover) { background: rgba(0, 0, 0, 0.8); }
+  .post-body :global(.post-gallery-arrow.disabled) {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const init = () => {
+    document.querySelectorAll<HTMLElement>('.post-gallery').forEach((gallery) => {
+      if (gallery.dataset.enhanced) return;
+      gallery.dataset.enhanced = '1';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'post-gallery-wrap';
+      gallery.parentNode!.insertBefore(wrap, gallery);
+      wrap.appendChild(gallery);
+
+      const mkBtn = (cls: string, label: string, glyph: string) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = `post-gallery-arrow ${cls}`;
+        b.setAttribute('aria-label', label);
+        b.textContent = glyph;
+        return b;
+      };
+      const prev = mkBtn('prev', 'Previous', '←');
+      const next = mkBtn('next', 'Next', '→');
+      wrap.appendChild(prev);
+      wrap.appendChild(next);
+
+      const page = (dir: number) => {
+        gallery.scrollBy({ left: dir * gallery.clientWidth, behavior: 'smooth' });
+      };
+      prev.addEventListener('click', () => page(-1));
+      next.addEventListener('click', () => page(1));
+
+      const update = () => {
+        const atStart = gallery.scrollLeft <= 5;
+        const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 5;
+        prev.classList.toggle('disabled', atStart);
+        next.classList.toggle('disabled', atEnd);
+      };
+      gallery.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>

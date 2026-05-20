@@ -10,9 +10,15 @@ import {
   education, work, awards, certificates,
   programming, research, skills, thisWebsite,
 } from '../../data/about';
+import type { Entry as EntryType } from '../../data/types';
 
 const lang = 'ko' as const;
 const t = useTranslations(lang);
+
+const withPostLink = (e: EntryType): EntryType =>
+  typeof e.postId === 'number'
+    ? { ...e, link: { href: pageLink(lang, `about/${e.postId}`), internal: true } }
+    : e;
 ---
 <BaseLayout
   lang={lang}
@@ -47,7 +53,7 @@ const t = useTranslations(lang);
 
     <r-cell span="2" span-s="row">
       <Section title={t('section.education')}>
-        {education.map((e) => <Entry entry={e} lang={lang} />)}
+        {education.map((e) => <Entry entry={withPostLink(e)} lang={lang} />)}
       </Section>
     </r-cell>
     <r-cell class="research" span="4" span-s="row" span-xs="row">
@@ -58,17 +64,17 @@ const t = useTranslations(lang);
 
     <r-cell span="2" span-s="row">
       <Section title={t('section.work')}>
-        {work.map((e) => <Entry entry={e} lang={lang} />)}
+        {work.map((e) => <Entry entry={withPostLink(e)} lang={lang} />)}
       </Section>
     </r-cell>
     <r-cell span="2" span-s="row">
       <Section title={t('section.award')}>
-        {awards.map((e) => <Entry entry={e} lang={lang} />)}
+        {awards.map((e) => <Entry entry={withPostLink(e)} lang={lang} />)}
       </Section>
     </r-cell>
     <r-cell span="2" span-s="row">
       <Section title={t('section.certificate')}>
-        {certificates.map((e) => <Entry entry={e} lang={lang} />)}
+        {certificates.map((e) => <Entry entry={withPostLink(e)} lang={lang} />)}
       </Section>
     </r-cell>
 

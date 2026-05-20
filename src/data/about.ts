@@ -1,4 +1,4 @@
-import type { Entry, IntroLine, Localized } from './types';
+import type { AboutPost, Entry, IntroLine, Localized } from './types';
 
 export const intro: IntroLine[] = [
   {
@@ -122,7 +122,8 @@ export const awards: Entry[] = [
       en: 'First Prize, Provost’s Award, 「Cognitive Immune AI」',
       ko: '최우수상, 교학부총장상, 「인지면역 AI」',
     },
-  }, 
+    postId: 0,
+  },
   {
     period: '2407',
     subtitle: {
@@ -265,6 +266,10 @@ export const research: Localized<string[]> = {
     '긴 시간축의 끝에는 AGI가 있습니다. 위 다섯 갈래가 결국 한 자리에서 만나는 지점이라고 생각합니다.',
   ],
 };
+
+export const aboutPosts: AboutPost[] = [
+  ...education, ...work, ...awards, ...certificates,
+].filter((e): e is AboutPost => typeof e.postId === 'number');
 
 export const thisWebsite = {
   text: {

@@ -17,7 +17,10 @@ export type Entry = {
   description?: Localized;
   link?: { href: string; internal?: boolean };
   image?: { src: string; alt?: Localized };
+  postId?: number;
 };
+
+export type AboutPost = Entry & { postId: number };
 
 export type BlogPost = {
   id: number;
