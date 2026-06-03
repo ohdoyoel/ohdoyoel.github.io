@@ -109,6 +109,22 @@ export const work: Entry[] = [
 
 export const awards: Entry[] = [
   {
+    period: '2606',
+    subtitle: {
+      en: 'KAIST College of AI',
+      ko: 'KAIST AI대학',
+    },
+    title: {
+      en: 'AI Vision Contest',
+      ko: 'AI Vision Contest',
+    },
+    description: {
+      en: 'Vision Award: Special Guest (Top 20 Teams)',
+      ko: 'Vision Award: Special Guest (상위 20팀)',
+    },
+    link: { href: 'https://aic-competition.kaist.ac.kr/' },
+  },
+  {
     period: '2605',
     subtitle: {
       en: 'KAIST Office of Student Affairs & Policy, Office of Student Life, Office of Academic Affairs ',
