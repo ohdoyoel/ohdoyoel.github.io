@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"ls -la /Users/ohdoyoel/work/side/cv/public/project/ 2>/dev/null\",\"description\":\"List project image assets\"}",
-  "error": "Exit code 1",
-  "timestamp": "2026-05-06T02:58:26.439Z",
-  "retry_count": 1
-}
