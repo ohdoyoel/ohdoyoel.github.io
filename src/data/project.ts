@@ -2,6 +2,26 @@ import type { Project } from './types';
 
 export const projects: Project[] = [
   {
+    id: 10,
+    period: '2606',
+    title: { en: 'ASTraMut', ko: 'ASTraMut' },
+    subtitle: {
+      en: 'KAIST Automated Software Testing · Semester-long team project',
+      ko: 'KAIST 소프트웨어 테스팅 자동화 · 학기 프로젝트',
+    },
+    description: {
+      en: "Java mutation-operator learner: mines AST-level edit patterns from real bug-fix commits (ManySStuBs4J + Bugs2Fix), generalizes them via anti-unification, and reverses the learned fixes into mutants. Scores 1.94% lower than PIT's default mutation score on Defects4J while reaching bug shapes — API renames, predicate rewrites, block restructuring — PIT's fixed operator set can't express.",
+      ko: '실제 버그 수정 커밋(ManySStuBs4J + Bugs2Fix)에서 AST 수준 편집 패턴을 추출해 anti-unification으로 일반화하고, 학습된 수정을 뒤집어 mutant로 만드는 Java mutation operator 학습기. Defects4J에서 PIT 기본 연산자 대비 1.94% 낮은 mutation score를 기록하면서, API 이름 변경·조건식 재작성·블록 구조 변경처럼 PIT의 고정 연산자로는 표현할 수 없는 버그 패턴까지 다룬다.',
+    },
+    image: {
+      src: 'projects/astramut.png',
+      alt: {
+        en: 'Venn diagram of the overlap between ManySStuBs4J, Bugs2Fix, and PIT default mutation operators',
+        ko: 'ManySStuBs4J, Bugs2Fix, PIT 기본 mutation operator 간 중첩을 나타낸 벤 다이어그램',
+      },
+    },
+  },
+  {
     id: 0,
     period: '2605',
     title: { en: 'KAIST Roadmap Planner', ko: 'KAIST 로드맵 플래너' },

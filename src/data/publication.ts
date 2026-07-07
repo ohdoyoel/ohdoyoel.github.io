@@ -32,16 +32,16 @@ export const papers: Entry[] = [
   {
     period: '2606',
     title: {
-      en: '(ASTraMut: AST-Guided Mutation Testing for Java)',
-      ko: '(ASTraMut: Java용 AST 기반 Mutation Testing 도구)',
+      en: 'ASTraMut: Learning Java Mutation Operators from Real-World Bug-Fix Patterns',
+      ko: 'ASTraMut: 실제 버그 수정 패턴으로부터 Java Mutation Operator 학습하기',
     },
     subtitle: {
       en: 'KAIST Automated Software Testing · Project',
       ko: 'KAIST 소프트웨어 테스팅 자동화 · 프로젝트',
     },
     description: {
-      en: 'TBD',
-      ko: '미정',
+      en: "A Java mutation operator learner that mines AST-level edit patterns from real bug-fix commits, generalizes them via anti-unification, and reverses the learned fixes into mutation operators. On Defects4J, the merged top-100 operator set scores a 1.94% lower mutation score than PIT's default operators on the same relevant test suites, while covering bug-shape families — API renames, whole-predicate negation, block-shape rewrites — that PIT's fixed mutator catalogue cannot express.",
+      ko: '실제 버그 수정 커밋에서 AST 수준의 편집 패턴을 추출해 anti-unification으로 일반화하고, 학습된 수정을 뒤집어 mutation operator로 사용하는 Java mutation operator 학습기다. Defects4J에서 병합된 상위 100개 연산자 세트는 동일한 관련 테스트 스위트 기준 PIT 기본 연산자 대비 1.94% 낮은 mutation score를 기록했고, API 이름 변경·전체 조건식 부정·블록 구조 재작성처럼 PIT의 고정된 연산자 목록으로는 표현할 수 없는 버그 패턴군까지 다룬다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
@@ -49,14 +49,14 @@ export const papers: Entry[] = [
       { name: { en: 'Junseo Jang', ko: '장준서' }, href: '#' },
       { name: { en: 'Dongjae Lee', ko: '이동재' }, href: '#' },
     ],
-    // image: {
-    //   src: 'papers/astramut.png',
-    //   alt: {
-    //     en: 'papers/astramut.png',
-    //     ko: 'papers/astramut.png',
-    //   },
-    // },
-    // link: { href: 'papers/astramut.pdf' },
+    image: {
+      src: 'papers/astramut.png',
+      alt: {
+        en: 'Venn diagram of the overlap between ManySStuBs4J, Bugs2Fix, and PIT default mutation operators',
+        ko: 'ManySStuBs4J, Bugs2Fix, PIT 기본 mutation operator 간 중첩을 나타낸 벤 다이어그램',
+      },
+    },
+    link: { href: 'papers/astramut.pdf' },
   },
   {
     period: '2605',

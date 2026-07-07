@@ -49,20 +49,20 @@ export const intro: IntroLine[] = [
 
 export const education: Entry[] = [
   {
-    period: '2103 - Present',
+    period: '2103 - 2702',
     title: { en: 'UNIST', ko: '울산과학기술원 (UNIST)' },
     description: {
       en: 'B.S. in Computer Science and Engineering · GPA 4.05 / 4.30',
-      ko: '컴퓨터공학 학사 · GPA 4.05 / 4.30',
+      ko: '컴퓨터공학 학사 · GPA 4.03 / 4.30',
     },
     link: { href: 'https://www.unist.ac.kr/unist/index.do' },
   },
   {
-    period: '2603 - Present',
+    period: '2603 - 2607',
     title: { en: 'KAIST', ko: '한국과학기술원 (KAIST)' },
     description: {
-      en: 'Exchange Student · School of Computing',
-      ko: '교환학생 · 전산학부',
+      en: 'Exchange Student · School of Computing · GPA 4.06 / 4.30',
+      ko: '교환학생 · 전산학부 · GPA 4.06 / 4.30',
     },
     link: { href: 'https://www.kaist.ac.kr/kr/' },
   },
@@ -83,7 +83,13 @@ export const education: Entry[] = [
 export const work: Entry[] = [
   {
     period: '2601 - Present',
-    title: { en: 'Peulda', ko: '플다' },
+    title: { en: 'Config Intelligence', ko: '컨피그 인텔리전스' },
+    description: { en: 'Data Engineer', ko: '데이터 엔지니어' },
+    link: { href: 'https://config.inc/' },
+  },
+  {
+    period: '2601 - 2607',
+    title: { en: 'Peulda (SaveHome)', ko: '플다 (집지켜)' },
     description: { en: 'Software Developer', ko: '소프트웨어 개발자' },
     link: { href: 'https://www.peulda.com/' },
   },
