@@ -2,6 +2,26 @@ import type { Project } from './types';
 
 export const projects: Project[] = [
   {
+    id: 11,
+    period: '2606',
+    title: { en: 'Korean 4-Ball Billiards RL', ko: '한국식 4구 당구 강화학습' },
+    subtitle: {
+      en: 'KAIST Introduction to Reinforcement Learning · Semester-long team project',
+      ko: 'KAIST 강화학습 개론 · 학기 프로젝트',
+    },
+    description: {
+      en: "A continuous, deterministic, sparse-reward RL benchmark built on a from-scratch physics simulator for Korean 4-ball (sagu). Off-policy RL alone plateaus below 1 point/inning; a geometric aim constraint and carom features lift SAC to 6.460 points/inning; inference-time depth-2 lookahead using the simulator as its own verifier then chains up to 9,392 consecutive scoring shots at 99.8% per-shot success.",
+      ko: '한국식 4구(사구)를 위해 직접 만든 물리 시뮬레이터 위에서 연속·결정론적·희소 보상 강화학습 벤치마크를 구축했다. Off-policy RL만으로는 이닝당 1점 아래에서 정체되지만, 조준 제약과 캐롬 기하 피처를 더하면 SAC가 6.460점/이닝까지 오르고, 시뮬레이터를 자체 검증기로 쓰는 추론 시점 depth-2 lookahead는 최대 9,392연속 득점·샷당 99.8% 성공률의 체인을 만든다.',
+    },
+    image: {
+      src: 'projects/fourball.png',
+      alt: {
+        en: 'A random rack of the cue ball, opponent cue ball, and two red balls on the Korean 4-ball table simulator',
+        ko: '한국식 4구 시뮬레이터에서 무작위로 배치된 큐볼, 상대 큐볼, 적구 두 개',
+      },
+    },
+  },
+  {
     id: 10,
     period: '2606',
     title: { en: 'ASTraMut', ko: 'ASTraMut' },

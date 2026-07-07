@@ -4,30 +4,30 @@ export const papers: Entry[] = [
   {
     period: '2606',
     title: {
-      en: '(Solving Korean Four-Ball Carom Billiards with Reinforcement Learning: Meta-Pretrained Initialization under Sparse Rewards)',
-      ko: '(한국식 포볼 카롬 당구 해결을 위한 강화학습: 희소한 보상에서의 메타-사전학습된 초기화 기법)',
+      en: 'Korean 4-Ball Billiards: A Continuous, Deterministic, Sparse-Reward Benchmark Solved by Inference-Time Search',
+      ko: '한국식 4구 당구: 추론 시점 탐색으로 푸는 연속·결정론적·희소 보상 벤치마크',
     },
     subtitle: {
       en: 'KAIST Introduction to Reinforcement Learning · Project',
       ko: 'KAIST 강화학습 개론 · 프로젝트',
     },
     description: {
-      en: 'TBD',
-      ko: '미정',
+      en: 'We cast Korean 4-ball billiards (sagu) as a continuous, deterministic, sparse-reward RL benchmark with a fast, exact physics simulator. Off-policy RL (SAC/TD3) beats PPO by ~2.5x, but the bare task plateaus below one point per inning even with more compute, a curriculum, or a learned reward model. Explicit geometry — a first-contact aim constraint plus four carom features — lifts SAC from 0.487 to 6.460 points/inning. The final jump comes from inference-time search: greedy depth-2 lookahead using the simulator as its own verifier turns a ~6-point policy into chains of up to 9,392 consecutive scoring shots at 99.8% per-shot success.',
+      ko: '포켓이 없는 캐롬 게임인 한국식 4구(사구)를 연속적·결정론적·희소 보상 강화학습 벤치마크로 정식화하고, 빠르고 정확한 물리 시뮬레이터를 구축했다. Off-policy RL(SAC/TD3)은 PPO보다 약 2.5배 우수하지만, 더 많은 학습량·커리큘럼·학습된 보상 모델을 더해도 원 과제는 이닝당 1점 아래에서 정체된다. 최초 접촉을 보장하는 조준 제약과 4개의 캐롬 기하 피처를 더하면 SAC 점수가 0.487에서 6.460점/이닝으로 뛴다. 마지막 도약은 추론 시점 탐색에서 나온다 — 시뮬레이터를 자체 검증기로 쓰는 탐욕적 depth-2 lookahead는 약 6점짜리 정책을 최대 9,392연속 득점·샷당 99.8% 성공률의 체인으로 바꾼다.',
     },
     authors: [
       { name: { en: 'Doyeol Oh', ko: '오도열' }, self: true, href: '#' },
       { name: { en: 'Byungmo Kang', ko: '강병모' }, href: '#' },
       { name: { en: 'Seojun Park', ko: '박서준' }, href: '#' },
     ],
-    // image: {
-    //   src: 'papers/fourball.png',
-    //   alt: {
-    //     en: 'papers/fourball.png',
-    //     ko: 'papers/fourball.png',
-    //   },
-    // },
-    // link: { href: 'papers/fourball.pdf' },
+    image: {
+      src: 'papers/fourball.png',
+      alt: {
+        en: 'A random rack of the cue ball, opponent cue ball, and two red balls on the Korean 4-ball table simulator',
+        ko: '한국식 4구 시뮬레이터에서 무작위로 배치된 큐볼, 상대 큐볼, 적구 두 개',
+      },
+    },
+    link: { href: 'papers/fourball.pdf' },
   },
   {
     period: '2606',
