@@ -12,8 +12,6 @@ export const profile = {
     { label: 'GitHub', href: 'https://github.com/ohdoyoel' },
     { label: 'LinkedIn', href: 'https://linkedin.com/in/ohdoyoel' },
     { label: 'Scholar', href: 'https://scholar.google.com/citations?user=Ld0QNwcAAAAJ' },
-    { label: 'Instagram', href: 'https://instagram.com/ohdoyoel' },
-    { label: 'YouTube', href: 'https://youtube.com/@오도리odori' },
     { label: 'Email', href: 'mailto:ohdoyoel@gmail.com' },
   ],
 };
