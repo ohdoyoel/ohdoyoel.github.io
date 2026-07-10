@@ -9,8 +9,8 @@ export const intro: IntroLine[] = [
   },
   {
     text: {
-      en: "I'm an undergraduate at UNIST in the Department of Computer Science and Engineering, currently working as a software developer at Peulda Co., Ltd.",
-      ko: '저는 UNIST 컴퓨터공학과 학부생이고, 현재 Peulda라는 회사에서 소프트웨어 개발자로 일하고 있어요.',
+      en: "I'm an undergraduate at UNIST in the Department of Computer Science and Engineering, currently working as a Data Engineer at Config Intelligence.",
+      ko: '저는 UNIST 컴퓨터공학과 학부생이고, 현재 Config Intelligence에서 Data Engineer로 일하고 있어요.',
     },
   },
   {
